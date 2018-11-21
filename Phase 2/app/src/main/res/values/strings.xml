@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GameCentre</string>
+    <string name="save_button">Save</string>
+    <string name="undo_button">Undo</string>
+</resources>
