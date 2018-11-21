@@ -93,7 +93,7 @@ public class BoardManager implements Serializable {
      *
      * @return whether the tiles are in row-major order
      */
-    boolean puzzleSolved() {
+    public boolean puzzleSolved() {
         boolean solved = true;
         Iterator<Tile> iter = board.iterator();
         int expectedId = 1;

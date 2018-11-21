@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.Toast;
+import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -233,6 +234,9 @@ public class GameActivity extends AppCompatActivity implements Observer {
     public void update(Observable o, Object arg) {
         display();
         autoSave();
+        if(boardManager.puzzleSolved()){
+            returnToMain();
+        }
     }
 
     /**
@@ -263,5 +267,13 @@ public class GameActivity extends AppCompatActivity implements Observer {
      */
     private void autoSave() {
         saveCurrentBoardManager();
+    }
+
+    /**
+     * Returns to main SlidingTiles screen
+     */
+    private void returnToMain(){
+        Intent next = new Intent(this, StartingActivity.class);
+        startActivity(next);
     }
 }
