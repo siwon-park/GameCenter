@@ -13,7 +13,7 @@ import static fall2018.csc2017.GameCentre.Board.NUM_ROWS;
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
  */
-class BoardManager implements Serializable {
+public class BoardManager implements Serializable {
 
     /**
      * The board being managed.
