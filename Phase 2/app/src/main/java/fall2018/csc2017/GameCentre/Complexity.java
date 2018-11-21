@@ -29,10 +29,29 @@ public class Complexity extends AppCompatActivity {
             LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
         }
 
+        addButton2Listener();
         addButton3Listener();
         addButton4Listener();
         addButton5Listener();
     }
+
+    /**
+     * Activate the 2x2 button.
+     */
+    private void addButton2Listener() {
+        Button startButton = findViewById(R.id.button2);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boardManager = new BoardManager();
+                boardManager.setSavedNumRows(2);
+                boardManager.setSavedNumCols(2);
+                saveCurrentBoardManager();
+                switchToBackgroundChange();
+            }
+        });
+    }
+
 
     /**
      * Activate the 3x3 button.
