@@ -84,11 +84,9 @@
         android:layout_below="@+id/bUserScoreboard"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="223dp"
         android:layout_marginTop="-4dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="474dp"
         android:text="Leaderboard" />
 
 
