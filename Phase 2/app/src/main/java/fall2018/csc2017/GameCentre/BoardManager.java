@@ -53,21 +53,21 @@ public class BoardManager implements Serializable {
      * Manage a board that has been pre-populated.
      * @param board the board
      */
-    BoardManager(Board board) {
+    public BoardManager(Board board) {
         this.board = board;
     }
 
     /**
      * Return the current board.
      */
-    Board getBoard() {
+    public Board getBoard() {
         return board;
     }
 
     /**
      * Manage a new shuffled board.
      */
-    BoardManager() {
+    public BoardManager() {
         List<Tile> tiles = new ArrayList<>();
         final int numTiles = NUM_ROWS * NUM_COLS;
         for (int tileNum = 0; tileNum != numTiles; tileNum++) {
@@ -165,7 +165,7 @@ public class BoardManager implements Serializable {
     /**
      * Undo a move up to unlimited times until the board is as original.
      */
-    void undoMove(){
+    public void undoMove(){
         if(!undoTrack.isEmpty()) {
             int[][] lastStep = undoTrack.pop();
 

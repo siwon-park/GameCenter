@@ -17,7 +17,7 @@ public class AccountManager implements Serializable {
     /**
      * A new AccountManager; a constructor
      */
-    AccountManager() {
+    public AccountManager() {
         map = new HashMap<>();
         currentAccount = null;
     }

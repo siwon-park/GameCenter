@@ -1,4 +1,4 @@
-package fall2018.csc2017.GameCentre;
+package fall2018.csc2017.SlidingTiles;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -8,6 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import fall2018.csc2017.GameCentre.AccountManager;
+import fall2018.csc2017.GameCentre.BoardManager;
+import fall2018.csc2017.GameCentre.Complexity;
+import fall2018.csc2017.GameCentre.LoadAndSave;
+import fall2018.csc2017.GameCentre.LoginActivity;
+import fall2018.csc2017.GameCentre.PerUserScoreboardActivity;
+import fall2018.csc2017.GameCentre.R;
+import fall2018.csc2017.GameCentre.ScoreboardActivity;
 
 
 /**
@@ -43,8 +52,7 @@ public class StartingActivity extends AppCompatActivity {
         addSignOutButtonListener();
         addScoreboardButtonListener();
         addRateButtonListener();
-        TextView textView = (TextView) findViewById(R.id.tvName);
-        textView.setText("Welcome " + accountManager.getCurrentAccount().getName());
+
     }
 
 

@@ -1,4 +1,4 @@
-package fall2018.csc2017.GameCentre;
+package fall2018.csc2017.SlidingTiles;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -13,6 +13,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
+
+import fall2018.csc2017.GameCentre.AccountManager;
+import fall2018.csc2017.GameCentre.BackgroundManager;
+import fall2018.csc2017.GameCentre.Board;
+import fall2018.csc2017.GameCentre.BoardManager;
+import fall2018.csc2017.GameCentre.CustomAdapter;
+import fall2018.csc2017.GameCentre.GestureDetectGridView;
+import fall2018.csc2017.GameCentre.LoadAndSave;
+import fall2018.csc2017.GameCentre.R;
 
 /**
  * The game activity.

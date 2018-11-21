@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
+
 /**
  * Login activity
  */
@@ -62,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                 boolean isMatch = accountManager.getAccount(username).matchPassword(password);
                 if (isMatch) {
                     accountManager.setCurrentAccount(accountManager.getAccount(username));
-                    switchToStarting();
+                    switchToUserArea();
                 } else {
                     makeToastIncorrectPassword();
                 }
@@ -95,9 +97,9 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Switch to the StartingActivity view to play the game.
      */
-    private void switchToStarting() {
+    private void switchToUserArea() {
         LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
-        Intent tmp = new Intent(this, StartingActivity.class);
+        Intent tmp = new Intent(this, UserAreaActivity.class);
         startActivity(tmp);
     }
 }

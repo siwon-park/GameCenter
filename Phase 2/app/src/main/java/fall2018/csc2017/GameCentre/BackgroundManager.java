@@ -42,7 +42,7 @@ public class BackgroundManager {
      * Create a manager and split the background image
      * @param context
      */
-    BackgroundManager(Context context) {
+    public BackgroundManager(Context context) {
         this.context = context;
         this.gridWidth = 967;
         this.gridHeight = 1255;

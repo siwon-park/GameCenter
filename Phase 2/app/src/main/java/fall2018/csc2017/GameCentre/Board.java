@@ -17,17 +17,17 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
     /**
      * The number of rows.
      */
-    static int NUM_ROWS = 4;
+    public static int NUM_ROWS = 4;
 
     /**
      * The number of columns.
      */
-    static int NUM_COLS = 4;
+    public static int NUM_COLS = 4;
 
     /**
      * The BitMap of background image, if there is not one, remain null
      */
-    static Bitmap BACKGROUND_BMAP = null;
+    public static Bitmap BACKGROUND_BMAP = null;
 
     /**
      * The tiles on the board in row-major order.
@@ -65,7 +65,7 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
      * @param col the tile column
      * @return the tile at (row, col)
      */
-    Tile getTile(int row, int col) {
+    public Tile getTile(int row, int col) {
         return tiles[row][col];
     }
 
