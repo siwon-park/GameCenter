@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class AccountTest {
@@ -21,11 +23,16 @@ public class AccountTest {
     }
 
     @Test
-    public void setScore() {
-    }
+    public void testGetAndSetScore() {
+        Account account = new Account("a","ab","abc");
+        int[] scores = {100, 50, 250, 110, 220, 33};
+        for (int score : scores) {
+            account.setScore(score);
+        }
 
-    @Test
-    public void getScores() {
+        for (int i = 0; i < account.getScores().size(); i++) {
+            assertEquals(scores[i], (long) account.getScores().get(i));
+        }
     }
 
     @Test
