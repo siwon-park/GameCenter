@@ -4,14 +4,21 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
-
+import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.*;
 
 public class AccountTest {
+    private String name;
+    private String username;
+    private String password;
+    private Account account;
 
     @Before
     public void setUp() throws Exception {
+        name = "a";
+        username = "ab";
+        password = "abc";
+        account = new Account(name, username, password);
     }
 
     @After
@@ -19,12 +26,18 @@ public class AccountTest {
     }
 
     @Test
-    public void matchPassword() {
+    public void testMatchPasswordAndGettersForSeveralMemberVariables() {
+        String savedGameFileName = username + "_saved_game" + ".ser";;
+        String currentGameFileName = username + "_current_game" + ".ser";
+        assertEquals(savedGameFileName, account.getSavedGameFileName());
+        assertEquals(currentGameFileName, account.getCurrentGameFileName());
+        assertEquals(name, account.getName());
+        assertEquals(username, account.getUsername());
+        assertTrue(account.matchPassword(password));
     }
 
     @Test
     public void testGetAndSetScore() {
-        Account account = new Account("a","ab","abc");
         int[] scores = {100, 50, 250, 110, 220, 33};
         for (int score : scores) {
             account.setScore(score);
@@ -36,35 +49,22 @@ public class AccountTest {
     }
 
     @Test
-    public void getSavedGameFileName() {
+    public void testSetSavedAndGetSaved() {
+        account.setSaved(true);
+        boolean res = account.getSaved();
+        assertTrue(res);
+        account.setSaved(false);
+        res = account.getSaved();
+        assertFalse(res);
     }
 
     @Test
-    public void getCurrentGameFileName() {
-    }
-
-    @Test
-    public void getUsername() {
-        // Tested by AccountManagerTest
-    }
-
-    @Test
-    public void getName() {
-    }
-
-    @Test
-    public void getSaved() {
-    }
-
-    @Test
-    public void setSaved() {
-    }
-
-    @Test
-    public void getGamePlayed() {
-    }
-
-    @Test
-    public void setGamePlayed() {
+    public void testSetGamePlayedAndGetGamePlayed() {
+        account.setGamePlayed(true);
+        boolean res = account.getGamePlayed();
+        assertTrue(res);
+        account.setGamePlayed(false);
+        res = account.getGamePlayed();
+        assertFalse(res);
     }
 }
