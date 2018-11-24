@@ -32,12 +32,12 @@ public class BoardManager implements Serializable {
      * We give more points for a larger board. We also deduct 1 point for each move, but we revert
      * the score for each move that is undone. For every 1 minute, we deduct 1 point.
      */
-    int score = 0;
+    private int score = 0;
 
     /**
      * Records start time of game or the resume time of game (in milliseconds)
      */
-    long startTime = 0;
+    private long startTime = 0;
 
     /**
      * The saved number of rows
@@ -195,7 +195,7 @@ public class BoardManager implements Serializable {
      */
     public void setStartingScoreAndTime() {
         score = 100 + NUM_ROWS * NUM_COLS * 2;
-        startTime = System.currentTimeMillis();
+        updateStartTime();
     }
 
     /**
@@ -203,6 +203,21 @@ public class BoardManager implements Serializable {
      */
     public void updateStartTime() {
         startTime = System.currentTimeMillis();
+    }
+
+    /**
+     * Getter Method (for testing purposes)
+     * @return the start time
+     */
+    long getStartTime() {
+        return startTime;
+    }
+
+    /**
+     * Setter Method (for testing purposes)
+     */
+    void setStartTime(long startTime) {
+        this.startTime = startTime;
     }
 
     /**
