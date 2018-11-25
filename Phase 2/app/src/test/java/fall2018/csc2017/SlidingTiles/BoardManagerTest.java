@@ -11,8 +11,8 @@ import fall2018.csc2017.GameCentre.Tile;
 import fall2018.csc2017.SlidingTiles.Board;
 import fall2018.csc2017.SlidingTiles.BoardManager;
 
-import static fall2018.csc2017.GameCentre.Board.NUM_COLS;
-import static fall2018.csc2017.GameCentre.Board.NUM_ROWS;
+import static fall2018.csc2017.SlidingTiles.Board.NUM_COLS;
+import static fall2018.csc2017.SlidingTiles.Board.NUM_ROWS;
 import static org.junit.Assert.*;
 
 public class BoardManagerTest {
