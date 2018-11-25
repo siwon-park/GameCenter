@@ -1,4 +1,4 @@
-package fall2018.csc2017.GameCentre;
+package fall2018.csc2017.GameCentre.SlidingTiles;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -18,6 +18,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import fall2018.csc2017.GameCentre.AccountManager;
+import fall2018.csc2017.GameCentre.ImageAdapter;
+import fall2018.csc2017.GameCentre.LoadAndSave;
+import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.SlidingTiles.Board;
 import fall2018.csc2017.GameCentre.SlidingTiles.BoardManager;
 import fall2018.csc2017.GameCentre.SlidingTiles.GameActivity;

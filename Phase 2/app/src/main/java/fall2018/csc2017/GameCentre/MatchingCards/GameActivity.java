@@ -18,10 +18,9 @@ import java.util.Observer;
 
 import fall2018.csc2017.GameCentre.AccountManager;
 import fall2018.csc2017.GameCentre.BackgroundManager;
-import fall2018.csc2017.GameCentre.SlidingTiles.Board;
-import fall2018.csc2017.GameCentre.SlidingTiles.BoardManager;
+//import fall2018.csc2017.GameCentre.SlidingTiles.Board;
+//import fall2018.csc2017.GameCentre.SlidingTiles.BoardManager;
 import fall2018.csc2017.GameCentre.CustomAdapter;
-import fall2018.csc2017.GameCentre.GestureDetectGridView;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.SlidingTiles.StartingActivity;
@@ -73,7 +72,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         boardManager.setStartingScoreAndTime();
         accountManager.getCurrentAccount().setGamePlayed(true);
         createTileButtons(this);
-        setContentView(R.layout.activity_game_);
+        setContentView(R.layout.activity_slidingtile);
         addUndoButtonListener();
         addSaveButtonListener();
 
@@ -144,7 +143,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * @param context the context
      */
     private void createTileButtons(Context context) {
-        Board board = boardManager.getBoard();
+        Board board = (Board) boardManager.getBoard();
         tileButtons = new ArrayList<>();
 
         if (Board.BACKGROUND_BMAP != null) {
@@ -179,7 +178,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * Update the backgrounds on the buttons to match the tiles.
      */
     private void updateTileButtons() {
-        Board board = boardManager.getBoard();
+        Board board = (Board) boardManager.getBoard();
         int nextPos = 0;
 
         if (Board.BACKGROUND_BMAP != null) {

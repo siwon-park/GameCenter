@@ -3,7 +3,7 @@ package fall2018.csc2017.GameCentre;
 import java.io.Serializable;
 import java.util.List;
 
-import fall2018.csc2017.GameCentre.SlidingTiles.Board;
+import fall2018.csc2017.GameCentre.Board;
 
 import static fall2018.csc2017.GameCentre.Board.NUM_COLS;
 import static fall2018.csc2017.GameCentre.Board.NUM_ROWS;
@@ -36,9 +36,7 @@ abstract public class BoardManager implements Serializable {
     /**
      * Return the current board.
      */
-    public Board getBoard() {
-        return board;
-    }
+    public abstract Board getBoard();
 
     protected abstract void createBoard(List<Tile> tiles);
 

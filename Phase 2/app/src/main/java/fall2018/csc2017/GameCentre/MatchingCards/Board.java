@@ -1,8 +1,7 @@
-package fall2018.csc2017.GameCentre.SlidingTiles;
+package fall2018.csc2017.GameCentre.MatchingCards;
 
 import android.graphics.Bitmap;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
