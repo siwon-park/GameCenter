@@ -1,8 +1,6 @@
-package fall2018.csc2017.MatchingCards;
-
+package fall2018.csc2017.GameCentre.SlidingTiles;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +8,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.Toast;
+import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,13 +17,10 @@ import java.util.Observer;
 
 import fall2018.csc2017.GameCentre.AccountManager;
 import fall2018.csc2017.GameCentre.BackgroundManager;
-import fall2018.csc2017.SlidingTiles.Board;
-import fall2018.csc2017.SlidingTiles.BoardManager;
 import fall2018.csc2017.GameCentre.CustomAdapter;
 import fall2018.csc2017.GameCentre.GestureDetectGridView;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
-import fall2018.csc2017.SlidingTiles.StartingActivity;
 
 /**
  * The game activity.
@@ -167,7 +163,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
             for (int row = 0; row != Board.NUM_ROWS; row++) {
                 for (int col = 0; col != Board.NUM_COLS; col++) {
                     Button tmp = new Button(context);
-                    tmp.setBackgroundResource(board.getTile(row, col).getBackground());
+                        tmp.setBackgroundResource(board.getTile(row, col).getBackground());
                     this.tileButtons.add(tmp);
                 }
             }

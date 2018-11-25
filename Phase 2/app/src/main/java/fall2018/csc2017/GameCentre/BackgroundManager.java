@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 
 import java.util.HashMap;
 
-import fall2018.csc2017.SlidingTiles.Board;
+import fall2018.csc2017.GameCentre.SlidingTiles.Board;
 
 /**
  * Manage the images that are used as background of tiles, including cropping, scaling and splitting.

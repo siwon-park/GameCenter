@@ -1,4 +1,4 @@
-package fall2018.csc2017.SlidingTiles;
+package fall2018.csc2017.GameCentre.SlidingTiles;
 
 import org.junit.After;
 import org.junit.Before;
@@ -8,12 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fall2018.csc2017.GameCentre.Tile;
-import fall2018.csc2017.SlidingTiles.Board;
-import fall2018.csc2017.SlidingTiles.BoardManager;
 
-import static fall2018.csc2017.SlidingTiles.Board.NUM_COLS;
-import static fall2018.csc2017.SlidingTiles.Board.NUM_ROWS;
-import static org.junit.Assert.*;
+import static fall2018.csc2017.GameCentre.SlidingTiles.Board.NUM_COLS;
+import static fall2018.csc2017.GameCentre.SlidingTiles.Board.NUM_ROWS;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class BoardManagerTest {
     private BoardManager boardManager;
@@ -44,50 +43,6 @@ public class BoardManagerTest {
 
     @Test
     public void undoMove() {
-    }
-
-    @Test
-    public void getScore() {
-    }
-
-    @Test
-    public void updateScore() {
-        boardManager.setStartingScoreAndTime();
-        long score = boardManager.getScore();
-        boardManager.setStartTime(System.currentTimeMillis() - 60000);
-        boardManager.updateScore();
-        long endTime = System.currentTimeMillis();
-        score -= (endTime - boardManager.getStartTime()) / 1000 / 60;
-        assertEquals(score, boardManager.getScore());
-    }
-
-    @Test
-    public void testGetScoreAndSetStartingScoreAndTime() {
-        boardManager.setStartingScoreAndTime();
-        assertEquals(100 + NUM_ROWS * NUM_COLS * 2, boardManager.getScore());
-    }
-
-    @Test
-    public void testUpdateStartTime() {
-        boardManager.updateStartTime();
-        long startTime = boardManager.getStartTime();
-        assertTrue(System.currentTimeMillis() - startTime <= 5000);
-    }
-
-    @Test
-    public void getSavedNumCols() {
-    }
-
-    @Test
-    public void getSavedNumRows() {
-    }
-
-    @Test
-    public void setSavedNumCols() {
-    }
-
-    @Test
-    public void setSavedNumRows() {
     }
 
     @Test

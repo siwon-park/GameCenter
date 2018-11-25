@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-import fall2018.csc2017.SlidingTiles.StartingActivity;
+import fall2018.csc2017.GameCentre.SlidingTiles.StartingActivity;
 
 public class UserAreaActivity extends AppCompatActivity {
 

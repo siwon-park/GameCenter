@@ -3,7 +3,7 @@ package fall2018.csc2017.GameCentre;
 import java.io.Serializable;
 import java.util.List;
 
-import fall2018.csc2017.SlidingTiles.Board;
+import fall2018.csc2017.GameCentre.SlidingTiles.Board;
 
 import static fall2018.csc2017.GameCentre.Board.NUM_COLS;
 import static fall2018.csc2017.GameCentre.Board.NUM_ROWS;

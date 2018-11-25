@@ -1,4 +1,4 @@
-package fall2018.csc2017.SlidingTiles;
+package fall2018.csc2017.GameCentre.SlidingTiles;
 
 import android.content.Intent;
 import android.net.Uri;

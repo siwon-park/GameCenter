@@ -1,6 +1,5 @@
-package fall2018.csc2017.SlidingTiles;
+package fall2018.csc2017.GameCentre.SlidingTiles;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -9,8 +8,8 @@ import java.util.Stack;
 
 import fall2018.csc2017.GameCentre.Tile;
 
-import static fall2018.csc2017.SlidingTiles.Board.NUM_COLS;
-import static fall2018.csc2017.SlidingTiles.Board.NUM_ROWS;
+import static fall2018.csc2017.GameCentre.SlidingTiles.Board.NUM_COLS;
+import static fall2018.csc2017.GameCentre.SlidingTiles.Board.NUM_ROWS;
 
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.

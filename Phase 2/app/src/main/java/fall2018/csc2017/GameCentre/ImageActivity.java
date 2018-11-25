@@ -18,9 +18,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import fall2018.csc2017.SlidingTiles.Board;
-import fall2018.csc2017.SlidingTiles.BoardManager;
-import fall2018.csc2017.SlidingTiles.GameActivity;
+import fall2018.csc2017.GameCentre.SlidingTiles.Board;
+import fall2018.csc2017.GameCentre.SlidingTiles.BoardManager;
+import fall2018.csc2017.GameCentre.SlidingTiles.GameActivity;
 
 /**
  * The activity in which user is prompted to choose a background
