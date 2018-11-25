@@ -1,4 +1,4 @@
-package fall2018.csc2017.GameCentre.SlidingTiles;
+package fall2018.csc2017.GameCentre.MatchingCards;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +14,9 @@ import fall2018.csc2017.GameCentre.LoginActivity;
 import fall2018.csc2017.GameCentre.PerUserScoreboardActivity;
 import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.ScoreboardActivity;
+import fall2018.csc2017.GameCentre.SlidingTiles.BoardManager;
+import fall2018.csc2017.GameCentre.SlidingTiles.ComplexityActivity;
+import fall2018.csc2017.GameCentre.SlidingTiles.GameActivity;
 
 
 /**

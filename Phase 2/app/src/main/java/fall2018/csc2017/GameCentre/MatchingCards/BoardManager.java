@@ -24,7 +24,7 @@ public class BoardManager extends fall2018.csc2017.GameCentre.BoardManager {
 
     private int pairID = 0;
 
-    private Stack<int[]> clearedCards;
+    private Stack<int[]> clearedCards = new Stack<>();
 
     private Pair<Integer, Integer> lastClick;
 
@@ -52,9 +52,9 @@ public class BoardManager extends fall2018.csc2017.GameCentre.BoardManager {
         int[] temp = new int[numTiles];
         for (int tileNum = 0; tileNum != numTiles; tileNum++) {
             if (tileNum % 2 == 0){
-                temp[tileNum] = cardIDs[tileNum];
+                temp[tileNum] = cardIDs[tileNum / 2];
             } else {
-                temp[tileNum] = cardIDs[tileNum - 1];
+                temp[tileNum] = cardIDs[(tileNum - 1) / 2];
             }
             tiles.add(new Tile(tileNum + 1, temp[tileNum]));
         }
@@ -135,8 +135,11 @@ public class BoardManager extends fall2018.csc2017.GameCentre.BoardManager {
             }
         } else {
             if (pairID == currentID) {
+                int[] toBeCleared = clearedCards.peek();
+                board.clearTiles(toBeCleared[0], toBeCleared[1]);
                 int[] clickedOn = {row, col};
                 clearedCards.push(clickedOn);
+                board.clearTiles(row, col);
                 pairID = 0;
             } else {
                 clearedCards.pop();

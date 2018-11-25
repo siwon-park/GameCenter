@@ -13,7 +13,7 @@ import fall2018.csc2017.GameCentre.R;
 
 //import fall2018.csc2017.GameCentre.SlidingTiles.BoardManager;
 
-public class Complexity extends AppCompatActivity {
+public class ComplexityActivity extends AppCompatActivity {
 
     /**
      * The board manager.

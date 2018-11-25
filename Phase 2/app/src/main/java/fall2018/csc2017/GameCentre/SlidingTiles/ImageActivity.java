@@ -142,7 +142,7 @@ public class ImageActivity extends AppCompatActivity {
     }
 
     /**
-     * Switch to the Complexity view to choose a complexity to play the game.
+     * Switch to the ComplexityActivity view to choose a complexity to play the game.
      */
     private void switchToGame() {
             boardManager = new BoardManager();

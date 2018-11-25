@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-import fall2018.csc2017.GameCentre.SlidingTiles.StartingActivity;
+//import fall2018.csc2017.GameCentre.SlidingTiles.StartingActivity;
 
 public class UserAreaActivity extends AppCompatActivity {
 
@@ -28,6 +28,7 @@ public class UserAreaActivity extends AppCompatActivity {
             LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
         }
         addSlidingTilesButtonListener();
+        addMatchingCardsButtonListener();
         TextView textView = (TextView) findViewById(R.id.tvName);
         textView.setText("Welcome " + accountManager.getCurrentAccount().getName() + ",");
     }
@@ -37,19 +38,19 @@ public class UserAreaActivity extends AppCompatActivity {
         SlidingTilesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switchToSlidingTiles();
+                switchToGame(fall2018.csc2017.GameCentre.SlidingTiles.StartingActivity.class);
             }
         });
     }
- /*   private void addMatchingCardsButtonListener() {
+    private void addMatchingCardsButtonListener() {
         Button MatchingCardsButton = findViewById(R.id.MatchingCardsButton);
         MatchingCardsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switchToMatchingCards();
+                switchToGame(fall2018.csc2017.GameCentre.MatchingCards.GameActivity.class);
             }
         });
-    }*/
+    }
    /* private void addWhackAMoleButtonListener() {
         Button WhackAMoleButton = findViewById(R.id.WhackAMoleButton);
         WhackAMoleButton.setOnClickListener(new View.OnClickListener() {
@@ -60,10 +61,9 @@ public class UserAreaActivity extends AppCompatActivity {
         });
     }*/
 
-    private void switchToSlidingTiles() {
+    private void switchToGame(Class gameStartingActivity) {
         LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
-        Intent tmp = new Intent(this, StartingActivity.class);
+        Intent tmp = new Intent(this, gameStartingActivity);
         startActivity(tmp);
     }
-
 }

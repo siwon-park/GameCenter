@@ -23,7 +23,7 @@ import fall2018.csc2017.GameCentre.BackgroundManager;
 import fall2018.csc2017.GameCentre.CustomAdapter;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
-import fall2018.csc2017.GameCentre.SlidingTiles.StartingActivity;
+import fall2018.csc2017.GameCentre.UserAreaActivity;
 
 /**
  * The game activity.
@@ -33,7 +33,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     /**
      * The board manager.
      */
-    private BoardManager boardManager;
+    private BoardManager boardManager = new BoardManager();
 
     /**
      * The buttons to display.
@@ -57,30 +57,44 @@ public class GameActivity extends AppCompatActivity implements Observer {
 
     }
 
+    /*TODO:     Change account manager structure
+      TODO:     Account manager needs to differentiate the save files of the 3 games
+      TODO:     Board manager classes of the 3 games are slightly different
+      TODO:     The original code can't tell which game the saved board manager is for
+      TODO:     And therefore try to cast one into another and cause error
+      TODO:     Uncomment the lines to allow save function after fixing account manager
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        accountManager = (AccountManager) LoadAndSave.loadFromFile(
-                LoadAndSave.ACCOUNT_MANAGER_FILENAME, this);
-        if (accountManager == null) {
-            accountManager = new AccountManager();
-            LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
-        }
-        loadCurrentBoardManager();
+
+
+//        accountManager = (AccountManager) LoadAndSave.loadFromFile(
+//                LoadAndSave.ACCOUNT_MANAGER_FILENAME, this);
+//        if (accountManager == null) {
+//            accountManager = new AccountManager();
+//            LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
+//        }
+//        loadCurrentBoardManager();
+
+
         Board.NUM_COLS = boardManager.getSavedNumCols();
         Board.NUM_ROWS = boardManager.getSavedNumRows();
         boardManager.setStartingScoreAndTime();
-        accountManager.getCurrentAccount().setGamePlayed(true);
+
+//        accountManager.getCurrentAccount().setGamePlayed(true);
+
         createTileButtons(this);
-        setContentView(R.layout.activity_slidingtile);
-        addUndoButtonListener();
+        setContentView(R.layout.activity_matchingcards);
         addSaveButtonListener();
 
         // Add View to activity
         gridView = findViewById(R.id.grid);
         gridView.setNumColumns(Board.NUM_COLS);
         gridView.setBoardManager(boardManager);
-        gridView.setAccountManager(accountManager);
+
+//        gridView.setAccountManager(accountManager);
+
         boardManager.getBoard().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(
@@ -98,20 +112,6 @@ public class GameActivity extends AppCompatActivity implements Observer {
                         display();
                     }
                 });
-    }
-
-
-    /**
-     * Activate the undo button.
-     */
-    private void addUndoButtonListener() {
-        Button undoButton = findViewById(R.id.UndoButton);
-        undoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boardManager.undoMove();
-            }
-        });
     }
 
     /**
@@ -143,35 +143,18 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * @param context the context
      */
     private void createTileButtons(Context context) {
-        Board board = (Board) boardManager.getBoard();
+//        Board board = (Board) boardManager.getBoard();
         tileButtons = new ArrayList<>();
 
-        if (Board.BACKGROUND_BMAP != null) {
-            BackgroundManager backgrdMgr = new BackgroundManager(this);
-            HashMap backgroundIdMap = backgrdMgr.getbackgrdTileList();
             for (int row = 0; row != Board.NUM_ROWS; row++) {
                 for (int col = 0; col != Board.NUM_COLS; col++) {
                     Button tmp = new Button(context);
-                    int tileId = board.getTile(row, col).getId();
-                    if (tileId != Board.NUM_COLS * Board.NUM_ROWS) {
-                        Drawable backgrdDrawable = (Drawable) backgroundIdMap.get(tileId);
-                        tmp.setBackground(backgrdDrawable);
-                    } else {
-                        tmp.setBackgroundResource(R.drawable.tile_blank);
-                    }
-                    this.tileButtons.add(tmp);
-                }
-            }
-        } else {
-            for (int row = 0; row != Board.NUM_ROWS; row++) {
-                for (int col = 0; col != Board.NUM_COLS; col++) {
-                    Button tmp = new Button(context);
-                    tmp.setBackgroundResource(board.getTile(row, col).getBackground());
+                    tmp.setBackgroundResource(R.drawable.meme);
                     this.tileButtons.add(tmp);
                 }
             }
 
-        }
+//        }
     }
 
     /**
@@ -181,29 +164,19 @@ public class GameActivity extends AppCompatActivity implements Observer {
         Board board = (Board) boardManager.getBoard();
         int nextPos = 0;
 
-        if (Board.BACKGROUND_BMAP != null) {
-            BackgroundManager backgrdMgr = new BackgroundManager(this);
-            HashMap backgroundIdMap = backgrdMgr.getbackgrdTileList();
             for (Button b : tileButtons) {
                 int row = nextPos / Board.NUM_ROWS;
                 int col = nextPos % Board.NUM_COLS;
-                int tileId = board.getTile(row, col).getId();
-                if (tileId != Board.NUM_COLS * Board.NUM_ROWS) {
-                    Drawable backgrdDrawable = (Drawable) backgroundIdMap.get(tileId);
-                    b.setBackground(backgrdDrawable);
-                } else {
-                    b.setBackgroundResource(R.drawable.tile_blank);
-                }
-                nextPos++;
-            }
-        } else {
-            for (Button b : tileButtons) {
-                int row = nextPos / Board.NUM_ROWS;
-                int col = nextPos % Board.NUM_COLS;
+//                if (board.getTile(row, col).getBackground() != R.drawable.tile_blank) {
+//                    b.setBackgroundResource(R.drawable.meme);
+//                } else {
+//                    b.setBackgroundResource(R.drawable.tile_blank);
+//                }
                 b.setBackgroundResource(board.getTile(row, col).getBackground());
+
                 nextPos++;
             }
-        }
+//        }
     }
 
     /**
@@ -231,10 +204,12 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * @param o
      * @param arg
      */
+    //TODO: add the autosave back
+
     @Override
     public void update(Observable o, Object arg) {
         display();
-        autoSave();
+//        autoSave();
         if(boardManager.puzzleSolved()){
             returnToMain();
         }
@@ -274,7 +249,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * Returns to main SlidingTiles screen
      */
     private void returnToMain(){
-        Intent next = new Intent(this, StartingActivity.class);
+        Intent next = new Intent(this, UserAreaActivity.class);
         startActivity(next);
     }
 }
