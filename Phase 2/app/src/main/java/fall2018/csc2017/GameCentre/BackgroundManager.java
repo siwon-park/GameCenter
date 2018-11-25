@@ -2,20 +2,12 @@ package fall2018.csc2017.GameCentre;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.provider.ContactsContract;
-import android.widget.Toast;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
+import fall2018.csc2017.SlidingTiles.Board;
 
 /**
  * Manage the images that are used as background of tiles, including cropping, scaling and splitting.

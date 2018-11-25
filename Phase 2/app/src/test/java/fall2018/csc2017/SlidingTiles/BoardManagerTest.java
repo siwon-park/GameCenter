@@ -1,4 +1,4 @@
-package fall2018.csc2017.GameCentre;
+package fall2018.csc2017.SlidingTiles;
 
 import org.junit.After;
 import org.junit.Before;
@@ -6,6 +6,10 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import fall2018.csc2017.GameCentre.Tile;
+import fall2018.csc2017.SlidingTiles.Board;
+import fall2018.csc2017.SlidingTiles.BoardManager;
 
 import static org.junit.Assert.*;
 

@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import fall2018.csc2017.GameCentre.AccountManager;
-import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.Complexity;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.LoginActivity;

@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 
+import fall2018.csc2017.SlidingTiles.Board;
+
 /**
  * A Tile in a sliding tiles puzzle.
  */

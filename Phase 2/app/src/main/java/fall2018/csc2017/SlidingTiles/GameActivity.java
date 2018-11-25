@@ -17,8 +17,6 @@ import java.util.Observer;
 
 import fall2018.csc2017.GameCentre.AccountManager;
 import fall2018.csc2017.GameCentre.BackgroundManager;
-import fall2018.csc2017.GameCentre.Board;
-import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.CustomAdapter;
 import fall2018.csc2017.GameCentre.GestureDetectGridView;
 import fall2018.csc2017.GameCentre.LoadAndSave;
