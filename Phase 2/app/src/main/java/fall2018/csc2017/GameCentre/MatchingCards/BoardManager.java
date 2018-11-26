@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
+import java.util.Vector;
 
 //import fall2018.csc2017.GameCentre.SlidingTiles.Board;
 import fall2018.csc2017.GameCentre.R;
@@ -24,7 +25,7 @@ public class BoardManager extends fall2018.csc2017.GameCentre.BoardManager {
 
     private int pairID = 0;
 
-    private Stack<int[]> clearedCards = new Stack<>();
+    private Vector<int[]> clearedCards = new Vector<>();
 
     private Stack<int[]> lastClicks = new Stack<>();
 
@@ -106,9 +107,13 @@ public class BoardManager extends fall2018.csc2017.GameCentre.BoardManager {
 
         int row = position / NUM_COLS;
         int col = position % NUM_COLS;
-        if (!clearedCards.empty()) {
-            int[] clickedOn = {row, col};
-            return (clearedCards.search(clickedOn) == -1);
+        if (!clearedCards.isEmpty()) {
+            for (int i = 0; i != clearedCards.size(); i++) {
+                if (clearedCards.elementAt(i)[0] == row &&
+                        clearedCards.elementAt(i)[1] == col) {
+                    return false;
+                }
+            }
         }
         return true;
     }
@@ -137,7 +142,7 @@ public class BoardManager extends fall2018.csc2017.GameCentre.BoardManager {
         board.flipCards();
 
         if (pairID == 0) {
-            clearedCards.push(clickedOn);
+            clearedCards.add(clickedOn);
             if (currentID % 2 == 0) {
                 pairID = currentID - 1;
             } else {
@@ -145,13 +150,13 @@ public class BoardManager extends fall2018.csc2017.GameCentre.BoardManager {
             }
         } else {
             if (pairID == currentID) {
-                int[] toBeCleared = clearedCards.peek();
+                int[] toBeCleared = clearedCards.lastElement();
                 board.clearTiles(toBeCleared[0], toBeCleared[1]);
-                clearedCards.push(clickedOn);
+                clearedCards.add(clickedOn);
                 board.clearTiles(row, col);
                 pairID = 0;
             } else {
-                clearedCards.pop();
+                clearedCards.removeElementAt(clearedCards.size() - 1);
                 pairID = 0;
             }
             lastClicks.pop();
