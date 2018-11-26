@@ -17,6 +17,7 @@ import java.util.Observer;
 
 import fall2018.csc2017.GameCentre.AccountManager;
 import fall2018.csc2017.GameCentre.BackgroundManager;
+import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.CustomAdapter;
 //import fall2018.csc2017.GameCentre.MatchingCards.GestureDetectGridView;
 import fall2018.csc2017.GameCentre.LoadAndSave;
@@ -140,7 +141,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * @param context the context
      */
     private void createTileButtons(Context context) {
-        Board board = boardManager.getBoard();
+        Board board = (Board) boardManager.getBoard();
         tileButtons = new ArrayList<>();
 
         if (Board.BACKGROUND_BMAP != null) {
@@ -175,6 +176,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * Update the backgrounds on the buttons to match the tiles.
      */
     private void updateTileButtons() {
+        // cast
         Board board = (Board) boardManager.getBoard();
         int nextPos = 0;
 

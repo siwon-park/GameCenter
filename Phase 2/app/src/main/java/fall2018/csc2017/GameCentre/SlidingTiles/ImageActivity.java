@@ -19,12 +19,10 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import fall2018.csc2017.GameCentre.AccountManager;
+import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.ImageAdapter;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
-import fall2018.csc2017.GameCentre.SlidingTiles.Board;
-import fall2018.csc2017.GameCentre.SlidingTiles.BoardManager;
-import fall2018.csc2017.GameCentre.SlidingTiles.GameActivity;
 
 /**
  * The activity in which user is prompted to choose a background
@@ -145,7 +143,9 @@ public class ImageActivity extends AppCompatActivity {
      * Switch to the ComplexityActivity view to choose a complexity to play the game.
      */
     private void switchToGame() {
-            boardManager = new BoardManager();
+            if (boardManager == null) {
+                boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
+            }
             saveCurrentBoardManager();
             Intent tmp = new Intent(this, GameActivity.class);
             startActivity(tmp);

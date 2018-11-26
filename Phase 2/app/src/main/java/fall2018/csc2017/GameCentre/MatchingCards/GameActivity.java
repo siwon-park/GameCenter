@@ -22,6 +22,7 @@ import fall2018.csc2017.GameCentre.AccountManager;
 import fall2018.csc2017.GameCentre.BackgroundManager;
 //import fall2018.csc2017.GameCentre.SlidingTiles.Board;
 //import fall2018.csc2017.GameCentre.SlidingTiles.BoardManager;
+import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.CustomAdapter;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
@@ -35,7 +36,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
     /**
      * The board manager.
      */
-    private BoardManager boardManager = new BoardManager();
+    // Todo: Need remove this after we fix onCreate()
+    private BoardManager boardManager = new BoardManager(BoardManager.MATCHING_CARDS_GAME);
 
     /**
      * The buttons to display.
@@ -163,11 +165,11 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * Update the backgrounds on the buttons to match the tiles.
      */
     private void updateTileButtons() {
-        Board board = (Board) boardManager.getBoard();
+        Board board = getBoard();
         int nextPos = 0;
 
         if (board.getFlipInProgress()) {
-            Stack<int[]> toBeFlipped = boardManager.getLastClicks();
+            Stack<int[]> toBeFlipped = board.getLastClicks();
                 for (Button b : tileButtons) {
                     int row = nextPos / Board.NUM_ROWS;
                     int col = nextPos % Board.NUM_COLS;
@@ -271,7 +273,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     }
 
     private boolean needToFlip(int row, int col) {
-        Stack<int[]> toBeFlipped = (Stack<int[]>) boardManager.getLastClicks().clone();
+        Stack<int[]> toBeFlipped = (Stack<int[]>) (getBoard().getLastClicks().clone());
         while (!toBeFlipped.empty()) {
             int[] temp = toBeFlipped.pop();
             int rowOfFlip = temp[0];
@@ -281,6 +283,10 @@ public class GameActivity extends AppCompatActivity implements Observer {
             }
         }
         return false;
+    }
+
+    private Board getBoard() {
+        return (Board) boardManager.getBoard();
     }
 
 }

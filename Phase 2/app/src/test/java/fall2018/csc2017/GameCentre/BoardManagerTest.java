@@ -4,13 +4,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import fall2018.csc2017.GameCentre.SlidingTiles.Board;
-import fall2018.csc2017.GameCentre.SlidingTiles.BoardManager;
-import fall2018.csc2017.GameCentre.Tile;
-
 import static fall2018.csc2017.GameCentre.SlidingTiles.Board.NUM_COLS;
 import static fall2018.csc2017.GameCentre.SlidingTiles.Board.NUM_ROWS;
 import static org.junit.Assert.*;

@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import fall2018.csc2017.GameCentre.AccountManager;
 //import fall2018.csc2017.GameCentre.BoardManager;
+import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
 
@@ -50,7 +51,10 @@ public class ComplexityActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boardManager = new BoardManager();
+                // Todo: remove the following extra code after fixing BoardManager()
+                Board.NUM_ROWS = 2;
+                Board.NUM_COLS = 2;
+                boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
                 boardManager.setSavedNumRows(2);
                 boardManager.setSavedNumCols(2);
                 saveCurrentBoardManager();
@@ -68,7 +72,9 @@ public class ComplexityActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boardManager = new BoardManager();
+                Board.NUM_ROWS = 3;
+                Board.NUM_COLS = 3;
+                boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
                 boardManager.setSavedNumRows(3);
                 boardManager.setSavedNumCols(3);
                 saveCurrentBoardManager();
@@ -85,7 +91,9 @@ public class ComplexityActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boardManager = new BoardManager();
+                Board.NUM_ROWS = 4;
+                Board.NUM_COLS = 4;
+                boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
                 boardManager.setSavedNumCols(4);
                 boardManager.setSavedNumRows(4);
                 saveCurrentBoardManager();
@@ -102,7 +110,9 @@ public class ComplexityActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boardManager = new BoardManager();
+                Board.NUM_ROWS = 5;
+                Board.NUM_COLS = 5;
+                boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
                 boardManager.setSavedNumRows(5);
                 boardManager.setSavedNumCols(5);
                 saveCurrentBoardManager();

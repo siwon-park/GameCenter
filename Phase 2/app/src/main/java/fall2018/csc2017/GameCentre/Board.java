@@ -20,6 +20,16 @@ abstract public class Board extends Observable implements Serializable, Iterable
      */
     protected Tile[][] tiles = new Tile[Board.NUM_ROWS][Board.NUM_COLS];
 
+    private String name;
+
+    protected void setName(String name) {
+        this.name = name;
+    }
+
+    protected String getName() {
+        return name;
+    }
+
     /**
      * Return the number of tiles on the board.
      * @return the number of tiles on the board
@@ -72,4 +82,42 @@ abstract public class Board extends Observable implements Serializable, Iterable
             return result;
         }
     }
+
+    protected abstract boolean isSolvable();
+
+    public abstract boolean puzzleSolved();
+
+    protected abstract boolean isValidTap(int position);
+
+    protected abstract void touchMove(int position);
+
+    public abstract void undoMove();
+
+    public abstract int getScore();
+
+    /**
+     * Updates score
+     */
+    public abstract void updateScore();
+
+    /**
+     * Sets starting score and time
+     */
+    public abstract void setStartingScoreAndTime();
+
+    /**
+     * Updates start time
+     */
+    public abstract void updateStartTime();
+
+    /**
+     * Getter Method (for testing purposes)
+     * @return the start time
+     */
+    public abstract long getStartTime();
+
+    /**
+     * Setter Method (for testing purposes)
+     */
+    public abstract void setStartTime(long startTime);
 }

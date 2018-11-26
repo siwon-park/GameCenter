@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.widget.GridView;
 
 import fall2018.csc2017.GameCentre.AccountManager;
+import fall2018.csc2017.GameCentre.BoardManager;
 //import fall2018.csc2017.GameCentre.SlidingTiles.BoardManager;
 
 public class GestureDetectGridView extends GridView {

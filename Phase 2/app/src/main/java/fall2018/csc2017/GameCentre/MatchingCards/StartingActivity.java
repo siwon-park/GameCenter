@@ -9,12 +9,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import fall2018.csc2017.GameCentre.AccountManager;
+import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.LoginActivity;
 import fall2018.csc2017.GameCentre.PerUserScoreboardActivity;
 import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.ScoreboardActivity;
-import fall2018.csc2017.GameCentre.SlidingTiles.BoardManager;
 import fall2018.csc2017.GameCentre.SlidingTiles.ComplexityActivity;
 import fall2018.csc2017.GameCentre.SlidingTiles.GameActivity;
 
@@ -43,7 +43,7 @@ public class StartingActivity extends AppCompatActivity {
             accountManager = new AccountManager();
             LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
         }
-        boardManager = new BoardManager();
+        boardManager = new BoardManager(BoardManager.MATCHING_CARDS_GAME);
         setContentView(R.layout.activity_starting_);
         addStartButtonListener();
         addLoadButtonListener();

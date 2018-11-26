@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import fall2018.csc2017.GameCentre.AccountManager;
+import fall2018.csc2017.GameCentre.BoardManager;
 //import fall2018.csc2017.GameCentre.SlidingTiles.BoardManager;
 
 
