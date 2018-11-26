@@ -32,6 +32,9 @@ public class Board extends fall2018.csc2017.GameCentre.Board implements Serializ
 
     private Stack<int[]> toBeFlipped = new Stack<>();
 
+    /**
+     * The Id of the Game
+     */
     private int gameID = 1;
 
     public int getPairID() {

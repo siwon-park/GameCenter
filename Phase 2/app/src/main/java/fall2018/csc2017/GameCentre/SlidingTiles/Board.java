@@ -28,8 +28,10 @@ public class Board extends fall2018.csc2017.GameCentre.Board implements Serializ
      */
     private long startTime = 0;
 
+    /**
+     * The Id of the Game
+     */
     private int gameID = 0;
-
 
     /**
      * A stack that keeps track of completed moves.
