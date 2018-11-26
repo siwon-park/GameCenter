@@ -22,6 +22,12 @@ abstract public class Board extends Observable implements Serializable, Iterable
 
     private String name;
 
+    /**
+     * The Id of the Game
+     * 0 - Sliding Tiles
+     * 1 - Matching Cards
+     * 2 - TBA
+     */
     private int gameID;
 
     protected void setName(String name) {
@@ -124,6 +130,10 @@ abstract public class Board extends Observable implements Serializable, Iterable
      */
     public abstract void setStartTime(long startTime);
 
+    /**
+     * Getter Method for the Game ID
+     * @return the ID of the game
+     */
     public int getGameID() { return gameID; }
 
     /**
