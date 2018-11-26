@@ -22,6 +22,7 @@ import fall2018.csc2017.GameCentre.CustomAdapter;
 //import fall2018.csc2017.GameCentre.MatchingCards.GestureDetectGridView;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
+import fall2018.csc2017.GameCentre.SaveFile;
 
 /**
  * The game activity.
@@ -44,6 +45,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     private GestureDetectGridView gridView;
     private static int columnWidth, columnHeight;
     private AccountManager accountManager;
+    private SaveFile saveFile;
 
     /**
      * Set up the background image for each button based on the master list
@@ -63,6 +65,10 @@ public class GameActivity extends AppCompatActivity implements Observer {
         if (accountManager == null) {
             accountManager = new AccountManager();
             LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
+        }
+        if (saveFile == null) {
+            saveFile = new SaveFile();
+            LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(), saveFile, this);
         }
         loadCurrentBoardManager();
         Board.NUM_COLS = boardManager.getSavedNumCols();
@@ -131,8 +137,9 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * Save the board manager as a serializable object
      */
     private void saveBoardManager() {
+        saveFile.addSave(boardManager);
         LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(),
-                boardManager, this);
+                saveFile, this);
     }
 
     /**

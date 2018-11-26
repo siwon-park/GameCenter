@@ -16,6 +16,12 @@ public class BoardManager implements Serializable {
     public static final String MATCHING_CARDS_GAME = "Matching Cards";
     public static final String WHACK_A_MOLE_GAME = "Whack A Mole";
 
+    // Todo: use game name in Board instead of gameID here.
+    /**
+     * The id of the game that is in play
+     */
+    private int gameID = 0;
+
     private Board board;
     private int savedNumCols;
     private int savedNumRows;
@@ -120,6 +126,7 @@ public class BoardManager implements Serializable {
      *
      * @param position the position
      */
+
     public void touchMove(int position) {
         board.touchMove(position);
     }
@@ -130,6 +137,12 @@ public class BoardManager implements Serializable {
     public void undoMove(){
         board.undoMove();
     }
+
+    /**
+     * getter method for the GameID
+     * @return gameID
+     */
+    public int getGameID() { return gameID; }
 
     /**
      * getter method for the score
