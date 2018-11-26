@@ -49,6 +49,11 @@ public class Account implements Serializable {
     private boolean gamePlayed;
 
     /**
+     * Game ID of the current game being played
+     */
+    private int gamePlayedId;
+
+    /**
      * Constructor for account.
      * @param name
      * @param username
@@ -144,5 +149,19 @@ public class Account implements Serializable {
      */
     public void setGamePlayed(boolean gamePlayed) { this.gamePlayed = gamePlayed; }
 
+    /**
+     * sets the value of gamePlayedId
+     * @param gamePlayedId Id of the game being played
+     */
+    public void setGamePlayedId(int gamePlayedId) {
+        this.gamePlayedId = gamePlayedId;
+    }
 
+    /**
+     *
+     * @return gamePlayedId
+     */
+    public int getGamePlayedId(){
+        return gamePlayedId;
+    }
 }

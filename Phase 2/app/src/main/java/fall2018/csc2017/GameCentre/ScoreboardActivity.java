@@ -28,7 +28,8 @@ public class ScoreboardActivity extends AppCompatActivity {
         accountManager = (AccountManager) LoadAndSave.loadFromFile(
                 LoadAndSave.ACCOUNT_MANAGER_FILENAME, this);
 
-        topScoresToDisplay = accountManager.displayPerGame();
+        topScoresToDisplay = accountManager.displayPerGame
+                (accountManager.getCurrentAccount().getGamePlayedId());
 
 
 

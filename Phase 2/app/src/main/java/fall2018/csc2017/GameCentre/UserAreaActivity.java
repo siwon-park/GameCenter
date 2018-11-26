@@ -7,9 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-
-//import fall2018.csc2017.GameCentre.SlidingTiles.StartingActivity;
-
 public class UserAreaActivity extends AppCompatActivity {
 
     /**
@@ -39,6 +36,8 @@ public class UserAreaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 switchToGame(fall2018.csc2017.GameCentre.SlidingTiles.StartingActivity.class);
+                //TODO get gameID from SlidingTiles.board
+                accountManager.getCurrentAccount().setGamePlayedId(0);
             }
         });
     }
@@ -48,6 +47,8 @@ public class UserAreaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 switchToGame(fall2018.csc2017.GameCentre.MatchingCards.GameActivity.class);
+                //TODO get gameID from MatchingTiles.board
+                accountManager.getCurrentAccount().setGamePlayedId(1);
             }
         });
     }
