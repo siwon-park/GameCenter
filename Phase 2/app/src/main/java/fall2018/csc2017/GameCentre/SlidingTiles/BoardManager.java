@@ -18,6 +18,7 @@ public class BoardManager extends fall2018.csc2017.GameCentre.BoardManager {
 
 
     private Board board;
+    private int gameID = 0;
 
     /**
      * A stack that keeps track of completed moves.

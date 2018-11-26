@@ -14,6 +14,7 @@ import fall2018.csc2017.GameCentre.LoginActivity;
 import fall2018.csc2017.GameCentre.PerUserScoreboardActivity;
 import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.ScoreboardActivity;
+import fall2018.csc2017.GameCentre.SaveFile;
 
 
 /**
@@ -31,6 +32,10 @@ public class StartingActivity extends AppCompatActivity {
      */
     private AccountManager accountManager;
 
+    private SaveFile saveFile;
+
+    private int gameID = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +44,10 @@ public class StartingActivity extends AppCompatActivity {
         if (accountManager == null) {
             accountManager = new AccountManager();
             LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
+        }
+        if (saveFile == null) {
+            saveFile = new SaveFile();
+            LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(), saveFile, this);
         }
         boardManager = new BoardManager();
         setContentView(R.layout.activity_starting_);
@@ -151,8 +160,9 @@ public class StartingActivity extends AppCompatActivity {
      * Load the current BoardManager.
      */
     private void loadBoardManager() {
-        boardManager = (BoardManager) LoadAndSave.loadFromFile(
+        saveFile = (SaveFile) LoadAndSave.loadFromFile(
                 accountManager.getCurrentAccount().getSavedGameFileName(), this);
+        boardManager = (BoardManager) saveFile.getBM(gameID);
     }
 
     /**

@@ -32,6 +32,10 @@ abstract public class BoardManager implements Serializable {
      * The saved number of columns
      */
     private int savedNumCols = NUM_COLS;
+    /**
+     * The id of the game that is in play
+     */
+    private int gameID;
 
     /**
      * Return the current board.
@@ -45,6 +49,12 @@ abstract public class BoardManager implements Serializable {
     protected abstract boolean isValidTap(int position);
 
     protected abstract void touchMove(int position);
+
+    /**
+     * getter method for the GameID
+     * @return gameID
+     */
+    public int getGameID() { return gameID; }
 
     /**
      * getter method for the score
