@@ -22,6 +22,8 @@ abstract public class Board extends Observable implements Serializable, Iterable
 
     private String name;
 
+    private int gameID;
+
     protected void setName(String name) {
         this.name = name;
     }
@@ -93,6 +95,7 @@ abstract public class Board extends Observable implements Serializable, Iterable
 
     public abstract void undoMove();
 
+
     public abstract int getScore();
 
     /**
@@ -120,4 +123,13 @@ abstract public class Board extends Observable implements Serializable, Iterable
      * Setter Method (for testing purposes)
      */
     public abstract void setStartTime(long startTime);
+
+    public int getGameID() { return gameID; }
+
+    /**
+     * getter method for the score
+     * @return score
+     */
 }
+
+

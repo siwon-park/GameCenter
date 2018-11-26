@@ -13,7 +13,7 @@ public class SaveFile implements Serializable {
     }
 
     public void addSave(BoardManager boardManager) {
-        map.put(boardManager.getGameID(), boardManager);
+        map.put(boardManager.getBoard().getGameID(), boardManager);
     }
 
     public BoardManager getBM(int GameID) {

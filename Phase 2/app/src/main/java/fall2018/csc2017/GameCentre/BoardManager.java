@@ -20,7 +20,6 @@ public class BoardManager implements Serializable {
     /**
      * The id of the game that is in play
      */
-    private int gameID = 0;
 
     private Board board;
     private int savedNumCols;
@@ -142,12 +141,7 @@ public class BoardManager implements Serializable {
      * getter method for the GameID
      * @return gameID
      */
-    public int getGameID() { return gameID; }
 
-    /**
-     * getter method for the score
-     * @return score
-     */
     public int getScore() {
         return board.getScore();
     }
