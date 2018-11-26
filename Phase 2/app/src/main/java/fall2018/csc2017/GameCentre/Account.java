@@ -36,7 +36,7 @@ public class Account implements Serializable {
     /**
      * The List of scores.
      */
-    private List<Integer> scores;
+    private List<ScoreInfo> scores;
 
     /**
      * The boolean for whether the game has been saved.
@@ -82,7 +82,7 @@ public class Account implements Serializable {
      * Setter method for setting the score when the game is over
      * @param score
      */
-    public void setScore(int score) {
+    public void setScore(ScoreInfo score) {
         scores.add(score);
     }
 
@@ -90,7 +90,7 @@ public class Account implements Serializable {
      * Getter method
      * @return ArrayList of Integer score values
      */
-    public List<Integer> getScores() {
+    public List<ScoreInfo> getScores() {
         return scores;
     }
 
@@ -153,13 +153,13 @@ public class Account implements Serializable {
      * sets the value of gamePlayedId
      * @param gamePlayedId Id of the game being played
      */
-    public void setGamePlayedId(int gamePlayedId) {
+    void setGamePlayedId(int gamePlayedId) {
         this.gamePlayedId = gamePlayedId;
     }
 
     /**
-     *
-     * @return gamePlayedId
+     * returns Id of the current game being played
+     * @return Id of the current game being played
      */
     public int getGamePlayedId(){
         return gamePlayedId;

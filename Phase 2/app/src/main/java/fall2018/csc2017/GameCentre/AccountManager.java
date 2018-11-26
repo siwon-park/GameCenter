@@ -70,9 +70,9 @@ public class AccountManager implements Serializable {
     String[] displayPerGame(int gameID){
         List<ScoreInfo> topScores = new ArrayList<>();
         for (Account account : map.values()) {
-            for (Integer score: account.getScores()) {
-                if (currentAccount.getGamePlayedId() == gameID) {
-                    topScores.add(new ScoreInfo(score, account.getName(), gameID));
+            for (ScoreInfo score: account.getScores()) {
+                if (score.getGameID() == gameID) {
+                    topScores.add(score);
                 }
             }
         }
@@ -87,9 +87,9 @@ public class AccountManager implements Serializable {
      */
     String[] displayPerUser(int gameID){
         List<ScoreInfo> topScores = new ArrayList<>();
-        for (Integer score : currentAccount.getScores()) {
-            if (currentAccount.getGamePlayedId() == gameID) {
-                topScores.add(new ScoreInfo(score, currentAccount.getName(), gameID));
+        for (ScoreInfo score : currentAccount.getScores()) {
+            if (score.getGameID() == gameID) {
+                topScores.add(score);
             }
         }
 
