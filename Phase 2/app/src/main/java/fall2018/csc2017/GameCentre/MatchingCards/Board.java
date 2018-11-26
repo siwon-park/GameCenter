@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
 
 import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.Tile;
@@ -18,6 +19,10 @@ public class Board extends fall2018.csc2017.GameCentre.Board {
 //     * The BitMap of background image, if there is not one, remain null
 //     */
 //    public static Bitmap BACKGROUND_BMAP = null;
+
+    private boolean flipInProgress = false;
+
+    private Stack<int[]> toBeFlipped = new Stack<>();
 
     /**
      * A new board of tiles in row-major order.
@@ -45,21 +50,31 @@ public class Board extends fall2018.csc2017.GameCentre.Board {
         notifyObservers();
     }
 
-    void flipCards(int row, int col) {
-//        Tile temp = tiles[row1][col1];
-//        tiles[row1][col1] = tiles[row2][col2];
-//        tiles[row2][col2] = temp;
-        tiles[row][col].setBackground(R.drawable.tile_blank);
+    void flipCards() {
+        long startTime = System.currentTimeMillis();
 
-        setChanged();
-        notifyObservers();
+//        while(System.currentTimeMillis() <= startTime + 1500) {
+            flipInProgress = true;
+            setChanged();
+            notifyObservers();
+//        }
+//
+//        flipInProgress = false;
+//        setChanged();
+//        notifyObservers();
     }
 
+    public Stack<int[]> getToBeFlipped() {
+        return toBeFlipped;
+    }
+
+    public boolean getFlipInProgress() {
+        return flipInProgress;
+    }
 //    @Override
 //    public String toString() {
 //        return "Board{" +
 //                "tiles=" + Arrays.toString(tiles) +
 //                '}';
 //    }
-
 }

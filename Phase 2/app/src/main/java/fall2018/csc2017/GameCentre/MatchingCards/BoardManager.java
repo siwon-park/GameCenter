@@ -26,7 +26,7 @@ public class BoardManager extends fall2018.csc2017.GameCentre.BoardManager {
 
     private Stack<int[]> clearedCards = new Stack<>();
 
-    private Pair<Integer, Integer> lastClick;
+    private Stack<int[]> lastClicks = new Stack<>();
 
     private int[] cardIDs = {
             R.drawable.tile_1, R.drawable.tile_2,
@@ -113,6 +113,14 @@ public class BoardManager extends fall2018.csc2017.GameCentre.BoardManager {
         return true;
     }
 
+    public int getPairID() {
+        return pairID;
+    }
+
+    public Stack<int[]> getLastClicks() {
+        return lastClicks;
+    }
+
     /**
      * Process a touch at position in the board, swapping tiles as appropriate.
      *
@@ -124,9 +132,11 @@ public class BoardManager extends fall2018.csc2017.GameCentre.BoardManager {
         int row = position / NUM_COLS;
         int col = position % NUM_COLS;
         int currentID = board.getTile(row, col).getId();
+        int[] clickedOn = {row, col};
+        lastClicks.push(clickedOn);
+        board.flipCards();
 
         if (pairID == 0) {
-            int[] clickedOn = {row, col};
             clearedCards.push(clickedOn);
             if (currentID % 2 == 0) {
                 pairID = currentID - 1;
@@ -137,7 +147,6 @@ public class BoardManager extends fall2018.csc2017.GameCentre.BoardManager {
             if (pairID == currentID) {
                 int[] toBeCleared = clearedCards.peek();
                 board.clearTiles(toBeCleared[0], toBeCleared[1]);
-                int[] clickedOn = {row, col};
                 clearedCards.push(clickedOn);
                 board.clearTiles(row, col);
                 pairID = 0;
@@ -145,7 +154,8 @@ public class BoardManager extends fall2018.csc2017.GameCentre.BoardManager {
                 clearedCards.pop();
                 pairID = 0;
             }
+            lastClicks.pop();
+            lastClicks.pop();
         }
-
     }
 }

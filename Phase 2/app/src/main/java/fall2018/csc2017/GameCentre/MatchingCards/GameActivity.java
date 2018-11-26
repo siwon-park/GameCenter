@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Stack;
+import java.util.Vector;
 
 import fall2018.csc2017.GameCentre.AccountManager;
 import fall2018.csc2017.GameCentre.BackgroundManager;
@@ -164,19 +166,34 @@ public class GameActivity extends AppCompatActivity implements Observer {
         Board board = (Board) boardManager.getBoard();
         int nextPos = 0;
 
+        if (board.getFlipInProgress()) {
+            Stack<int[]> toBeFlipped = boardManager.getLastClicks();
+                for (Button b : tileButtons) {
+                    int row = nextPos / Board.NUM_ROWS;
+                    int col = nextPos % Board.NUM_COLS;
+                    if (board.getTile(row, col).getBackground() != R.drawable.tile_blank) {
+                        if (needToFlip(row, col)) {
+                            b.setBackgroundResource(board.getTile(row, col).getBackground());
+                        }else {
+                            b.setBackgroundResource(R.drawable.meme);
+                        }
+                    } else {
+                        b.setBackgroundResource(R.drawable.tile_blank);
+                    }
+                    nextPos++;
+                }
+        }else {
             for (Button b : tileButtons) {
                 int row = nextPos / Board.NUM_ROWS;
                 int col = nextPos % Board.NUM_COLS;
-//                if (board.getTile(row, col).getBackground() != R.drawable.tile_blank) {
-//                    b.setBackgroundResource(R.drawable.meme);
-//                } else {
-//                    b.setBackgroundResource(R.drawable.tile_blank);
-//                }
-                b.setBackgroundResource(board.getTile(row, col).getBackground());
-
+                if (board.getTile(row, col).getBackground() != R.drawable.tile_blank) {
+                    b.setBackgroundResource(R.drawable.meme);
+                }else {
+                    b.setBackgroundResource(R.drawable.tile_blank);
+                }
                 nextPos++;
             }
-//        }
+        }
     }
 
     /**
@@ -252,4 +269,18 @@ public class GameActivity extends AppCompatActivity implements Observer {
         Intent next = new Intent(this, UserAreaActivity.class);
         startActivity(next);
     }
+
+    private boolean needToFlip(int row, int col) {
+        Stack<int[]> toBeFlipped = (Stack<int[]>) boardManager.getLastClicks().clone();
+        while (!toBeFlipped.empty()) {
+            int[] temp = toBeFlipped.pop();
+            int rowOfFlip = temp[0];
+            int colOfFlip = temp[1];
+            if (row == rowOfFlip && col == colOfFlip) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
