@@ -85,15 +85,15 @@ public class AccountManager implements Serializable {
      * activity
      * @return top scores of the user in string format
      */
-    String[] displayPerUser(int gameID){
+    String[] displayPerUser(String name ,int gameID){
         List<ScoreInfo> topScores = new ArrayList<>();
-        for (ScoreInfo score : currentAccount.getScores()) {
+        for (ScoreInfo score : this.getAccount(name).getScores()) {
             if (score.getGameID() == gameID) {
                 topScores.add(score);
             }
         }
 
-        return getDisplay(topScores, "Top Scores");
+        return getDisplay(topScores, "Personal Top Scores");
     }
 
     /**
