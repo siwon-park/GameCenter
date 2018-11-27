@@ -49,7 +49,7 @@ public class SlidingTilesBoard extends fall2018.csc2017.GameCentre.Board impleme
      *
      * @param tiles the tiles for the board
      */
-    public SlidingTilesBoard(List<Tile> tiles, int gameID) {
+    public SlidingTilesBoard(List<Tile> tiles, String gameID) {
         setGameID(gameID);
 
         Iterator<Tile> iter = tiles.iterator();

@@ -28,10 +28,10 @@ abstract public class Board extends Observable implements Serializable, Iterable
      * 1 - Matching Cards
      * 2 - TBA
      */
-    private int gameID;
+    private String gameName;
 
-    protected void setGameID(int gameID) {
-        this.gameID = gameID;
+    protected void setGameID(String gameName) {
+        this.gameName = gameName;
     }
 
     protected String getName() {
@@ -131,10 +131,10 @@ abstract public class Board extends Observable implements Serializable, Iterable
     public abstract void setStartTime(long startTime);
 
     /**
-     * Getter Method for the Game ID
+     * Getter Method for the Game Name
      * @return the ID of the game
      */
-    public int getGameID() { return gameID; }
+    public String getGameName() { return gameName; }
 
     /**
      * getter method for the score
