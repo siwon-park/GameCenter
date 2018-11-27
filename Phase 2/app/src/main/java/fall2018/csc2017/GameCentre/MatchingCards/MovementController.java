@@ -5,7 +5,7 @@ import android.widget.Toast;
 
 import fall2018.csc2017.GameCentre.AccountManager;
 import fall2018.csc2017.GameCentre.BoardManager;
-//import fall2018.csc2017.GameCentre.SlidingTiles.BoardManager;
+import fall2018.csc2017.GameCentre.ScoreInfo;
 
 
 public class MovementController {
@@ -50,7 +50,9 @@ public class MovementController {
         if (boardManager.isValidTap(position)) {
             boardManager.touchMove(position);
             if (boardManager.puzzleSolved()) {
-                Integer score = boardManager.getScore();
+                int numScore = boardManager.getScore();
+                ScoreInfo score =  new ScoreInfo(numScore, accountManager.getCurrentAccount().getName(),
+                        accountManager.getCurrentAccount().getGamePlayedId());
                 accountManager.getCurrentAccount().setScore(score);
                 Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
             }

@@ -50,7 +50,7 @@ public class MovementController {
         if (boardManager.isValidTap(position)) {
             boardManager.touchMove(position);
             if (boardManager.puzzleSolved()) {
-                Integer numScore = boardManager.getScore();
+                int numScore = boardManager.getScore();
                 ScoreInfo score =  new ScoreInfo(numScore, accountManager.getCurrentAccount().getName(),
                         accountManager.getCurrentAccount().getGamePlayedId());
                 accountManager.getCurrentAccount().setScore(score);
