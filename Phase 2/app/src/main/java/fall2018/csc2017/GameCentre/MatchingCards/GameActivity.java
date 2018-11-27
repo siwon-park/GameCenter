@@ -33,7 +33,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * The board manager.
      */
     // Todo: Need remove this after we fix onCreate()
-    private BoardManager boardManager = new BoardManager(BoardManager.MATCHING_CARDS_GAME);
+    private MatchingCardsBoardManager boardManager = new MatchingCardsBoardManager();
 
     /**
      * The buttons to display.
@@ -242,7 +242,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * Loads current saved game
      */
     private void loadCurrentBoardManager() {
-        boardManager = (BoardManager) LoadAndSave.loadFromFile(
+        boardManager = (MatchingCardsBoardManager) LoadAndSave.loadFromFile(
                 accountManager.getCurrentAccount().getCurrentGameFileName(), this);
     }
 

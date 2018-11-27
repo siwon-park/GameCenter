@@ -27,7 +27,7 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * The board manager
      */
-    private BoardManager boardManager;
+    private SlidingTilesBoardManager boardManager;
     /**
      * The account manager.
      */
@@ -50,7 +50,7 @@ public class StartingActivity extends AppCompatActivity {
             saveFile = new SaveFile();
             LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(), saveFile, this);
         }
-        boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
+        boardManager = new SlidingTilesBoardManager();
         setContentView(R.layout.activity_starting_);
         addStartButtonListener();
         addLoadButtonListener();
@@ -163,7 +163,7 @@ public class StartingActivity extends AppCompatActivity {
     private void loadBoardManager() {
         saveFile = (SaveFile) LoadAndSave.loadFromFile(
                 accountManager.getCurrentAccount().getSavedGameFileName(), this);
-        boardManager = (BoardManager) saveFile.getBM(gameID);
+        boardManager = (SlidingTilesBoardManager) saveFile.getBM(gameID);
     }
 
     /**
@@ -279,7 +279,7 @@ public class StartingActivity extends AppCompatActivity {
      * Loads the current BoardManager
      */
     private void loadCurrentBoardManager() {
-        boardManager = (BoardManager) LoadAndSave.loadFromFile(
+        boardManager = (SlidingTilesBoardManager) LoadAndSave.loadFromFile(
                 accountManager.getCurrentAccount().getCurrentGameFileName(), this);
     }
 }

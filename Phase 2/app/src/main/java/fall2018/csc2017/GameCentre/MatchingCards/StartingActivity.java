@@ -28,7 +28,7 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * The board manager
      */
-    private BoardManager boardManager;
+    private MatchingCardsBoardManager boardManager;
     /**
      * The account manager.
      */
@@ -43,7 +43,7 @@ public class StartingActivity extends AppCompatActivity {
             accountManager = new AccountManager();
             LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
         }
-        boardManager = new BoardManager(BoardManager.MATCHING_CARDS_GAME);
+        boardManager = new MatchingCardsBoardManager();
         setContentView(R.layout.activity_starting_);
         addStartButtonListener();
         addLoadButtonListener();
@@ -154,7 +154,7 @@ public class StartingActivity extends AppCompatActivity {
      * Load the current BoardManager.
      */
     private void loadBoardManager() {
-        boardManager = (BoardManager) LoadAndSave.loadFromFile(
+        boardManager = (MatchingCardsBoardManager) LoadAndSave.loadFromFile(
                 accountManager.getCurrentAccount().getSavedGameFileName(), this);
     }
 
@@ -271,7 +271,7 @@ public class StartingActivity extends AppCompatActivity {
      * Loads the current BoardManager
      */
     private void loadCurrentBoardManager() {
-        boardManager = (BoardManager) LoadAndSave.loadFromFile(
+        boardManager = (MatchingCardsBoardManager) LoadAndSave.loadFromFile(
                 accountManager.getCurrentAccount().getCurrentGameFileName(), this);
     }
 }

@@ -4,7 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard;
+import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoardManager;
 
 import static fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard.NUM_COLS;
 import static fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard.NUM_ROWS;
@@ -14,7 +14,7 @@ public class BoardManagerTest {
     private fall2018.csc2017.GameCentre.BoardManager boardManager;
     @Before
     public void setUp() throws Exception {
-        boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
+        boardManager = new SlidingTilesBoardManager();
     }
 
     @After
@@ -33,10 +33,10 @@ public class BoardManagerTest {
     public void updateScore() {
         boardManager.setStartingScoreAndTime();
         long score = boardManager.getScore();
-        boardManager.getBoard().setStartTime(System.currentTimeMillis() - 60000);
+        boardManager.setStartTime(System.currentTimeMillis() - 60000);
         boardManager.updateScore();
         long endTime = System.currentTimeMillis();
-        score -= (endTime - boardManager.getBoard().getStartTime()) / 1000 / 60;
+        score -= (endTime - boardManager.getStartTime()) / 1000 / 60;
         assertEquals(score, boardManager.getScore());
     }
 
@@ -49,7 +49,7 @@ public class BoardManagerTest {
     @Test
     public void testUpdateStartTime() {
         boardManager.updateStartTime();
-        long startTime = boardManager.getBoard().getStartTime();
+        long startTime = boardManager.getStartTime();
         assertTrue(System.currentTimeMillis() - startTime <= 5000);
     }
 

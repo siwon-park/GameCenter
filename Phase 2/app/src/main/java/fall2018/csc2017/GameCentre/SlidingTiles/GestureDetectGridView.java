@@ -16,7 +16,6 @@ import android.view.MotionEvent;
 import android.widget.GridView;
 
 import fall2018.csc2017.GameCentre.AccountManager;
-import fall2018.csc2017.GameCentre.BoardManager;
 //import fall2018.csc2017.GameCentre.MatchingCards.MovementController;
 
 public class GestureDetectGridView extends GridView {
@@ -28,7 +27,7 @@ public class GestureDetectGridView extends GridView {
     private boolean mFlingConfirmed = false;
     private float mTouchX;
     private float mTouchY;
-    private BoardManager boardManager;
+    private SlidingTilesBoardManager boardManager;
     private AccountManager accountManager;
 
     public GestureDetectGridView(Context context) {
@@ -106,7 +105,7 @@ public class GestureDetectGridView extends GridView {
         return gDetector.onTouchEvent(ev);
     }
 
-    public void setBoardManager(BoardManager boardManager) {
+    public void setBoardManager(SlidingTilesBoardManager boardManager) {
         this.boardManager = boardManager;
         mController.setBoardManager(boardManager);
     }

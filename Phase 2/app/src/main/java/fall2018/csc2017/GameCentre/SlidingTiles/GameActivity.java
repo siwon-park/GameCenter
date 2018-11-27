@@ -32,7 +32,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     /**
      * The board manager.
      */
-    private BoardManager boardManager;
+    private SlidingTilesBoardManager boardManager;
 
     /**
      * The buttons to display.
@@ -258,7 +258,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * Loads current saved game
      */
     private void loadCurrentBoardManager() {
-        boardManager = (BoardManager) LoadAndSave.loadFromFile(
+        boardManager = (SlidingTilesBoardManager) LoadAndSave.loadFromFile(
                 accountManager.getCurrentAccount().getCurrentGameFileName(), this);
     }
 

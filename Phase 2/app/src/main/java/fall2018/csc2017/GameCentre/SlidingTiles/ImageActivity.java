@@ -42,7 +42,7 @@ public class ImageActivity extends AppCompatActivity {
     /**
      * The board manager.
      */
-    private BoardManager boardManager;
+    private SlidingTilesBoardManager boardManager;
 
 
     /**
@@ -144,7 +144,7 @@ public class ImageActivity extends AppCompatActivity {
      */
     private void switchToGame() {
             if (boardManager == null) {
-                boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
+                boardManager = new SlidingTilesBoardManager();
             }
             saveCurrentBoardManager();
             Intent tmp = new Intent(this, GameActivity.class);
@@ -163,7 +163,7 @@ public class ImageActivity extends AppCompatActivity {
      * Load the current BoardManager.
      */
     private void loadCurrentBoardManager() {
-        boardManager = (BoardManager) LoadAndSave.loadFromFile(
+        boardManager = (SlidingTilesBoardManager) LoadAndSave.loadFromFile(
                 accountManager.getCurrentAccount().getCurrentGameFileName(), this);
     }
 
