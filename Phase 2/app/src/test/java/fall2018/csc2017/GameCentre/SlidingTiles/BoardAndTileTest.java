@@ -8,6 +8,8 @@ import java.util.List;
 import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.Tile;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -37,7 +39,7 @@ public class BoardAndTileTest {
      */
     private void setUpCorrect() {
         List<Tile> tiles = makeTiles();
-        SlidingTilesBoard board = new SlidingTilesBoard(tiles, board.getGameID());
+        SlidingTilesBoard board = new SlidingTilesBoard(tiles, boardManager.SLIDING_TILES_GAME);
         boardManager = new BoardManager(board);
     }
 
@@ -45,7 +47,7 @@ public class BoardAndTileTest {
      * Shuffle a few tiles.
      */
     private void swapFirstTwoTiles() {
-        boardManager.getBoard().swapTiles(0, 0, 0, 1);
+        ((SlidingTilesBoard) boardManager.getBoard()).swapTiles(0, 0, 0, 1);
     }
 
     /**
@@ -67,7 +69,7 @@ public class BoardAndTileTest {
         setUpCorrect();
         assertEquals(1, boardManager.getBoard().getTile(0, 0).getId());
         assertEquals(2, boardManager.getBoard().getTile(0, 1).getId());
-        boardManager.getBoard().swapTiles(0, 0, 0, 1);
+        ((SlidingTilesBoard) boardManager.getBoard()).swapTiles(0, 0, 0, 1);
         assertEquals(2, boardManager.getBoard().getTile(0, 0).getId());
         assertEquals(1, boardManager.getBoard().getTile(0, 1).getId());
     }
@@ -80,7 +82,7 @@ public class BoardAndTileTest {
         setUpCorrect();
         assertEquals(15, boardManager.getBoard().getTile(3, 2).getId());
         assertEquals(16, boardManager.getBoard().getTile(3, 3).getId());
-        boardManager.getBoard().swapTiles(3, 3, 3, 2);
+        ((SlidingTilesBoard) boardManager.getBoard()).swapTiles(3, 3, 3, 2);
         assertEquals(16, boardManager.getBoard().getTile(3, 2).getId());
         assertEquals(15, boardManager.getBoard().getTile(3, 3).getId());
     }

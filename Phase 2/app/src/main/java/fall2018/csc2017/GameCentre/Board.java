@@ -20,23 +20,17 @@ abstract public class Board extends Observable implements Serializable, Iterable
      */
     protected Tile[][] tiles = new Tile[Board.NUM_ROWS][Board.NUM_COLS];
 
-    private String name;
-
-    /**
-     * The Id of the Game
-     * 0 - Sliding Tiles
-     * 1 - Matching Cards
-     * 2 - TBA
-     */
     private String gameName;
 
-    protected void setGameID(String gameName) {
+    protected void setGameName(String gameName) {
         this.gameName = gameName;
     }
 
-    protected String getName() {
-        return name;
-    }
+    /**
+     * Getter Method for the Game Name
+     * @return the ID of the game
+     */
+    public String getGameName() { return gameName; }
 
     /**
      * Return the number of tiles on the board.
@@ -130,11 +124,6 @@ abstract public class Board extends Observable implements Serializable, Iterable
      */
     public abstract void setStartTime(long startTime);
 
-    /**
-     * Getter Method for the Game Name
-     * @return the ID of the game
-     */
-    public String getGameName() { return gameName; }
 
     /**
      * getter method for the score

@@ -19,10 +19,6 @@ public class BoardManager implements Serializable {
     public static final String MATCHING_CARDS_GAME = "Matching Cards";
     public static final String WHACK_A_MOLE_GAME = "Whack A Mole";
 
-    // Todo: use game name in SlidingTilesBoard instead of gameID here.
-    /**
-     * The id of the game that is in play
-     */
 
     private Board board;
     private int savedNumCols;
@@ -141,8 +137,8 @@ public class BoardManager implements Serializable {
     }
 
     /**
-     * getter method for the GameID
-     * @return gameID
+     * getter method for score
+     * @return score
      */
 
     public int getScore() {

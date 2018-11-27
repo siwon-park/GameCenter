@@ -1,10 +1,12 @@
 package fall2018.csc2017.GameCentre;
 
+import java.io.Serializable;
+
 /**
  * A class that contains the score and username to be displayed in scoreboard
  * Implements Comparable so that it can be sorted
  */
-public class ScoreInfo implements Comparable<ScoreInfo> {
+public class ScoreInfo implements Serializable, Comparable<ScoreInfo> {
     private int score;
     String name;
     private int gameID;
