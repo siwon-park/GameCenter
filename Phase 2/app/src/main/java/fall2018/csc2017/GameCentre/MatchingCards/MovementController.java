@@ -51,7 +51,7 @@ public class MovementController {
             boardManager.touchMove(position);
             if (boardManager.puzzleSolved()) {
                 Integer score = boardManager.getScore();
-//                accountManager.getCurrentAccount().setScore(score);
+                accountManager.getCurrentAccount().setScore(score);
                 Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
             }
         } else {
