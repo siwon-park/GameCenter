@@ -4,13 +4,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import fall2018.csc2017.GameCentre.Tile;
-
-import static fall2018.csc2017.GameCentre.SlidingTiles.Board.NUM_COLS;
-import static fall2018.csc2017.GameCentre.SlidingTiles.Board.NUM_ROWS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -82,13 +75,13 @@ public class BoardManagerTest {
     }
 
     private void testBoardIsSolvable(int[] arr, int rows, int cols, boolean solvable) {
-//        Board.NUM_COLS = rows;
-//        Board.NUM_ROWS = cols;
+//        SlidingTilesBoard.NUM_COLS = rows;
+//        SlidingTilesBoard.NUM_ROWS = cols;
 //        List<Tile> tiles = new ArrayList<>();
 //        for (int tileId : arr) {
 //            tiles.add(new Tile(tileId - 1));
 //        }
-//        Board board = new Board(tiles);
+//        SlidingTilesBoard board = new SlidingTilesBoard(tiles);
 //        boolean result = boardManager.isSolvable(board);
 //        assertEquals(solvable, result);
     }

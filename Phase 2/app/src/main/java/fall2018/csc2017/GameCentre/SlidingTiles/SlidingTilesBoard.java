@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
@@ -14,7 +13,7 @@ import fall2018.csc2017.GameCentre.Tile;
 /**
  * The sliding tiles board.
  */
-public class Board extends fall2018.csc2017.GameCentre.Board implements Serializable {
+public class SlidingTilesBoard extends fall2018.csc2017.GameCentre.Board implements Serializable {
     /**
      * Here is the score formula:
      * Score = 100 + NUM_ROWS * NUM_COLS * 2 - moves - time_in_seconds / 60
@@ -50,13 +49,13 @@ public class Board extends fall2018.csc2017.GameCentre.Board implements Serializ
      *
      * @param tiles the tiles for the board
      */
-    public Board(List<Tile> tiles, String gameName) {
-        setName(gameName);
+    public SlidingTilesBoard(List<Tile> tiles, int gameID) {
+        setGameID(gameID);
 
         Iterator<Tile> iter = tiles.iterator();
 
-        for (int row = 0; row != Board.NUM_ROWS; row++) {
-            for (int col = 0; col != Board.NUM_COLS; col++) {
+        for (int row = 0; row != SlidingTilesBoard.NUM_ROWS; row++) {
+            for (int col = 0; col != SlidingTilesBoard.NUM_COLS; col++) {
                 this.tiles[row][col] = iter.next();
             }
         }
@@ -193,7 +192,7 @@ public class Board extends fall2018.csc2017.GameCentre.Board implements Serializ
         int col = position % NUM_COLS;
         int blankId = this.numTiles(); // numRows * NUM_COLS per row + extra
 
-        // tiles is the blank tile, swap by calling Board's swap method.\int[] dx = {0, 0, -1, 1};
+        // tiles is the blank tile, swap by calling SlidingTilesBoard's swap method.\int[] dx = {0, 0, -1, 1};
         int[] dx = {0, 0, -1, 1};
         int[] dy = {-1, 1, 0, 0};
         for (int i = 0; i < 4; i++) {
@@ -279,7 +278,7 @@ public class Board extends fall2018.csc2017.GameCentre.Board implements Serializ
 
 //    @Override
 //    public String toString() {
-//        return "Board{" +
+//        return "SlidingTilesBoard{" +
 //                "tiles=" + Arrays.toString(tiles) +
 //                '}';
 //    }

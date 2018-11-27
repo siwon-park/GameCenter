@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static fall2018.csc2017.GameCentre.SlidingTiles.Board.NUM_COLS;
-import static fall2018.csc2017.GameCentre.SlidingTiles.Board.NUM_ROWS;
+import fall2018.csc2017.GameCentre.MatchingCards.MatchingCardsBoard;
+import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard;
+
+import static fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard.NUM_COLS;
+import static fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard.NUM_ROWS;
 
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
@@ -16,7 +19,7 @@ public class BoardManager implements Serializable {
     public static final String MATCHING_CARDS_GAME = "Matching Cards";
     public static final String WHACK_A_MOLE_GAME = "Whack A Mole";
 
-    // Todo: use game name in Board instead of gameID here.
+    // Todo: use game name in SlidingTilesBoard instead of gameID here.
     /**
      * The id of the game that is in play
      */
@@ -84,11 +87,11 @@ public class BoardManager implements Serializable {
             Collections.shuffle(tiles);
             switch (gameName) {
                 case SLIDING_TILES_GAME:
-                    board = new fall2018.csc2017.GameCentre.SlidingTiles.Board(tiles, gameName);
+                    board = new SlidingTilesBoard(tiles, gameName);
                     break;
                 case MATCHING_CARDS_GAME:
                     // Todo: create matching cards game
-                    board = new fall2018.csc2017.GameCentre.MatchingCards.Board(tiles);
+                    board = new MatchingCardsBoard(tiles);
                     break;
                 case WHACK_A_MOLE_GAME:
                     // Todo: create Whack A Mole game

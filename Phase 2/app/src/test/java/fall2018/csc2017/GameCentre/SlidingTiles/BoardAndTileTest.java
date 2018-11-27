@@ -5,9 +5,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.Tile;
-
-import static org.junit.Assert.*;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -25,7 +24,7 @@ public class BoardAndTileTest {
      */
     private List<Tile> makeTiles() {
         List<Tile> tiles = new ArrayList<>();
-        final int numTiles = Board.NUM_ROWS * Board.NUM_COLS;
+        final int numTiles = SlidingTilesBoard.NUM_ROWS * SlidingTilesBoard.NUM_COLS;
         for (int tileNum = 0; tileNum != numTiles; tileNum++) {
             tiles.add(new Tile(tileNum + 1, tileNum));
         }
@@ -34,11 +33,11 @@ public class BoardAndTileTest {
     }
 
     /**
-     * Make a solved Board.
+     * Make a solved SlidingTilesBoard.
      */
     private void setUpCorrect() {
         List<Tile> tiles = makeTiles();
-        Board board = new Board(tiles);
+        SlidingTilesBoard board = new SlidingTilesBoard(tiles, board.getGameID());
         boardManager = new BoardManager(board);
     }
 

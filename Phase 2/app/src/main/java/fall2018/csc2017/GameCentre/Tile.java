@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 
-import fall2018.csc2017.GameCentre.SlidingTiles.Board;
+import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard;
 
 /**
  * A Tile in a sliding tiles puzzle.
@@ -151,7 +151,7 @@ public class Tile implements Comparable<Tile>, Serializable {
      * @return whether or not tile is blank
      */
     public boolean isBlank() {
-        return id == Board.NUM_COLS * Board.NUM_ROWS;
+        return id == SlidingTilesBoard.NUM_COLS * SlidingTilesBoard.NUM_ROWS;
     }
 
     /**

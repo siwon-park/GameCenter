@@ -4,8 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static fall2018.csc2017.GameCentre.SlidingTiles.Board.NUM_COLS;
-import static fall2018.csc2017.GameCentre.SlidingTiles.Board.NUM_ROWS;
+import static fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard.NUM_COLS;
+import static fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard.NUM_ROWS;
 import static org.junit.Assert.*;
 
 public class BoardManagerTest {

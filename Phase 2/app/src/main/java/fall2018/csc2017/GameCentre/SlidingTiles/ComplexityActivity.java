@@ -52,8 +52,8 @@ public class ComplexityActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Todo: remove the following extra code after fixing BoardManager()
-                Board.NUM_ROWS = 2;
-                Board.NUM_COLS = 2;
+                SlidingTilesBoard.NUM_ROWS = 2;
+                SlidingTilesBoard.NUM_COLS = 2;
                 boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
                 boardManager.setSavedNumRows(2);
                 boardManager.setSavedNumCols(2);
@@ -72,8 +72,8 @@ public class ComplexityActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Board.NUM_ROWS = 3;
-                Board.NUM_COLS = 3;
+                SlidingTilesBoard.NUM_ROWS = 3;
+                SlidingTilesBoard.NUM_COLS = 3;
                 boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
                 boardManager.setSavedNumRows(3);
                 boardManager.setSavedNumCols(3);
@@ -91,8 +91,8 @@ public class ComplexityActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Board.NUM_ROWS = 4;
-                Board.NUM_COLS = 4;
+                SlidingTilesBoard.NUM_ROWS = 4;
+                SlidingTilesBoard.NUM_COLS = 4;
                 boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
                 boardManager.setSavedNumCols(4);
                 boardManager.setSavedNumRows(4);
@@ -110,8 +110,8 @@ public class ComplexityActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Board.NUM_ROWS = 5;
-                Board.NUM_COLS = 5;
+                SlidingTilesBoard.NUM_ROWS = 5;
+                SlidingTilesBoard.NUM_COLS = 5;
                 boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
                 boardManager.setSavedNumRows(5);
                 boardManager.setSavedNumCols(5);

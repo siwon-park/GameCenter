@@ -30,8 +30,8 @@ abstract public class Board extends Observable implements Serializable, Iterable
      */
     private int gameID;
 
-    protected void setName(String name) {
-        this.name = name;
+    protected void setGameID(int gameID) {
+        this.gameID = gameID;
     }
 
     protected String getName() {

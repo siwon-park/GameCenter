@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 
 import java.util.HashMap;
 
-import fall2018.csc2017.GameCentre.SlidingTiles.Board;
+import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard;
 
 /**
  * Manage the images that are used as background of tiles, including cropping, scaling and splitting.
@@ -50,7 +50,7 @@ public class BackgroundManager {
     private Bitmap scaledBackground(){
         Bitmap scaledBitMap;
         Bitmap uncroppedBMap;
-        uncroppedBMap = Board.BACKGROUND_BMAP;
+        uncroppedBMap = SlidingTilesBoard.BACKGROUND_BMAP;
 
         double widthRatio = uncroppedBMap.getWidth() / (double)gridWidth;
         double heightRatio = uncroppedBMap.getHeight() / (double) gridHeight;
@@ -70,14 +70,14 @@ public class BackgroundManager {
      */
     private void imageSplitter() {
         Bitmap backgrdBMap = scaledBackground();
-        int tileWidth = gridWidth / Board.NUM_COLS;
-        int tileHeight = gridHeight / Board.NUM_ROWS;
+        int tileWidth = gridWidth / SlidingTilesBoard.NUM_COLS;
+        int tileHeight = gridHeight / SlidingTilesBoard.NUM_ROWS;
         int startX = (backgrdBMap.getWidth() - gridWidth) / 2;
         int startY = (backgrdBMap.getHeight() - gridHeight) / 2;
         Bitmap croppedBackgrd = Bitmap.createBitmap(backgrdBMap, startX, startY, gridWidth, gridHeight);
-        for (int i = 0; i < Board.NUM_ROWS; i++) {
-            for (int j = 0; j < Board.NUM_COLS; j++) {
-                    int tileId = Board.NUM_ROWS * i + j + 1;
+        for (int i = 0; i < SlidingTilesBoard.NUM_ROWS; i++) {
+            for (int j = 0; j < SlidingTilesBoard.NUM_COLS; j++) {
+                    int tileId = SlidingTilesBoard.NUM_ROWS * i + j + 1;
                     Bitmap tileBMap = Bitmap.createBitmap(croppedBackgrd, tileWidth * j, tileHeight * i, tileWidth, tileHeight);
                     Drawable tileDrawable = new BitmapDrawable(context.getResources(), tileBMap);
 

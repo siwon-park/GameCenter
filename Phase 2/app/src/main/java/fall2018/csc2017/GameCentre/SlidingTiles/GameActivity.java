@@ -71,8 +71,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
             LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(), saveFile, this);
         }
         loadCurrentBoardManager();
-        Board.NUM_COLS = boardManager.getSavedNumCols();
-        Board.NUM_ROWS = boardManager.getSavedNumRows();
+        SlidingTilesBoard.NUM_COLS = boardManager.getSavedNumCols();
+        SlidingTilesBoard.NUM_ROWS = boardManager.getSavedNumRows();
         boardManager.setStartingScoreAndTime();
         accountManager.getCurrentAccount().setGamePlayed(true);
         createTileButtons(this);
@@ -82,7 +82,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
 
         // Add View to activity
         gridView = findViewById(R.id.grid);
-        gridView.setNumColumns(Board.NUM_COLS);
+        gridView.setNumColumns(SlidingTilesBoard.NUM_COLS);
         gridView.setBoardManager(boardManager);
         gridView.setAccountManager(accountManager);
         boardManager.getBoard().addObserver(this);
@@ -96,8 +96,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
                         int displayWidth = gridView.getMeasuredWidth();
                         int displayHeight = gridView.getMeasuredHeight();
 
-                        columnWidth = displayWidth / Board.NUM_COLS;
-                        columnHeight = displayHeight / Board.NUM_ROWS;
+                        columnWidth = displayWidth / SlidingTilesBoard.NUM_COLS;
+                        columnHeight = displayHeight / SlidingTilesBoard.NUM_ROWS;
 
                         display();
                     }
@@ -148,17 +148,17 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * @param context the context
      */
     private void createTileButtons(Context context) {
-        Board board = (Board) boardManager.getBoard();
+        SlidingTilesBoard board = (SlidingTilesBoard) boardManager.getBoard();
         tileButtons = new ArrayList<>();
 
-        if (Board.BACKGROUND_BMAP != null) {
+        if (SlidingTilesBoard.BACKGROUND_BMAP != null) {
             BackgroundManager backgrdMgr = new BackgroundManager(this);
             HashMap backgroundIdMap = backgrdMgr.getbackgrdTileList();
-            for (int row = 0; row != Board.NUM_ROWS; row++) {
-                for (int col = 0; col != Board.NUM_COLS; col++) {
+            for (int row = 0; row != SlidingTilesBoard.NUM_ROWS; row++) {
+                for (int col = 0; col != SlidingTilesBoard.NUM_COLS; col++) {
                     Button tmp = new Button(context);
                     int tileId = board.getTile(row, col).getId();
-                    if (tileId != Board.NUM_COLS * Board.NUM_ROWS) {
+                    if (tileId != SlidingTilesBoard.NUM_COLS * SlidingTilesBoard.NUM_ROWS) {
                         Drawable backgrdDrawable = (Drawable) backgroundIdMap.get(tileId);
                         tmp.setBackground(backgrdDrawable);
                     } else {
@@ -168,8 +168,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
                 }
             }
         } else {
-            for (int row = 0; row != Board.NUM_ROWS; row++) {
-                for (int col = 0; col != Board.NUM_COLS; col++) {
+            for (int row = 0; row != SlidingTilesBoard.NUM_ROWS; row++) {
+                for (int col = 0; col != SlidingTilesBoard.NUM_COLS; col++) {
                     Button tmp = new Button(context);
                         tmp.setBackgroundResource(board.getTile(row, col).getBackground());
                     this.tileButtons.add(tmp);
@@ -184,17 +184,17 @@ public class GameActivity extends AppCompatActivity implements Observer {
      */
     private void updateTileButtons() {
         // cast
-        Board board = (Board) boardManager.getBoard();
+        SlidingTilesBoard board = (SlidingTilesBoard) boardManager.getBoard();
         int nextPos = 0;
 
-        if (Board.BACKGROUND_BMAP != null) {
+        if (SlidingTilesBoard.BACKGROUND_BMAP != null) {
             BackgroundManager backgrdMgr = new BackgroundManager(this);
             HashMap backgroundIdMap = backgrdMgr.getbackgrdTileList();
             for (Button b : tileButtons) {
-                int row = nextPos / Board.NUM_ROWS;
-                int col = nextPos % Board.NUM_COLS;
+                int row = nextPos / SlidingTilesBoard.NUM_ROWS;
+                int col = nextPos % SlidingTilesBoard.NUM_COLS;
                 int tileId = board.getTile(row, col).getId();
-                if (tileId != Board.NUM_COLS * Board.NUM_ROWS) {
+                if (tileId != SlidingTilesBoard.NUM_COLS * SlidingTilesBoard.NUM_ROWS) {
                     Drawable backgrdDrawable = (Drawable) backgroundIdMap.get(tileId);
                     b.setBackground(backgrdDrawable);
                 } else {
@@ -204,8 +204,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
             }
         } else {
             for (Button b : tileButtons) {
-                int row = nextPos / Board.NUM_ROWS;
-                int col = nextPos % Board.NUM_COLS;
+                int row = nextPos / SlidingTilesBoard.NUM_ROWS;
+                int col = nextPos % SlidingTilesBoard.NUM_COLS;
                 b.setBackgroundResource(board.getTile(row, col).getBackground());
                 nextPos++;
             }

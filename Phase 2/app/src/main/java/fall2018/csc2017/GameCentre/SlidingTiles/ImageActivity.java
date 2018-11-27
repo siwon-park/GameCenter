@@ -94,8 +94,8 @@ public class ImageActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-//                Board.TILE_BACKGROUND = Integer.toString(backgroundImg[position]);
-                Board.BACKGROUND_BMAP = BitmapFactory.decodeResource(getResources(), backgroundImg[position]);
+//                SlidingTilesBoard.TILE_BACKGROUND = Integer.toString(backgroundImg[position]);
+                SlidingTilesBoard.BACKGROUND_BMAP = BitmapFactory.decodeResource(getResources(), backgroundImg[position]);
 
                 switchToGame();
             }
@@ -110,7 +110,7 @@ public class ImageActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Board.BACKGROUND_BMAP = null;
+                SlidingTilesBoard.BACKGROUND_BMAP = null;
                 switchToGame();
             }
         });
@@ -185,7 +185,7 @@ public class ImageActivity extends AppCompatActivity {
 
                     Bitmap image = BitmapFactory.decodeStream(inputStream);
 
-                    Board.BACKGROUND_BMAP = image;
+                    SlidingTilesBoard.BACKGROUND_BMAP = image;
                     switchToGame();
 
                 } catch (FileNotFoundException e) {

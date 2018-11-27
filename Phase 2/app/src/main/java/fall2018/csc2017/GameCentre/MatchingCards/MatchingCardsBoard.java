@@ -1,7 +1,5 @@
 package fall2018.csc2017.GameCentre.MatchingCards;
 
-import android.graphics.Bitmap;
-
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
@@ -14,7 +12,7 @@ import fall2018.csc2017.GameCentre.Tile;
 /**
  * The sliding tiles board.
  */
-public class Board extends fall2018.csc2017.GameCentre.Board implements Serializable {
+public class MatchingCardsBoard extends fall2018.csc2017.GameCentre.Board implements Serializable {
     // TODO: Change NUM_ROWS and NUM_COLS to non-static and add getter/setter methods becuz they belong to each board.
 
 //    /**
@@ -51,11 +49,11 @@ public class Board extends fall2018.csc2017.GameCentre.Board implements Serializ
      *
      * @param tiles the tiles for the board
      */
-    public Board(List<Tile> tiles) {
+    public MatchingCardsBoard(List<Tile> tiles) {
         Iterator<Tile> iter = tiles.iterator();
 
-        for (int row = 0; row != Board.NUM_ROWS; row++) {
-            for (int col = 0; col != Board.NUM_COLS; col++) {
+        for (int row = 0; row != MatchingCardsBoard.NUM_ROWS; row++) {
+            for (int col = 0; col != MatchingCardsBoard.NUM_COLS; col++) {
                 this.tiles[row][col] = iter.next();
             }
         }
@@ -194,7 +192,7 @@ public class Board extends fall2018.csc2017.GameCentre.Board implements Serializ
     }
 //    @Override
 //    public String toString() {
-//        return "Board{" +
+//        return "SlidingTilesBoard{" +
 //                "tiles=" + Arrays.toString(tiles) +
 //                '}';
 //    }

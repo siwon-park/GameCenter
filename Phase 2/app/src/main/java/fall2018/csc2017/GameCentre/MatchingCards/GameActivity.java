@@ -3,7 +3,6 @@ package fall2018.csc2017.GameCentre.MatchingCards;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,15 +11,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Stack;
-import java.util.Vector;
 
 import fall2018.csc2017.GameCentre.AccountManager;
-import fall2018.csc2017.GameCentre.BackgroundManager;
-//import fall2018.csc2017.GameCentre.SlidingTiles.Board;
+//import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard;
 //import fall2018.csc2017.GameCentre.SlidingTiles.BoardManager;
 import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.CustomAdapter;
@@ -63,7 +59,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
 
     /*TODO:     Change account manager structure
       TODO:     Account manager needs to differentiate the save files of the 3 games
-      TODO:     Board manager classes of the 3 games are slightly different
+      TODO:     SlidingTilesBoard manager classes of the 3 games are slightly different
       TODO:     The original code can't tell which game the saved board manager is for
       TODO:     And therefore try to cast one into another and cause error
       TODO:     Uncomment the lines to allow save function after fixing account manager
@@ -82,8 +78,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
 //        loadCurrentBoardManager();
 
 
-        Board.NUM_COLS = boardManager.getSavedNumCols();
-        Board.NUM_ROWS = boardManager.getSavedNumRows();
+        MatchingCardsBoard.NUM_COLS = boardManager.getSavedNumCols();
+        MatchingCardsBoard.NUM_ROWS = boardManager.getSavedNumRows();
         boardManager.setStartingScoreAndTime();
 
 //        accountManager.getCurrentAccount().setGamePlayed(true);
@@ -94,7 +90,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
 
         // Add View to activity
         gridView = findViewById(R.id.grid);
-        gridView.setNumColumns(Board.NUM_COLS);
+        gridView.setNumColumns(MatchingCardsBoard.NUM_COLS);
         gridView.setBoardManager(boardManager);
 
 //        gridView.setAccountManager(accountManager);
@@ -110,8 +106,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
                         int displayWidth = gridView.getMeasuredWidth();
                         int displayHeight = gridView.getMeasuredHeight();
 
-                        columnWidth = displayWidth / Board.NUM_COLS;
-                        columnHeight = displayHeight / Board.NUM_ROWS;
+                        columnWidth = displayWidth / MatchingCardsBoard.NUM_COLS;
+                        columnHeight = displayHeight / MatchingCardsBoard.NUM_ROWS;
 
                         display();
                     }
@@ -147,11 +143,11 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * @param context the context
      */
     private void createTileButtons(Context context) {
-//        Board board = (Board) boardManager.getBoard();
+//        SlidingTilesBoard board = (SlidingTilesBoard) boardManager.getBoard();
         tileButtons = new ArrayList<>();
 
-            for (int row = 0; row != Board.NUM_ROWS; row++) {
-                for (int col = 0; col != Board.NUM_COLS; col++) {
+            for (int row = 0; row != MatchingCardsBoard.NUM_ROWS; row++) {
+                for (int col = 0; col != MatchingCardsBoard.NUM_COLS; col++) {
                     Button tmp = new Button(context);
                     tmp.setBackgroundResource(R.drawable.meme);
                     this.tileButtons.add(tmp);
@@ -165,14 +161,14 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * Update the backgrounds on the buttons to match the tiles.
      */
     private void updateTileButtons() {
-        Board board = getBoard();
+        MatchingCardsBoard board = getBoard();
         int nextPos = 0;
 
         if (board.getFlipInProgress()) {
             Stack<int[]> toBeFlipped = board.getLastClicks();
                 for (Button b : tileButtons) {
-                    int row = nextPos / Board.NUM_ROWS;
-                    int col = nextPos % Board.NUM_COLS;
+                    int row = nextPos / MatchingCardsBoard.NUM_ROWS;
+                    int col = nextPos % MatchingCardsBoard.NUM_COLS;
                     if (board.getTile(row, col).getBackground() != R.drawable.tile_blank) {
                         if (needToFlip(row, col)) {
                             b.setBackgroundResource(board.getTile(row, col).getBackground());
@@ -186,8 +182,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
                 }
         }else {
             for (Button b : tileButtons) {
-                int row = nextPos / Board.NUM_ROWS;
-                int col = nextPos % Board.NUM_COLS;
+                int row = nextPos / MatchingCardsBoard.NUM_ROWS;
+                int col = nextPos % MatchingCardsBoard.NUM_COLS;
                 if (board.getTile(row, col).getBackground() != R.drawable.tile_blank) {
                     b.setBackgroundResource(R.drawable.meme);
                 }else {
@@ -285,8 +281,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
         return false;
     }
 
-    private Board getBoard() {
-        return (Board) boardManager.getBoard();
+    private MatchingCardsBoard getBoard() {
+        return (MatchingCardsBoard) boardManager.getBoard();
     }
 
 }
