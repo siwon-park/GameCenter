@@ -23,17 +23,11 @@ abstract public class BoardManager implements Serializable {
      * The board being managed.
      */
     protected Board board;
-    /**
-     * Here is the score formula:
-     * Score = 100 + NUM_ROWS * NUM_COLS * 2 - moves - time_in_seconds / 60
-     * We give more points for a larger board. We also deduct 1 point for each move, but we revert
-     * the score for each move that is undone. For every 1 minute, we deduct 1 point.
-     */
     protected int score = 0;
     /**
      * Records start time of game or the resume time of game (in milliseconds)
      */
-    private long startTime = 0;
+    protected long startTime = 0;
     /**
      * The saved number of rows
      */
@@ -95,10 +89,7 @@ abstract public class BoardManager implements Serializable {
     /**
      * Updates score
      */
-    public void updateScore() {
-        long endTime = System.currentTimeMillis();
-        score -= (endTime - startTime) / 1000 / 60;
-    }
+    public abstract void updateScore();
 
     /**
      * Sets starting score and time

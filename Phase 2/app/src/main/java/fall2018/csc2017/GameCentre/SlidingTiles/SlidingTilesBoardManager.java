@@ -87,6 +87,17 @@ public class SlidingTilesBoardManager extends BoardManager implements Serializab
     }
 
     /**
+     * Here is the score formula:
+     * Score = 100 + NUM_ROWS * NUM_COLS * 2 - moves - time_in_seconds / 60
+     * We give more points for a larger board. We also deduct 1 point for each move, but we revert
+     * the score for each move that is undone. For every 1 minute, we deduct 1 point.
+     */
+    public void updateScore() {
+        long endTime = System.currentTimeMillis();
+        score -= (endTime - startTime) / 1000 / 60;
+    }
+
+    /**
      * Return whether any of the four surrounding tiles is the blank tile.
      *
      * @param position the tile to check
