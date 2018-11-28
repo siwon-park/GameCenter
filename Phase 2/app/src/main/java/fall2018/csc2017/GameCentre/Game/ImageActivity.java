@@ -157,8 +157,7 @@ public class ImageActivity extends AppCompatActivity {
                 tmp = new Intent(this, GameActivity.class);
                 break;
             default:
-                // Todo: switch to WhackAMole
-                tmp = null;
+                tmp = new Intent(this, fall2018.csc2017.GameCentre.WhackAMole.GameActivity.class);
         }
         startActivity(tmp);
     }

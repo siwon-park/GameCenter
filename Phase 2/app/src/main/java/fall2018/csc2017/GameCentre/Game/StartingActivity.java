@@ -240,9 +240,7 @@ public class StartingActivity extends AppCompatActivity {
                 tmp = new Intent(this, fall2018.csc2017.GameCentre.MatchingCards.GameActivity.class);
                 break;
             default:
-                // Todo: switch to WhackAMole
-                tmp = null;
-                break;
+                tmp = new Intent(this, fall2018.csc2017.GameCentre.WhackAMole.GameActivity.class);
         }
         saveCurrentBoardManager();
         startActivity(tmp);
