@@ -11,7 +11,7 @@ import static fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard.NUM_ROW
 abstract public class BoardManager implements Serializable {
     public static final String SLIDING_TILES_GAME = "Sliding Tiles";
     public static final String MATCHING_CARDS_GAME = "Matching Cards";
-    public static final String WHACK_A_MOLE_GAME = "Whack A Mole";
+    public static final String SUDOKU_GAME = "Sudoku";
 
     /**
      * The board being managed.
@@ -50,8 +50,6 @@ abstract public class BoardManager implements Serializable {
     public abstract boolean puzzleSolved();
 
     public abstract boolean isValidTap(int position);
-
-    public abstract void touchMove(int position);
 
     public abstract void undoMove();
 
