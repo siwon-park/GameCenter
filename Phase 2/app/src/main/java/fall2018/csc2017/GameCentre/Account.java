@@ -73,7 +73,7 @@ public class Account implements Serializable {
         saved = new HashMap<>();
         saved.put(BoardManager.SLIDING_TILES_GAME, false);
         saved.put(BoardManager.MATCHING_CARDS_GAME, false);
-        saved.put(BoardManager.WHACK_A_MOLE_GAME, false);
+        saved.put(BoardManager.SUDOKU_GAME, false);
 
     }
 

@@ -51,6 +51,8 @@ abstract public class BoardManager implements Serializable {
 
     public abstract boolean isValidTap(int position);
 
+    public abstract void touchMove(int position);
+
     public abstract void undoMove();
 
     /**
