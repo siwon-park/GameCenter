@@ -157,7 +157,7 @@ public class ImageActivity extends AppCompatActivity {
                 tmp = new Intent(this, GameActivity.class);
                 break;
             default:
-                tmp = new Intent(this, fall2018.csc2017.GameCentre.WhackAMole.GameActivity.class);
+                tmp = new Intent(this, fall2018.csc2017.GameCentre.Sudoku.GameActivity.class);
         }
         startActivity(tmp);
     }
