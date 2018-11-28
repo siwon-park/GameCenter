@@ -1,12 +1,12 @@
-package fall2018.csc2017.GameCentre.SlidingTiles;
+package fall2018.csc2017.GameCentre.Game;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -19,11 +19,12 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import fall2018.csc2017.GameCentre.AccountManager;
+import fall2018.csc2017.GameCentre.Board;
 import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.ImageAdapter;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
-
+import fall2018.csc2017.GameCentre.MatchingCards.GameActivity;
 /**
  * The activity in which user is prompted to choose a background
  */
@@ -39,10 +40,10 @@ public class ImageActivity extends AppCompatActivity {
      */
     private ImageView imgPicture;
 
-    /**
-     * The board manager.
-     */
-    private SlidingTilesBoardManager boardManager;
+//    /**
+//     * The board manager.
+//     */
+    private BoardManager boardManager;
 
 
     /**
@@ -95,7 +96,7 @@ public class ImageActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
 //                SlidingTilesBoard.TILE_BACKGROUND = Integer.toString(backgroundImg[position]);
-                SlidingTilesBoard.BACKGROUND_BMAP = BitmapFactory.decodeResource(getResources(), backgroundImg[position]);
+                Board.BACKGROUND_BMAP = BitmapFactory.decodeResource(getResources(), backgroundImg[position]);
 
                 switchToGame();
             }
@@ -110,7 +111,7 @@ public class ImageActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SlidingTilesBoard.BACKGROUND_BMAP = null;
+                Board.BACKGROUND_BMAP = null;
                 switchToGame();
             }
         });
@@ -143,27 +144,38 @@ public class ImageActivity extends AppCompatActivity {
      * Switch to the ComplexityActivity view to choose a complexity to play the game.
      */
     private void switchToGame() {
-            if (boardManager == null) {
-                boardManager = new SlidingTilesBoardManager();
-            }
-            saveCurrentBoardManager();
-            Intent tmp = new Intent(this, GameActivity.class);
-            startActivity(tmp);
+//            if (boardManager == null) {
+//                boardManager = new SlidingTilesBoardManager();
+//            }
+//            saveCurrentBoardManager();
+        Intent tmp;
+        switch (boardManager.getGameName()) {
+            case BoardManager.SLIDING_TILES_GAME:
+                tmp = new Intent(this, fall2018.csc2017.GameCentre.SlidingTiles.GameActivity.class);
+                break;
+            case BoardManager.MATCHING_CARDS_GAME:
+                tmp = new Intent(this, GameActivity.class);
+                break;
+            default:
+                // Todo: switch to WhackAMole
+                tmp = null;
+        }
+        startActivity(tmp);
     }
 
-    /**
-     * Save the current BoardManager.
-     */
-    private void saveCurrentBoardManager() {
-        LoadAndSave.saveToFile(accountManager.getCurrentAccount().getCurrentGameFileName(),
-                boardManager, this);
-    }
+//    /**
+//     * Save the current BoardManager.
+//     */
+//    private void saveCurrentBoardManager() {
+//        LoadAndSave.saveToFile(accountManager.getCurrentAccount().getCurrentGameFileName(),
+//                boardManager, this);
+//    }
 
     /**
      * Load the current BoardManager.
      */
     private void loadCurrentBoardManager() {
-        boardManager = (SlidingTilesBoardManager) LoadAndSave.loadFromFile(
+        boardManager = (BoardManager) LoadAndSave.loadFromFile(
                 accountManager.getCurrentAccount().getCurrentGameFileName(), this);
     }
 
@@ -185,7 +197,7 @@ public class ImageActivity extends AppCompatActivity {
 
                     Bitmap image = BitmapFactory.decodeStream(inputStream);
 
-                    SlidingTilesBoard.BACKGROUND_BMAP = image;
+                    Board.BACKGROUND_BMAP = image;
                     switchToGame();
 
                 } catch (FileNotFoundException e) {

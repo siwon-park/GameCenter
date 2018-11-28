@@ -47,6 +47,20 @@ public class MatchingCardsBoardManager extends BoardManager implements Serializa
         setGameID(1);
         setGameName(MATCHING_CARDS_GAME);
 
+        createBoard();
+    }
+
+    MatchingCardsBoardManager(List<Tile> tiles) {
+        createBoard();
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    @Override
+    public void createBoard() {
+        board = null;
         List<Tile> tiles = new ArrayList<>();
         final int numTiles = Board.NUM_ROWS * Board.NUM_COLS;
         int[] temp = new int[numTiles];
@@ -58,20 +72,7 @@ public class MatchingCardsBoardManager extends BoardManager implements Serializa
             }
             tiles.add(new Tile(tileNum + 1, temp[tileNum]));
         }
-        createBoard(tiles);
-    }
 
-    MatchingCardsBoardManager(List<Tile> tiles) {
-        createBoard(tiles);
-    }
-
-    public Board getBoard() {
-        return board;
-    }
-
-    @Override
-    protected void createBoard(List<Tile> tiles) {
-        // board = null;
         while (board == null) {
             Collections.shuffle(tiles);
             board = new MatchingCardsBoard(tiles);
@@ -102,7 +103,7 @@ public class MatchingCardsBoardManager extends BoardManager implements Serializa
      * @return whether the tile at position is surrounded by a blank tile
      */
     @Override
-    protected boolean isValidTap(int position) {
+    public boolean isValidTap(int position) {
 
         int row = position / Board.NUM_COLS;
         int col = position % Board.NUM_COLS;
@@ -142,7 +143,7 @@ public class MatchingCardsBoardManager extends BoardManager implements Serializa
      * @param position the position
      */
     @Override
-    protected void touchMove(int position) {
+    public void touchMove(int position) {
         //1D representation of a 2D Cell
         int row = position / Board.NUM_COLS;
         int col = position % Board.NUM_COLS;
@@ -173,5 +174,10 @@ public class MatchingCardsBoardManager extends BoardManager implements Serializa
             lastClicks.pop();
         }
         score--;
+    }
+
+    @Override
+    public void undoMove() {
+        // Todo: implement this
     }
 }

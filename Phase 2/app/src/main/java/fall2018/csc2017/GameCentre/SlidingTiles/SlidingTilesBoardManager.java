@@ -38,16 +38,11 @@ public class SlidingTilesBoardManager extends BoardManager implements Serializab
         setGameID(0);
         setGameName(SLIDING_TILES_GAME);
 
-        List<Tile> tiles = new ArrayList<>();
-        final int numTiles = NUM_ROWS * NUM_COLS;
-        for (int tileNum = 0; tileNum != numTiles; tileNum++) {
-            tiles.add(new Tile(tileNum));
-        }
-        createBoard(tiles);
+        createBoard();
     }
 
     SlidingTilesBoardManager(List<Tile> tiles) {
-        createBoard(tiles);
+        createBoard();
     }
 
     public Board getBoard() {
@@ -55,8 +50,13 @@ public class SlidingTilesBoardManager extends BoardManager implements Serializab
     }
 
     @Override
-    protected void createBoard(List<Tile> tiles) {
-        // board = null;
+    public void createBoard() {
+        board = null;
+        List<Tile> tiles = new ArrayList<>();
+        final int numTiles = NUM_ROWS * NUM_COLS;
+        for (int tileNum = 0; tileNum != numTiles; tileNum++) {
+            tiles.add(new Tile(tileNum));
+        }
         while (board == null || !isSolvable(board)) {
             Collections.shuffle(tiles);
             board = new SlidingTilesBoard(tiles);
@@ -104,7 +104,7 @@ public class SlidingTilesBoardManager extends BoardManager implements Serializab
      * @return whether the tile at position is surrounded by a blank tile
      */
     @Override
-    protected boolean isValidTap(int position) {
+    public boolean isValidTap(int position) {
 
         int row = position / NUM_COLS;
         int col = position % NUM_COLS;
@@ -126,7 +126,7 @@ public class SlidingTilesBoardManager extends BoardManager implements Serializab
      * @param position the position
      */
     @Override
-    protected void touchMove(int position) {
+    public void touchMove(int position) {
         //1D representation of a 2D Cell
         int row = position / NUM_COLS;
         int col = position % NUM_COLS;
@@ -154,6 +154,7 @@ public class SlidingTilesBoardManager extends BoardManager implements Serializab
     /**
      * Undo a move up to unlimited times until the board is as original.
      */
+    @Override
     public void undoMove(){
         if(!undoTrack.isEmpty()) {
             int[][] lastStep = undoTrack.pop();

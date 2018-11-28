@@ -1,5 +1,6 @@
 package fall2018.csc2017.GameCentre;
 
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
@@ -16,6 +17,12 @@ abstract public class Board extends Observable implements Serializable, Iterable
      * The number of columns.
      */
     public static int NUM_COLS = 4;
+
+    /**
+     * The BitMap of background image, if there is not one, remain null
+     */
+    public static Bitmap BACKGROUND_BMAP = null;
+
     /**
      * The tiles on the board in row-major order.
      */

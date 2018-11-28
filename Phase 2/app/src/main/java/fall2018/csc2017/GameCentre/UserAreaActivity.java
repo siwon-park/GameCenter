@@ -7,12 +7,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import fall2018.csc2017.GameCentre.Game.StartingActivity;
+import fall2018.csc2017.GameCentre.MatchingCards.MatchingCardsBoardManager;
+import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoardManager;
+
 public class UserAreaActivity extends AppCompatActivity {
 
     /**
      * The account manager.
      */
     private AccountManager accountManager;
+    private BoardManager boardManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +40,10 @@ public class UserAreaActivity extends AppCompatActivity {
         SlidingTilesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switchToGame(fall2018.csc2017.GameCentre.SlidingTiles.StartingActivity.class);
                 //TODO get gameID from SlidingTiles.board
                 accountManager.getCurrentAccount().setGamePlayedId(0);
+                boardManager = new SlidingTilesBoardManager();
+                switchToGame(StartingActivity.class);
             }
         });
     }
@@ -46,9 +52,10 @@ public class UserAreaActivity extends AppCompatActivity {
         MatchingCardsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switchToGame(fall2018.csc2017.GameCentre.MatchingCards.GameActivity.class);
                 //TODO get gameID from MatchingTiles.board
                 accountManager.getCurrentAccount().setGamePlayedId(1);
+                boardManager = new MatchingCardsBoardManager();
+                switchToGame(StartingActivity.class);
             }
         });
     }
@@ -64,6 +71,10 @@ public class UserAreaActivity extends AppCompatActivity {
 
     private void switchToGame(Class gameStartingActivity) {
         LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
+        // save boardManager so that we know which game is being played
+        LoadAndSave.saveToFile(
+                accountManager.getCurrentAccount().getCurrentGameFileName(), boardManager, this);
+        // Todo: replace gameStartingActivity
         Intent tmp = new Intent(this, gameStartingActivity);
         startActivity(tmp);
     }

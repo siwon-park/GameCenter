@@ -2,7 +2,9 @@ package fall2018.csc2017.GameCentre;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Class for accounts and their contents.
@@ -41,7 +43,8 @@ public class Account implements Serializable {
     /**
      * The boolean for whether the game has been saved.
      */
-    private boolean saved;
+//    private boolean savedaved;
+    Map<String, Boolean> saved;
 
     /**
      * The boolean for whether the game has ever been played.
@@ -63,10 +66,15 @@ public class Account implements Serializable {
         this.name = name;
         this.username = username;
         this.password = password;
-        this.saved = false;
         savedGameFileName = username + "_saved_game" + ".ser";
         currentGameFileName = username + "_current_game" + ".ser";
         this.scores = new ArrayList<>();
+
+        saved = new HashMap<>();
+        saved.put(BoardManager.SLIDING_TILES_GAME, false);
+        saved.put(BoardManager.MATCHING_CARDS_GAME, false);
+        saved.put(BoardManager.WHACK_A_MOLE_GAME, false);
+
     }
 
     /**
@@ -97,9 +105,10 @@ public class Account implements Serializable {
     /**
      * Getter method
      * @return the file name of the saved game
+     * @param gameName the game name is used to differentiate the different types of games
      */
-    public String getSavedGameFileName() {
-        return savedGameFileName;
+    public String getSavedGameFileName(String gameName) {
+        return gameName + savedGameFileName;
     }
 
     /**
@@ -129,14 +138,18 @@ public class Account implements Serializable {
     /**
      * Getter method.
      * @return the value of boolean saved
+     * @param gameName
      */
-    public boolean getSaved() {return saved;}
+    public boolean getSaved(String gameName) {
+        return this.saved.get(gameName);
+    }
 
     /**
      * Setter method for boolean saved.
      */
-
-    public void setSaved(boolean saved) { this.saved = saved; }
+    public void setSaved(boolean saved, String gameName) {
+        this.saved.put(gameName, saved);
+    }
 
     /**
      * Getter method

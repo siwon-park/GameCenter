@@ -1,9 +1,10 @@
-package fall2018.csc2017.GameCentre.SlidingTiles;
+package fall2018.csc2017.GameCentre.Game;
 
 import android.content.Context;
 import android.widget.Toast;
 
 import fall2018.csc2017.GameCentre.AccountManager;
+import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.ScoreInfo;
 
 
@@ -11,7 +12,7 @@ public class MovementController {
     /**
      * A board manager that inherits methods from BoardManager
      */
-    private SlidingTilesBoardManager boardManager = null;
+    private BoardManager boardManager = null;
     /**
      * An account manager that inherits methods from AccountManager
      */
@@ -27,7 +28,7 @@ public class MovementController {
      * Setter method for BoardManager
      * @param boardManager
      */
-    public void setBoardManager(SlidingTilesBoardManager boardManager) {
+    public void setBoardManager(BoardManager boardManager) {
         this.boardManager = boardManager;
     }
 

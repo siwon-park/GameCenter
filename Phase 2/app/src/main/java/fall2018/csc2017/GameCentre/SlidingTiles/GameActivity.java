@@ -17,9 +17,11 @@ import java.util.Observer;
 
 import fall2018.csc2017.GameCentre.AccountManager;
 import fall2018.csc2017.GameCentre.BackgroundManager;
+import fall2018.csc2017.GameCentre.Board;
 import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.CustomAdapter;
-//import fall2018.csc2017.GameCentre.MatchingCards.GestureDetectGridView;
+import fall2018.csc2017.GameCentre.Game.GestureDetectGridView;
+import fall2018.csc2017.GameCentre.Game.StartingActivity;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.SaveFile;
@@ -32,7 +34,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     /**
      * The board manager.
      */
-    private SlidingTilesBoardManager boardManager;
+    private BoardManager boardManager;
 
     /**
      * The buttons to display.
@@ -66,15 +68,20 @@ public class GameActivity extends AppCompatActivity implements Observer {
             accountManager = new AccountManager();
             LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
         }
-        if (saveFile == null) {
-            saveFile = new SaveFile();
-            LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(), saveFile, this);
-        }
+
         loadCurrentBoardManager();
-        SlidingTilesBoard.NUM_COLS = boardManager.getSavedNumCols();
-        SlidingTilesBoard.NUM_ROWS = boardManager.getSavedNumRows();
+        Board.NUM_COLS = boardManager.getSavedNumCols();
+        Board.NUM_ROWS = boardManager.getSavedNumRows();
         boardManager.setStartingScoreAndTime();
         accountManager.getCurrentAccount().setGamePlayed(true);
+
+        if (saveFile == null) {
+            saveFile = new SaveFile();
+            LoadAndSave.saveToFile(
+                    accountManager.getCurrentAccount()
+                            .getSavedGameFileName(boardManager.getGameName()), saveFile, this);
+        }
+
         createTileButtons(this);
         setContentView(R.layout.activity_slidingtile);
         addUndoButtonListener();
@@ -127,7 +134,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
             @Override
             public void onClick(View v) {
                 saveBoardManager();
-                accountManager.getCurrentAccount().setSaved(true);
+                accountManager.getCurrentAccount().setSaved(true, boardManager.getGameName());
                 makeToastSavedText();
             }
         });
@@ -138,8 +145,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
      */
     private void saveBoardManager() {
         saveFile.addSave(boardManager);
-        LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(),
-                saveFile, this);
+        LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(
+                boardManager.getGameName()), saveFile, this);
     }
 
     /**
@@ -148,7 +155,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * @param context the context
      */
     private void createTileButtons(Context context) {
-        SlidingTilesBoard board = (SlidingTilesBoard) boardManager.getBoard();
+        Board board = boardManager.getBoard();
         tileButtons = new ArrayList<>();
 
         if (SlidingTilesBoard.BACKGROUND_BMAP != null) {
@@ -258,7 +265,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * Loads current saved game
      */
     private void loadCurrentBoardManager() {
-        boardManager = (SlidingTilesBoardManager) LoadAndSave.loadFromFile(
+        boardManager = (BoardManager) LoadAndSave.loadFromFile(
                 accountManager.getCurrentAccount().getCurrentGameFileName(), this);
     }
 

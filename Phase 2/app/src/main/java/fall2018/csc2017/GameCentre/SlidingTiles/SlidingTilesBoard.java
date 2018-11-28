@@ -33,12 +33,6 @@ public class SlidingTilesBoard extends fall2018.csc2017.GameCentre.Board impleme
      */
     private Stack<int[][]> undoTrack = new Stack<>();
 
-    // TODO: Change NUM_ROWS and NUM_COLS to non-static and add getter/setter methods becuz they belong to each board.
-    /**
-     * The BitMap of background image, if there is not one, remain null
-     */
-    public static Bitmap BACKGROUND_BMAP = null;
-
     /**
      * A new board of tiles in row-major order.
      * Precondition: len(tiles) == NUM_ROWS * NUM_COLS

@@ -1,12 +1,6 @@
 package fall2018.csc2017.GameCentre;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import fall2018.csc2017.GameCentre.MatchingCards.MatchingCardsBoard;
-import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard;
 
 import static fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard.NUM_COLS;
 import static fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard.NUM_ROWS;
@@ -51,13 +45,15 @@ abstract public class BoardManager implements Serializable {
      */
     public abstract Board getBoard();
 
-    protected abstract void createBoard(List<Tile> tiles);
+    public abstract void createBoard();
 
     public abstract boolean puzzleSolved();
 
-    protected abstract boolean isValidTap(int position);
+    public abstract boolean isValidTap(int position);
 
-    protected abstract void touchMove(int position);
+    public abstract void touchMove(int position);
+
+    public abstract void undoMove();
 
     /**
      * getter method for the GameID
@@ -68,7 +64,7 @@ abstract public class BoardManager implements Serializable {
     public void setGameID(int gameID) {this.gameID = gameID;}
 
 
-    protected void setGameName(String gameName) {
+    public void setGameName(String gameName) {
         this.gameName = gameName;
     }
 
@@ -76,7 +72,7 @@ abstract public class BoardManager implements Serializable {
      * Getter Method for the Game Name
      * @return the ID of the game
      */
-    protected String getGameName() { return gameName; }
+    public String getGameName() { return gameName; }
 
     /**
      * getter method for the score

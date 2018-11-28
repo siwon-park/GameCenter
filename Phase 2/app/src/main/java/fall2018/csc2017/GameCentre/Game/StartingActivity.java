@@ -1,4 +1,4 @@
-package fall2018.csc2017.GameCentre.SlidingTiles;
+package fall2018.csc2017.GameCentre.Game;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -16,18 +16,17 @@ import fall2018.csc2017.GameCentre.PerUserScoreboardActivity;
 import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.ScoreboardActivity;
 import fall2018.csc2017.GameCentre.SaveFile;
+import fall2018.csc2017.GameCentre.SlidingTiles.GameActivity;
 
 
 /**
  * The initial activity for the sliding puzzle tile game.
  */
 public class StartingActivity extends AppCompatActivity {
-
-
     /**
-     * The board manager
+     * The current board manager
      */
-    private SlidingTilesBoardManager boardManager;
+    private BoardManager boardManager;
     /**
      * The account manager.
      */
@@ -46,11 +45,17 @@ public class StartingActivity extends AppCompatActivity {
             accountManager = new AccountManager();
             LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
         }
-        if (saveFile == null) {
-            saveFile = new SaveFile();
-            LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(), saveFile, this);
+//        if (saveFile == null) {
+//            saveFile = new SaveFile();
+//            LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(), saveFile, this);
+//        }
+
+        loadCurrentBoardManager();
+        if (boardManager == null) {
+            // This should not happen
+            // Todo: log error or throw exception, or use Sliding Tile by default
         }
-        boardManager = new SlidingTilesBoardManager();
+
         setContentView(R.layout.activity_starting_);
         addStartButtonListener();
         addLoadButtonListener();
@@ -61,7 +66,6 @@ public class StartingActivity extends AppCompatActivity {
         addRateButtonListener();
 
     }
-
 
     /**
      * Activate the start button.
@@ -85,7 +89,7 @@ public class StartingActivity extends AppCompatActivity {
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!accountManager.getCurrentAccount().getSaved()) {
+                if (!accountManager.getCurrentAccount().getSaved(boardManager.getGameName())) {
                     makeToastNoSaveFileText();
                 } else {
                     loadBoardManager();
@@ -162,8 +166,9 @@ public class StartingActivity extends AppCompatActivity {
      */
     private void loadBoardManager() {
         saveFile = (SaveFile) LoadAndSave.loadFromFile(
-                accountManager.getCurrentAccount().getSavedGameFileName(), this);
-        boardManager = (SlidingTilesBoardManager) saveFile.getBM(gameID);
+                accountManager.getCurrentAccount()
+                        .getSavedGameFileName(boardManager.getGameName()), this);
+        boardManager = saveFile.getBM(gameID);
     }
 
     /**
@@ -226,7 +231,19 @@ public class StartingActivity extends AppCompatActivity {
      */
     private void switchToGame() {
         LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
-        Intent tmp = new Intent(this, GameActivity.class);
+        Intent tmp;
+        switch (boardManager.getGameName()) {
+            case BoardManager.SLIDING_TILES_GAME:
+                tmp = new Intent(this, GameActivity.class);
+                break;
+            case BoardManager.MATCHING_CARDS_GAME:
+                tmp = new Intent(this, fall2018.csc2017.GameCentre.MatchingCards.GameActivity.class);
+                break;
+            default:
+                // Todo: switch to WhackAMole
+                tmp = null;
+                break;
+        }
         saveCurrentBoardManager();
         startActivity(tmp);
     }
@@ -279,7 +296,7 @@ public class StartingActivity extends AppCompatActivity {
      * Loads the current BoardManager
      */
     private void loadCurrentBoardManager() {
-        boardManager = (SlidingTilesBoardManager) LoadAndSave.loadFromFile(
+        boardManager = (BoardManager) LoadAndSave.loadFromFile(
                 accountManager.getCurrentAccount().getCurrentGameFileName(), this);
     }
 }
