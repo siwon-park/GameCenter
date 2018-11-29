@@ -26,6 +26,7 @@
         <activity android:name=".ScoreboardActivity" />
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".PerUserScoreboardActivity" />
+        <activity android:name=".UserSearchActivity"></activity>
         <activity android:name=".MatchingCards.MatchingCardsStartingActivity" />
         <activity android:name=".Sudoku.SudokuStartingActivity"></activity>
     </application>
