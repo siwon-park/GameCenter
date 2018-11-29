@@ -59,12 +59,12 @@ public class UserAreaActivity extends AppCompatActivity {
             }
         });
     }
-   /* private void addWhackAMoleButtonListener() {
-        Button WhackAMoleButton = findViewById(R.id.WhackAMoleButton);
-        WhackAMoleButton.setOnClickListener(new View.OnClickListener() {
+   /* private void addSudokuButtonListener() {
+        Button SudokuButton = findViewById(R.id.SudokuButton);
+        SudokuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switchToWhackAMole();
+                switchToSudoku();
             }
         });
     }*/
