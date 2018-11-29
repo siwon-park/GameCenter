@@ -21,7 +21,6 @@ import fall2018.csc2017.GameCentre.Board;
 import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.CustomAdapter;
 import fall2018.csc2017.GameCentre.Game.GestureDetectGridView;
-import fall2018.csc2017.GameCentre.Game.StartingActivity;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.SaveFile;
@@ -287,7 +286,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * Returns to main SlidingTiles screen
      */
     private void returnToMain(){
-        Intent next = new Intent(this, StartingActivity.class);
+        Intent next = new Intent(this, SlidingTilesStartingActivity.class);
         startActivity(next);
     }
 }

@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import fall2018.csc2017.GameCentre.Game.StartingActivity;
+import fall2018.csc2017.GameCentre.MatchingCards.MatchingCardsStartingActivity;
+import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesStartingActivity;
 import fall2018.csc2017.GameCentre.MatchingCards.MatchingCardsBoardManager;
 import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoardManager;
+import fall2018.csc2017.GameCentre.Sudoku.SudokuStartingActivity;
 
 public class UserAreaActivity extends AppCompatActivity {
 
@@ -44,7 +46,7 @@ public class UserAreaActivity extends AppCompatActivity {
                 //TODO get gameID from SlidingTiles.board
                 accountManager.getCurrentAccount().setGamePlayedId(0);
                 boardManager = new SlidingTilesBoardManager();
-                switchToGame(StartingActivity.class);
+                switchToGame(SlidingTilesStartingActivity.class);
             }
         });
     }
@@ -56,7 +58,7 @@ public class UserAreaActivity extends AppCompatActivity {
                 //TODO get gameID from MatchingTiles.board
                 accountManager.getCurrentAccount().setGamePlayedId(1);
                 boardManager = new MatchingCardsBoardManager();
-                switchToGame(StartingActivity.class);
+                switchToGame(MatchingCardsStartingActivity.class);
             }
         });
     }
@@ -65,7 +67,7 @@ public class UserAreaActivity extends AppCompatActivity {
         SudokuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switchToSudoku(StartingActivity.class);
+                switchToSudoku(SudokuStartingActivity.class);
             }
         });
     }

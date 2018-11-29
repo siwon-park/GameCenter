@@ -1,4 +1,4 @@
-package fall2018.csc2017.GameCentre.Game;
+package fall2018.csc2017.GameCentre.Sudoku;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -10,19 +10,16 @@ import android.widget.Toast;
 
 import fall2018.csc2017.GameCentre.AccountManager;
 import fall2018.csc2017.GameCentre.BoardManager;
+import fall2018.csc2017.GameCentre.Game.ComplexityActivity;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.LoginActivity;
 import fall2018.csc2017.GameCentre.PerUserScoreboardActivity;
 import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.ScoreboardActivity;
 import fall2018.csc2017.GameCentre.SaveFile;
-import fall2018.csc2017.GameCentre.SlidingTiles.GameActivity;
 
+public class SudokuStartingActivity extends AppCompatActivity {
 
-/**
- * The initial activity for the sliding puzzle tile game.
- */
-public class StartingActivity extends AppCompatActivity {
     /**
      * The current board manager
      */
@@ -56,7 +53,7 @@ public class StartingActivity extends AppCompatActivity {
             // Todo: log error or throw exception, or use Sliding Tile by default
         }
 
-        setContentView(R.layout.activity_starting_);
+        setContentView(R.layout.activity_starting_sudoku);
         addStartButtonListener();
         addLoadButtonListener();
         addLoadPrevButtonListener();
@@ -76,7 +73,7 @@ public class StartingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                boardManager = new BoardManager();
-                selectBackground();
+                switchToGame();
             }
         });
     }
@@ -141,9 +138,9 @@ public class StartingActivity extends AppCompatActivity {
         Button scoreboardButton = findViewById(R.id.ScoreboardButton);
         scoreboardButton.setOnClickListener(new View.OnClickListener() {
             @Override
-           public void onClick(View v) {
+            public void onClick(View v) {
                 switchToScoreboard();
-          }
+            }
         });
 
     }
