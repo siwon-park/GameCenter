@@ -84,9 +84,15 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Sign Out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/rate"
@@ -113,11 +119,14 @@
         android:layout_below="@+id/bUserScoreboard"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="224dp"
-        android:layout_marginBottom="520dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="Leaderboard"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/SignOutButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
@@ -127,11 +136,16 @@
         android:layout_alignTop="@+id/tvName"
         android:layout_alignEnd="@+id/LoadPrevButton"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="216dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="User Scoreboard"
+        app:layout_constraintBottom_toTopOf="@+id/GameTextMatching"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ScoreboardButton" />
+        app:layout_constraintTop_toBottomOf="@+id/ScoreboardButton"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </android.support.constraint.ConstraintLayout>
