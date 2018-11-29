@@ -1,4 +1,4 @@
-package fall2018.csc2017.GameCentre.SlidingTiles;
+package fall2018.csc2017.GameCentre.Game;
 
 import android.content.Context;
 import android.widget.Toast;

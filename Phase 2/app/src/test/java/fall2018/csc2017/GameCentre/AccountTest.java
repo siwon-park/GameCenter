@@ -50,10 +50,10 @@ public class AccountTest {
 
     @Test
     public void testSetSavedAndGetSaved() {
-        account.setSaved(true);
+        account.setSaved(true, );
         boolean res = account.getSaved();
         assertTrue(res);
-        account.setSaved(false);
+        account.setSaved(false, );
         res = account.getSaved();
         assertFalse(res);
     }

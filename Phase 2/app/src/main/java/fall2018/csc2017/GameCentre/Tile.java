@@ -141,6 +141,63 @@ public class Tile implements Comparable<Tile>, Serializable {
             case 25:
                 background = R.drawable.tile_blank;
                 break;
+            case 26:
+                background = R.drawable.tile_1_s;
+                break;
+            case 27:
+                background = R.drawable.tile_2_s;
+                break;
+            case 28:
+                background = R.drawable.tile_3_s;
+                break;
+            case 29:
+                background = R.drawable.tile_4_s;
+                break;
+            case 30:
+                background = R.drawable.tile_5_s;
+                break;
+            case 31:
+                background = R.drawable.tile_6_s;
+                break;
+            case 32:
+                background = R.drawable.tile_7_s;
+                break;
+            case 33:
+                background = R.drawable.tile_8_s;
+                break;
+            case 34:
+                background = R.drawable.tile_9_s;
+                break;
+            case 35:
+                background = R.drawable.tile_1_user_s;
+                break;
+            case 36:
+                background = R.drawable.tile_2_user_s;
+                break;
+            case 37:
+                background = R.drawable.tile_3_user_s;
+                break;
+            case 38:
+                background = R.drawable.tile_4_user_s;
+                break;
+            case 39:
+                background = R.drawable.tile_5_user_s;
+                break;
+            case 40:
+                background = R.drawable.tile_6_user_s;
+                break;
+            case 41:
+                background = R.drawable.tile_7_user_s;
+                break;
+            case 42:
+                background = R.drawable.tile_8_user_s;
+                break;
+            case 43:
+                background = R.drawable.tile_9_user_s;
+                break;
+            case 44:
+                background = R.drawable.blank_tile_s;
+                break;
             default:
                 background = R.drawable.tile_blank;
         }
@@ -151,7 +208,7 @@ public class Tile implements Comparable<Tile>, Serializable {
      * @return whether or not tile is blank
      */
     public boolean isBlank() {
-        return id == SlidingTilesBoard.NUM_COLS * SlidingTilesBoard.NUM_ROWS;
+        return id == (SlidingTilesBoard.NUM_COLS * SlidingTilesBoard.NUM_ROWS | 44);
     }
 
     /**

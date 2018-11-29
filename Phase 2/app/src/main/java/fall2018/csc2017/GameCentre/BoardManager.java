@@ -1,12 +1,6 @@
 package fall2018.csc2017.GameCentre;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import fall2018.csc2017.GameCentre.MatchingCards.MatchingCardsBoard;
-import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard;
 
 import static fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard.NUM_COLS;
 import static fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard.NUM_ROWS;
@@ -14,156 +8,113 @@ import static fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard.NUM_ROW
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
  */
-public class BoardManager implements Serializable {
+abstract public class BoardManager implements Serializable {
     public static final String SLIDING_TILES_GAME = "Sliding Tiles";
     public static final String MATCHING_CARDS_GAME = "Matching Cards";
-    public static final String WHACK_A_MOLE_GAME = "Whack A Mole";
-
-
-    private Board board;
-    private int savedNumCols;
-    private int savedNumRows;
+    public static final String SUDOKU_GAME = "Sudoku";
 
     /**
-     * Manage a board that has been pre-populated.
-     * @param board the board
+     * The board being managed.
      */
-    public BoardManager(Board board) {
-        this.board = board;
-    }
-
+    protected Board board;
+    protected int score = 0;
     /**
-     * Manage a new shuffled board.
+     * Records start time of game or the resume time of game (in milliseconds)
      */
-    // Todo: move createBoard() out of this so that we can set num/col first, then create board
-    public BoardManager(String gameName) {
-        List<Tile> tiles = new ArrayList<>();
-        if (gameName.equals(SLIDING_TILES_GAME)) {
-            final int numTiles = NUM_ROWS * NUM_COLS;
-            for (int tileNum = 0; tileNum != numTiles; tileNum++) {
-                tiles.add(new Tile(tileNum));
-            }
-        } else if (gameName.equals(MATCHING_CARDS_GAME)){
-            int[] cardIDs = {
-                    R.drawable.tile_1, R.drawable.tile_2,
-                    R.drawable.tile_3, R.drawable.tile_4,
-                    R.drawable.tile_5, R.drawable.tile_6,
-                    R.drawable.tile_7, R.drawable.tile_8
-            };
-
-            final int numTiles = NUM_ROWS * NUM_COLS;
-            int[] temp = new int[numTiles];
-            for (int tileNum = 0; tileNum != numTiles; tileNum++) {
-                if (tileNum % 2 == 0) {
-                    temp[tileNum] = cardIDs[tileNum / 2];
-                } else {
-                    temp[tileNum] = cardIDs[(tileNum - 1) / 2];
-                }
-                tiles.add(new Tile(tileNum + 1, temp[tileNum]));
-            }
-        } else {
-            // Todo: throw exception or log error?
-            return;
-        }
-        createBoard(tiles, gameName);
-    }
-
-    BoardManager(List<Tile> tiles, String gameName) {
-        createBoard(tiles, gameName);
-    }
-
-    public Board getBoard() {
-        return board;
-    }
-
-    // Todo: need factory pattern
-    protected void createBoard(List<Tile> tiles, String gameName) {
-
-        while (board == null || !board.isSolvable()) {
-            Collections.shuffle(tiles);
-            switch (gameName) {
-                case SLIDING_TILES_GAME:
-                    board = new SlidingTilesBoard(tiles, gameName);
-                    break;
-                case MATCHING_CARDS_GAME:
-                    // Todo: create matching cards game
-                    board = new MatchingCardsBoard(tiles);
-                    break;
-                case WHACK_A_MOLE_GAME:
-                    // Todo: create Whack A Mole game
-                    break;
-            }
-        }
-    }
-
+    protected long startTime = 0;
     /**
-     * Return whether the tiles are in row-major order.
-     *
-     * @return whether the tiles are in row-major order
+     * The saved number of rows
      */
-    public boolean puzzleSolved() {
-        boolean solved = board.puzzleSolved();
-        if (solved) {
-            updateScore();
-        }
-        return solved;
-    }
-
+    private int savedNumRows = NUM_ROWS;
     /**
-     * Return whether any of the four surrounding tiles is the blank tile.
-     *
-     * @param position the tile to check
-     * @return whether the tile at position is surrounded by a blank tile
+     * The saved number of columns
      */
-    public boolean isValidTap(int position) {
-        return board.isValidTap(position);
-    }
-
+    private int savedNumCols = NUM_COLS;
     /**
-     * Process a touch at position in the board, swapping tiles as appropriate.
-     *
-     * @param position the position
+     * The id of the game that is in play
      */
-
-    public void touchMove(int position) {
-        board.touchMove(position);
-    }
+    private int gameID;
 
     /**
-     * Undo a move up to unlimited times until the board is as original.
+     * The name of the Game
      */
-    public void undoMove(){
-        board.undoMove();
+    private String gameName;
+
+    /**
+     * Return the current board.
+     */
+    public abstract Board getBoard();
+
+    public abstract void createBoard();
+
+    public abstract boolean puzzleSolved();
+
+    public abstract boolean isValidTap(int position);
+
+    public abstract void touchMove(int position);
+
+    public abstract void undoMove();
+
+    /**
+     * getter method for the GameID
+     * @return gameID
+     */
+    public int getGameID() { return gameID; }
+
+    public void setGameID(int gameID) {this.gameID = gameID;}
+
+
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
     }
 
     /**
-     * getter method for score
+     * Getter Method for the Game Name
+     * @return the ID of the game
+     */
+    public String getGameName() { return gameName; }
+
+    /**
+     * getter method for the score
      * @return score
      */
-
     public int getScore() {
-        return board.getScore();
+        return score;
     }
 
     /**
      * Updates score
      */
-    public void updateScore() {
-        board.updateScore();
-    }
+    public abstract void updateScore();
 
     /**
      * Sets starting score and time
      */
     public void setStartingScoreAndTime() {
-        board.setStartingScoreAndTime();
+        score = 100 + NUM_ROWS * NUM_COLS * 2;
+        updateStartTime();
     }
 
     /**
      * Updates start time
      */
     public void updateStartTime() {
-        board.updateStartTime();
+        startTime = System.currentTimeMillis();
+    }
+
+    /**
+     * Getter Method (for testing purposes)
+     * @return the start time
+     */
+    long getStartTime() {
+        return startTime;
+    }
+
+    /**
+     * Setter Method (for testing purposes)
+     */
+    void setStartTime(long startTime) {
+        this.startTime = startTime;
     }
 
     /**

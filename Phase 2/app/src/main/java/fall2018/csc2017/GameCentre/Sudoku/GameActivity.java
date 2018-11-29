@@ -1,6 +1,7 @@
-package fall2018.csc2017.GameCentre.SlidingTiles;
+package fall2018.csc2017.GameCentre.Sudoku;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +9,6 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.Toast;
-import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,11 +26,7 @@ import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.SaveFile;
 
-/**
- * The game activity.
- */
 public class GameActivity extends AppCompatActivity implements Observer {
-
     /**
      * The board manager.
      */
@@ -54,7 +50,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * of positions, and then call the adapter to set the view.
      */
     public void display() {
-        updateTileButtons();
+
         gridView.setAdapter(new CustomAdapter(tileButtons, columnWidth, columnHeight));
 
     }
@@ -83,13 +79,11 @@ public class GameActivity extends AppCompatActivity implements Observer {
         }
 
         createTileButtons(this);
-        setContentView(R.layout.activity_slidingtile);
-        addUndoButtonListener();
-        addSaveButtonListener();
+        setContentView(R.layout.activity_sudoku);
 
         // Add View to activity
         gridView = findViewById(R.id.grid);
-        gridView.setNumColumns(SlidingTilesBoard.NUM_COLS);
+        gridView.setNumColumns(SudokuBoard.NUM_COLS);
         gridView.setBoardManager(boardManager);
         gridView.setAccountManager(accountManager);
         boardManager.getBoard().addObserver(this);
@@ -103,8 +97,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
                         int displayWidth = gridView.getMeasuredWidth();
                         int displayHeight = gridView.getMeasuredHeight();
 
-                        columnWidth = displayWidth / SlidingTilesBoard.NUM_COLS;
-                        columnHeight = displayHeight / SlidingTilesBoard.NUM_ROWS;
+                        columnWidth = displayWidth / SudokuBoard.NUM_COLS;
+                        columnHeight = displayHeight / SudokuBoard.NUM_ROWS;
 
                         display();
                     }
@@ -112,42 +106,6 @@ public class GameActivity extends AppCompatActivity implements Observer {
     }
 
 
-    /**
-     * Activate the undo button.
-     */
-    private void addUndoButtonListener() {
-        Button undoButton = findViewById(R.id.UndoButton);
-        undoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boardManager.undoMove();
-            }
-        });
-    }
-
-    /**
-     * Activate the save button.
-     */
-    private void addSaveButtonListener() {
-        Button saveButton = findViewById(R.id.SaveButton);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveBoardManager();
-                accountManager.getCurrentAccount().setSaved(true, boardManager.getGameName());
-                makeToastSavedText();
-            }
-        });
-    }
-
-    /**
-     * Save the board manager as a serializable object
-     */
-    private void saveBoardManager() {
-        saveFile.addSave(boardManager);
-        LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(
-                boardManager.getGameName()), saveFile, this);
-    }
 
     /**
      * Create the buttons for displaying the tiles.
@@ -158,14 +116,14 @@ public class GameActivity extends AppCompatActivity implements Observer {
         Board board = boardManager.getBoard();
         tileButtons = new ArrayList<>();
 
-        if (SlidingTilesBoard.BACKGROUND_BMAP != null) {
+        if (SudokuBoard.BACKGROUND_BMAP != null) {
             BackgroundManager backgrdMgr = new BackgroundManager(this);
             HashMap backgroundIdMap = backgrdMgr.getbackgrdTileList();
-            for (int row = 0; row != SlidingTilesBoard.NUM_ROWS; row++) {
-                for (int col = 0; col != SlidingTilesBoard.NUM_COLS; col++) {
+            for (int row = 0; row != SudokuBoard.NUM_ROWS; row++) {
+                for (int col = 0; col != SudokuBoard.NUM_COLS; col++) {
                     Button tmp = new Button(context);
                     int tileId = board.getTile(row, col).getId();
-                    if (tileId != SlidingTilesBoard.NUM_COLS * SlidingTilesBoard.NUM_ROWS) {
+                    if (tileId != SudokuBoard.NUM_COLS * SudokuBoard.NUM_ROWS) {
                         Drawable backgrdDrawable = (Drawable) backgroundIdMap.get(tileId);
                         tmp.setBackground(backgrdDrawable);
                     } else {
@@ -175,47 +133,14 @@ public class GameActivity extends AppCompatActivity implements Observer {
                 }
             }
         } else {
-            for (int row = 0; row != SlidingTilesBoard.NUM_ROWS; row++) {
-                for (int col = 0; col != SlidingTilesBoard.NUM_COLS; col++) {
+            for (int row = 0; row != SudokuBoard.NUM_ROWS; row++) {
+                for (int col = 0; col != SudokuBoard.NUM_COLS; col++) {
                     Button tmp = new Button(context);
-                        tmp.setBackgroundResource(board.getTile(row, col).getBackground());
+                    tmp.setBackgroundResource(board.getTile(row, col).getBackground());
                     this.tileButtons.add(tmp);
                 }
             }
 
-        }
-    }
-
-    /**
-     * Update the backgrounds on the buttons to match the tiles.
-     */
-    private void updateTileButtons() {
-        // cast
-        SlidingTilesBoard board = (SlidingTilesBoard) boardManager.getBoard();
-        int nextPos = 0;
-
-        if (SlidingTilesBoard.BACKGROUND_BMAP != null) {
-            BackgroundManager backgrdMgr = new BackgroundManager(this);
-            HashMap backgroundIdMap = backgrdMgr.getbackgrdTileList();
-            for (Button b : tileButtons) {
-                int row = nextPos / SlidingTilesBoard.NUM_ROWS;
-                int col = nextPos % SlidingTilesBoard.NUM_COLS;
-                int tileId = board.getTile(row, col).getId();
-                if (tileId != SlidingTilesBoard.NUM_COLS * SlidingTilesBoard.NUM_ROWS) {
-                    Drawable backgrdDrawable = (Drawable) backgroundIdMap.get(tileId);
-                    b.setBackground(backgrdDrawable);
-                } else {
-                    b.setBackgroundResource(R.drawable.tile_blank);
-                }
-                nextPos++;
-            }
-        } else {
-            for (Button b : tileButtons) {
-                int row = nextPos / SlidingTilesBoard.NUM_ROWS;
-                int col = nextPos % SlidingTilesBoard.NUM_COLS;
-                b.setBackgroundResource(board.getTile(row, col).getBackground());
-                nextPos++;
-            }
         }
     }
 
@@ -291,3 +216,5 @@ public class GameActivity extends AppCompatActivity implements Observer {
         startActivity(next);
     }
 }
+
+

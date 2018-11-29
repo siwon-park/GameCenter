@@ -1,4 +1,4 @@
-package fall2018.csc2017.GameCentre.SlidingTiles;
+package fall2018.csc2017.GameCentre.Game;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import fall2018.csc2017.GameCentre.AccountManager;
 import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
+import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoard;
 
 //import fall2018.csc2017.GameCentre.SlidingTiles.BoardManager;
 
@@ -19,7 +20,7 @@ public class ComplexityActivity extends AppCompatActivity {
     /**
      * The board manager.
      */
-    private fall2018.csc2017.GameCentre.BoardManager boardManager;
+    private BoardManager boardManager;
     /**
      * The account manager.
      */
@@ -36,6 +37,9 @@ public class ComplexityActivity extends AppCompatActivity {
             accountManager = new AccountManager();
             LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
         }
+
+        boardManager =  boardManager = (BoardManager) LoadAndSave.loadFromFile(
+                accountManager.getCurrentAccount().getCurrentGameFileName(), this);
 
         addButton2Listener();
         addButton3Listener();
@@ -54,10 +58,9 @@ public class ComplexityActivity extends AppCompatActivity {
                 // Todo: remove the following extra code after fixing BoardManager()
                 SlidingTilesBoard.NUM_ROWS = 2;
                 SlidingTilesBoard.NUM_COLS = 2;
-                boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
+                boardManager.createBoard();
                 boardManager.setSavedNumRows(2);
                 boardManager.setSavedNumCols(2);
-                saveCurrentBoardManager();
                 switchToBackgroundChange();
             }
         });
@@ -74,10 +77,9 @@ public class ComplexityActivity extends AppCompatActivity {
             public void onClick(View v) {
                 SlidingTilesBoard.NUM_ROWS = 3;
                 SlidingTilesBoard.NUM_COLS = 3;
-                boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
+                boardManager.createBoard();
                 boardManager.setSavedNumRows(3);
                 boardManager.setSavedNumCols(3);
-                saveCurrentBoardManager();
                 switchToBackgroundChange();
             }
         });
@@ -93,10 +95,9 @@ public class ComplexityActivity extends AppCompatActivity {
             public void onClick(View v) {
                 SlidingTilesBoard.NUM_ROWS = 4;
                 SlidingTilesBoard.NUM_COLS = 4;
-                boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
+                boardManager.createBoard();
                 boardManager.setSavedNumCols(4);
                 boardManager.setSavedNumRows(4);
-                saveCurrentBoardManager();
                 switchToBackgroundChange();
             }
         });
@@ -112,10 +113,9 @@ public class ComplexityActivity extends AppCompatActivity {
             public void onClick(View v) {
                 SlidingTilesBoard.NUM_ROWS = 5;
                 SlidingTilesBoard.NUM_COLS = 5;
-                boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
+                boardManager.createBoard();
                 boardManager.setSavedNumRows(5);
                 boardManager.setSavedNumCols(5);
-                saveCurrentBoardManager();
                 switchToBackgroundChange();
             }
         });

@@ -1,5 +1,6 @@
 package fall2018.csc2017.GameCentre;
 
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
@@ -7,6 +8,7 @@ import java.util.Iterator;
 import java.util.Observable;
 
 abstract public class Board extends Observable implements Serializable, Iterable<Tile> {
+
     /**
      * The number of rows.
      */
@@ -15,22 +17,16 @@ abstract public class Board extends Observable implements Serializable, Iterable
      * The number of columns.
      */
     public static int NUM_COLS = 4;
+
+    /**
+     * The BitMap of background image, if there is not one, remain null
+     */
+    public static Bitmap BACKGROUND_BMAP = null;
+
     /**
      * The tiles on the board in row-major order.
      */
     protected Tile[][] tiles = new Tile[Board.NUM_ROWS][Board.NUM_COLS];
-
-    private String gameName;
-
-    protected void setGameName(String gameName) {
-        this.gameName = gameName;
-    }
-
-    /**
-     * Getter Method for the Game Name
-     * @return the ID of the game
-     */
-    public String getGameName() { return gameName; }
 
     /**
      * Return the number of tiles on the board.
@@ -84,51 +80,6 @@ abstract public class Board extends Observable implements Serializable, Iterable
             return result;
         }
     }
-
-    protected abstract boolean isSolvable();
-
-    public abstract boolean puzzleSolved();
-
-    protected abstract boolean isValidTap(int position);
-
-    protected abstract void touchMove(int position);
-
-    public abstract void undoMove();
-
-
-    public abstract int getScore();
-
-    /**
-     * Updates score
-     */
-    public abstract void updateScore();
-
-    /**
-     * Sets starting score and time
-     */
-    public abstract void setStartingScoreAndTime();
-
-    /**
-     * Updates start time
-     */
-    public abstract void updateStartTime();
-
-    /**
-     * Getter Method (for testing purposes)
-     * @return the start time
-     */
-    public abstract long getStartTime();
-
-    /**
-     * Setter Method (for testing purposes)
-     */
-    public abstract void setStartTime(long startTime);
-
-
-    /**
-     * getter method for the score
-     * @return score
-     */
 }
 
 

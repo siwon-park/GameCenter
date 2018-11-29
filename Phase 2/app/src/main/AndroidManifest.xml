@@ -17,12 +17,12 @@
             </intent-filter>
         </activity>
         <activity android:name="fall2018.csc2017.GameCentre.SlidingTiles.GameActivity" />
-        <activity android:name="fall2018.csc2017.GameCentre.MatchingCards.StartingActivity" />
         <activity android:name="fall2018.csc2017.GameCentre.MatchingCards.GameActivity" />
+        <activity android:name=".Sudoku.GameActivity"/>
         <activity android:name=".RegisterActivity" />
-        <activity android:name="fall2018.csc2017.GameCentre.SlidingTiles.StartingActivity" />
-        <activity android:name=".SlidingTiles.ComplexityActivity" />
-        <activity android:name=".SlidingTiles.ImageActivity" />
+        <activity android:name="fall2018.csc2017.GameCentre.Game.StartingActivity" />
+        <activity android:name=".Game.ComplexityActivity" />
+        <activity android:name=".Game.ImageActivity" />
         <activity android:name=".ScoreboardActivity" />
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".PerUserScoreboardActivity"></activity>
