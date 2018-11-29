@@ -67,20 +67,20 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="148dp"
         android:text="Matching Cards"
-        app:layout_constraintBottom_toTopOf="@+id/WhackAMoleButton"
+        app:layout_constraintBottom_toTopOf="@+id/SudokuButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SlidingTilesButton" />
 
     <Button
-        android:id="@+id/WhackAMoleButton"
+        android:id="@+id/SudokuButton"
         android:layout_width="366dp"
         android:layout_height="60dp"
         android:layout_marginStart="148dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="148dp"
         android:layout_marginBottom="131dp"
-        android:text="Whack A Mole"
+        android:text="Sudoku"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

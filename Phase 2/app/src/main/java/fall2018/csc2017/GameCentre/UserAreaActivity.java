@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import fall2018.csc2017.GameCentre.Game.StartingActivity;
+import fall2018.csc2017.GameCentre.MatchingCards.MatchingCardsStartingActivity;
+import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesStartingActivity;
 import fall2018.csc2017.GameCentre.MatchingCards.MatchingCardsBoardManager;
 import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoardManager;
+import fall2018.csc2017.GameCentre.Sudoku.SudokuStartingActivity;
 
 public class UserAreaActivity extends AppCompatActivity {
 
@@ -31,6 +33,7 @@ public class UserAreaActivity extends AppCompatActivity {
         }
         addSlidingTilesButtonListener();
         addMatchingCardsButtonListener();
+        addSudokuButtonListener();
         TextView textView = (TextView) findViewById(R.id.tvName);
         textView.setText("Welcome " + accountManager.getCurrentAccount().getName() + ",");
     }
@@ -43,7 +46,7 @@ public class UserAreaActivity extends AppCompatActivity {
                 //TODO get gameID from SlidingTiles.board
                 accountManager.getCurrentAccount().setGamePlayedId(0);
                 boardManager = new SlidingTilesBoardManager();
-                switchToGame(StartingActivity.class);
+                switchToGame(SlidingTilesStartingActivity.class);
             }
         });
     }
@@ -55,21 +58,31 @@ public class UserAreaActivity extends AppCompatActivity {
                 //TODO get gameID from MatchingTiles.board
                 accountManager.getCurrentAccount().setGamePlayedId(1);
                 boardManager = new MatchingCardsBoardManager();
-                switchToGame(StartingActivity.class);
+                switchToGame(MatchingCardsStartingActivity.class);
             }
         });
     }
-   /* private void addWhackAMoleButtonListener() {
-        Button WhackAMoleButton = findViewById(R.id.WhackAMoleButton);
-        WhackAMoleButton.setOnClickListener(new View.OnClickListener() {
+   private void addSudokuButtonListener() {
+        Button SudokuButton = findViewById(R.id.SudokuButton);
+        SudokuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switchToWhackAMole();
+                switchToSudoku(SudokuStartingActivity.class);
             }
         });
-    }*/
+    }
 
     private void switchToGame(Class gameStartingActivity) {
+        LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
+        // save boardManager so that we know which game is being played
+        LoadAndSave.saveToFile(
+                accountManager.getCurrentAccount().getCurrentGameFileName(), boardManager, this);
+        // Todo: replace gameStartingActivity
+        Intent tmp = new Intent(this, gameStartingActivity);
+        startActivity(tmp);
+    }
+
+    private void switchToSudoku(Class gameStartingActivity) {
         LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
         // save boardManager so that we know which game is being played
         LoadAndSave.saveToFile(
