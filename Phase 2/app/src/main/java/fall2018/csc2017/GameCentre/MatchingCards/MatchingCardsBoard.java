@@ -69,7 +69,7 @@ public class MatchingCardsBoard extends fall2018.csc2017.GameCentre.Board implem
     }
 
     void flipCards() {
-        long startTime = System.currentTimeMillis();
+//        long startTime = System.currentTimeMillis();
 
 //        while(System.currentTimeMillis() <= startTime + 1500) {
             flipInProgress = true;

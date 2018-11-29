@@ -269,7 +269,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     }
 
     private boolean needToFlip(int row, int col) {
-        Stack<?> toBeFlipped = (Stack<?>) (getBoard().getLastClicks().clone());
+        Stack<?> toBeFlipped = (Stack<?>) ((MatchingCardsBoardManager)boardManager).getLastClicks().clone();
         while (!toBeFlipped.empty()) {
             int[] temp = (int[]) toBeFlipped.pop();
             int rowOfFlip = temp[0];
