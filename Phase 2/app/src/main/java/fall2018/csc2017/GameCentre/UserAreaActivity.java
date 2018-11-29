@@ -31,6 +31,7 @@ public class UserAreaActivity extends AppCompatActivity {
         }
         addSlidingTilesButtonListener();
         addMatchingCardsButtonListener();
+        addSudokuButtonListener();
         TextView textView = (TextView) findViewById(R.id.tvName);
         textView.setText("Welcome " + accountManager.getCurrentAccount().getName() + ",");
     }
@@ -59,17 +60,27 @@ public class UserAreaActivity extends AppCompatActivity {
             }
         });
     }
-   /* private void addSudokuButtonListener() {
+   private void addSudokuButtonListener() {
         Button SudokuButton = findViewById(R.id.SudokuButton);
         SudokuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switchToSudoku();
+                switchToSudoku(StartingActivity.class);
             }
         });
-    }*/
+    }
 
     private void switchToGame(Class gameStartingActivity) {
+        LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
+        // save boardManager so that we know which game is being played
+        LoadAndSave.saveToFile(
+                accountManager.getCurrentAccount().getCurrentGameFileName(), boardManager, this);
+        // Todo: replace gameStartingActivity
+        Intent tmp = new Intent(this, gameStartingActivity);
+        startActivity(tmp);
+    }
+
+    private void switchToSudoku(Class gameStartingActivity) {
         LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
         // save boardManager so that we know which game is being played
         LoadAndSave.saveToFile(
