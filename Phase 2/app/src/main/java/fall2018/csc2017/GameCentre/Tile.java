@@ -208,7 +208,7 @@ public class Tile implements Comparable<Tile>, Serializable {
      * @return whether or not tile is blank
      */
     public boolean isBlank() {
-        return id == (SlidingTilesBoard.NUM_COLS * SlidingTilesBoard.NUM_ROWS | 44);
+        return id == (SlidingTilesBoard.NUM_COLS * SlidingTilesBoard.NUM_ROWS);
     }
 
     /**
