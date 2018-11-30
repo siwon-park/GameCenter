@@ -2,6 +2,7 @@ package fall2018.csc2017.GameCentre.Sudoku;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -66,6 +67,89 @@ public class SudokuGameActivity extends GameActivity implements Observer {
      */
     @Override
     protected void updateTileButtons() {
+    }
+    protected void addSudoku1Listener() {
+        Button sudoku1 = findViewById(R.id.sudoku1);
+        sudoku1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    protected void addSudoku2Listener() {
+        Button sudoku2 = findViewById(R.id.sudoku2);
+        sudoku2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+    }
+
+    protected void addSudoku3Listener() {
+        Button sudoku3 = findViewById(R.id.sudoku3);
+        sudoku3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+    }
+
+    protected void addSudoku4Listener() {
+        Button sudoku4 = findViewById(R.id.sudoku4);
+        sudoku4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+    }
+
+
+    protected void addSudoku5Listener() {
+        Button sudoku5 = findViewById(R.id.sudoku5);
+        sudoku5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+    }
+
+
+    protected void addSudoku6Listener() {
+        Button sudoku6 = findViewById(R.id.sudoku6);
+        sudoku6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+    }
+
+
+    protected void addSudoku7Listener() {
+        Button sudoku7 = findViewById(R.id.sudoku7);
+        sudoku7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+    }
+
+    protected void addSudoku8Listener() {
+        Button sudoku8 = findViewById(R.id.sudoku8);
+        sudoku8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+    }
+    protected void addSudoku9Listener() {
+        Button sudoku9 = findViewById(R.id.sudoku9);
+        sudoku9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
     }
 }
 
