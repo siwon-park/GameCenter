@@ -180,4 +180,12 @@ public class MatchingCardsBoardManager extends BoardManager implements Serializa
         }
         score--;
     }
+
+    /**
+     * An empty function for undoMove function
+     */
+    @Override
+    public void undoMove() {
+
+    }
 }
