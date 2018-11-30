@@ -94,7 +94,14 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
     /**
      * Undo a move up to unlimited times until the board is as original.
      */
-    public void undoMove() {
+    @Override
+    public void undoMove(){
+        SudokuBoard board1 = (SudokuBoard) this.board;
+        undoTrack = board1.getUndoTrack();
+        if(!undoTrack.isEmpty()) {
+            int[][] lastStep = undoTrack.pop();
+            board1.deselect(11);
+        }
     }
 
     /**
@@ -157,8 +164,6 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
 
         SudokuBoard board1 = (SudokuBoard) this.board;
         board1.select(position);
-        board1.deselect(43);
-
     }
 
     /**

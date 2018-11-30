@@ -18,11 +18,17 @@ public class SudokuGameActivity extends GameActivity implements Observer {
     public static boolean insert = false;
 
     /**
-     * Create an empty function so it can build but this game doesn't have undo button.
+     * Activate the undo button.
      */
     @Override
     protected void addUndoButtonListener() {
-
+        Button undoButton = findViewById(R.id.UndoButton);
+        undoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boardManager.undoMove();
+            }
+        });
     }
 
     /**

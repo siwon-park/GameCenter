@@ -31,13 +31,17 @@ public class SudokuBoard extends fall2018.csc2017.GameCentre.Board implements Se
 
     private long startTime = 0;
 
-    protected int clickedROW = 0;
-    protected int clickedCOL = 0;
-
     /**
      * A stack that keeps track of completed moves.
      */
     private Stack<int[][]> undoTrack = new Stack<>();
+
+    protected int clickedROW = 0;
+    protected int clickedCOL = 0;
+
+    public Stack<int[][]> getUndoTrack() {
+        return undoTrack;
+    }
 
     public SudokuBoard(List<Tile> tiles) {
 
@@ -58,6 +62,10 @@ public class SudokuBoard extends fall2018.csc2017.GameCentre.Board implements Se
 //        tiles[row][col].setBackground(R.drawable.selected_tile_s);
         clickedROW = row;
         clickedCOL = col;
+
+        int[][] lastStep = {{clickedROW},{clickedCOL}};
+
+        undoTrack.push(lastStep);
     }
 
     public void deselect(int ID){
