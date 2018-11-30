@@ -55,7 +55,7 @@ public class ScoreInfo implements Serializable, Comparable<ScoreInfo> {
     String getGameID(){return gameID;}
 
     /**
-     * Compares ScoreInfo by sorting the in decreasing order
+     * Compares ScoreInfo by sorting them in decreasing order
      * @param compareScoreInfo score info to compare to
      * @return If score is better
      */
