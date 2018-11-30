@@ -154,7 +154,6 @@ public class SlidingTilesBoardManager extends BoardManager implements Serializab
     /**
      * Undo a move up to unlimited times until the board is as original.
      */
-    @Override
     public void undoMove(){
         if(!undoTrack.isEmpty()) {
             int[][] lastStep = undoTrack.pop();

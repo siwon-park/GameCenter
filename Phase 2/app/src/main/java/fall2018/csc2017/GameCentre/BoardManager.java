@@ -53,8 +53,6 @@ abstract public class BoardManager implements Serializable {
 
     public abstract void touchMove(int position);
 
-    public abstract void undoMove();
-
     /**
      * getter method for the GameID
      * @return gameID
