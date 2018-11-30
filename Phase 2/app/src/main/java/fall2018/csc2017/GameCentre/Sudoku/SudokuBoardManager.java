@@ -112,31 +112,35 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
                 }
             }
         }
+
         return true;
     }
     /**
-     * Return whether any of the four surrounding tiles is the blank tile.
+     * Return whether the tile is not a tile given by the original board.
      *
      * @param position the tile to check
-     * @return whether the tile at position is surrounded by a blank tile
+     * @return whether the tile at position is a user selectable tile
      */
-
     @Override
     public boolean isValidTap(int position) {
-
+        boolean valid = false;
         int row = position / SudokuBoard.NUM_COLS;
         int col = position % SudokuBoard.NUM_COLS;
-        int blankId = board.numTiles();
-        // Are any of the 4 the blank tile?
-        Tile above = row == 0 ? null : board.getTile(row - 1, col);
-        Tile below = row == SudokuBoard.NUM_ROWS - 1 ? null : board.getTile(row + 1, col);
-        Tile left = col == 0 ? null : board.getTile(row, col - 1);
-        Tile right = col == SudokuBoard.NUM_COLS - 1 ? null : board.getTile(row, col + 1);
-        return (below != null && below.getId() == blankId)
-                || (above != null && above.getId() == blankId)
-                || (left != null && left.getId() == blankId)
-                || (right != null && right.getId() == blankId);
+        int startingId = 34;
+        int blankId = 43;
+        if(board.getTile(row,col).getId() >= startingId &&board.getTile(row,col).getId() <= blankId){
+            valid = true;
+        }
+        return valid;
     }
+
+    public void highlight(int position){
+        int row = position / SudokuBoard.NUM_COLS;
+        int col = position % SudokuBoard.NUM_COLS;
+        Tile tileToHighlight = board.getTile(row,col);
+        //tileToHighlight.setID();
+    }
+
 
     @Override
     public void touchMove(int position) {
