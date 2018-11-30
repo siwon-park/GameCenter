@@ -92,7 +92,7 @@ public class AccountManager implements Serializable {
                 topScores.add(score);
             }
         }
-
+        PerUserScoreboardActivity.setUserSearched(null);
         return getDisplay(topScores, name+ "'s Top Scores");
     }
 
