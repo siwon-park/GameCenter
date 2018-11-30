@@ -41,6 +41,11 @@ abstract public class BoardManager implements Serializable {
     private String gameName;
 
     /**
+     * If the game is saved
+     */
+    private boolean saved = false;
+
+    /**
      * Return the current board.
      */
     public abstract Board getBoard();
@@ -152,4 +157,21 @@ abstract public class BoardManager implements Serializable {
         this.savedNumRows = numRows;
         NUM_ROWS = numRows;
     }
+
+    /**
+     * Getter method.
+     * @return the value of boolean saved
+     */
+    public boolean getSaved() {
+        return saved;
+    }
+
+    /**
+     * Setter method for boolean saved.
+     * @param saved whether the game has been saved or not
+     */
+    public void setSaved(boolean saved) {
+        this.saved = saved;
+    }
+
 }

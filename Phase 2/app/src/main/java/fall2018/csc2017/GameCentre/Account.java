@@ -41,11 +41,6 @@ public class Account implements Serializable {
     private List<ScoreInfo> scores;
 
     /**
-     * The boolean for whether the game has been saved.
-     */
-    private boolean saved;
-
-    /**
      * The boolean for whether the game has ever been played.
      */
     private boolean gamePlayed;
@@ -65,7 +60,6 @@ public class Account implements Serializable {
         this.name = name;
         this.username = username;
         this.password = password;
-        this.saved = false;
         savedGameFileName = username + "_saved_game" + ".ser";
         currentGameFileName = username + "_current_game" + ".ser";
         this.scores = new ArrayList<>();
@@ -126,22 +120,6 @@ public class Account implements Serializable {
      */
     public String getName() {
         return name;
-    }
-
-    /**
-     * Getter method.
-     * @return the value of boolean saved
-     */
-    public boolean getSaved() {
-        return saved;
-    }
-
-    /**
-     * Setter method for boolean saved.
-     * @param saved whether the game has been saved or not
-     */
-    public void setSaved(boolean saved) {
-        this.saved = saved;
     }
 
     /**

@@ -39,6 +39,7 @@ public class UserAreaActivity extends AppCompatActivity {
             accountManager = new AccountManager();
             LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
         }
+        saveFile = (SaveFile) LoadAndSave.loadFromFile(accountManager.getCurrentAccount().getSavedGameFileName(), this);
         if (saveFile == null) {
             saveFile = new SaveFile();
             LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(), saveFile, this);

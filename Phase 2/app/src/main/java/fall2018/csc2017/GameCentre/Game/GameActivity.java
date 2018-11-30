@@ -70,7 +70,7 @@ abstract public class GameActivity extends AppCompatActivity implements Observer
         Board.NUM_ROWS = boardManager.getSavedNumRows();
         boardManager.setStartingScoreAndTime();
         accountManager.getCurrentAccount().setGamePlayed(true);
-
+        saveFile = (SaveFile) LoadAndSave.loadFromFile(accountManager.getCurrentAccount().getSavedGameFileName(), this);
         if (saveFile == null) {
             saveFile = new SaveFile();
             LoadAndSave.saveToFile(
@@ -131,7 +131,7 @@ abstract public class GameActivity extends AppCompatActivity implements Observer
             @Override
             public void onClick(View v) {
                 saveBoardManager();
-                accountManager.getCurrentAccount().setSaved(true);
+                boardManager.setSaved(true);
                 makeToastSavedText();
             }
         });

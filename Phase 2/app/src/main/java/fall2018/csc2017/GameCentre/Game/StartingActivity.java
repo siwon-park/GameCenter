@@ -49,6 +49,7 @@ public class StartingActivity extends AppCompatActivity {
             accountManager = new AccountManager();
             LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
         }
+        saveFile = (SaveFile) LoadAndSave.loadFromFile(accountManager.getCurrentAccount().getSavedGameFileName(), this);
         if (saveFile == null) {
             saveFile = new SaveFile();
             LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(), saveFile, this);
@@ -124,7 +125,7 @@ public class StartingActivity extends AppCompatActivity {
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!accountManager.getCurrentAccount().getSaved()) {
+                if (!boardManager.getSaved()) {
                     makeToastNoSaveFileText();
                 } else {
                     loadBoardManager();
@@ -200,12 +201,11 @@ public class StartingActivity extends AppCompatActivity {
      * Load the current BoardManager.
      */
     private void loadBoardManager() {
-        if(accountManager.getCurrentAccount().getSaved()) {
+
             saveFile = (SaveFile) LoadAndSave.loadFromFile(
                     accountManager.getCurrentAccount()
                             .getSavedGameFileName(), this);
             boardManager = saveFile.getBM(boardManager.getGameName());
-        }
     }
 
     /**
