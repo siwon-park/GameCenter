@@ -50,7 +50,6 @@ public class MatchingCardsBoardManager extends BoardManager implements Serializa
      * Manage a new shuffled board.
      */
     public MatchingCardsBoardManager() {
-        setGameID(1);
         setGameName(MATCHING_CARDS_GAME);
         setSavedNumCols(4);
         setSavedNumRows(4);

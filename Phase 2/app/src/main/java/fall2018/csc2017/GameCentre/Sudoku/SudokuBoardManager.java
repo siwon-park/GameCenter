@@ -48,7 +48,7 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
      * Manage a new shuffled board.
      */
     public SudokuBoardManager() {
-        setGameID(2);
+
         setGameName(SUDOKU_GAME);
         setSavedNumCols(9);
         setSavedNumRows(9);
