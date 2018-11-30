@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,9 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="151dp"
+        android:layout_marginEnd="55dp"
         android:fontFamily="@font/bungee_shade"
         android:gravity="center"
         android:text="Sudoku"
@@ -23,58 +24,38 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/colorPrimary"
         android:textSize="50sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.331" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/StartButton"
         android:layout_width="118dp"
         android:layout_height="63dp"
-        android:layout_below="@+id/GameTextMatching"
+        android:layout_below="@+id/GameTextSudoku"
         android:layout_alignEnd="@+id/rate"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="200dp"
-        android:text="New Game"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/LoadButton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_marginTop="34dp"
+        android:text="New Game"  />
 
     <Button
         android:id="@+id/LoadButton"
         android:layout_width="133dp"
         android:layout_height="64dp"
-        android:layout_below="@+id/GameTextMatching"
+        android:layout_below="@+id/GameTextSudoku"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="0dp"
         android:layout_toStartOf="@+id/StartButton"
-        android:text="Load Saved Game"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/LoadPrevButton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:text="Load Saved Game" />
 
     <Button
         android:id="@+id/LoadPrevButton"
         android:layout_width="140dp"
         android:layout_height="64dp"
-        android:layout_below="@+id/GameTextMatching"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="200dp"
+        android:layout_below="@+id/GameTextSudoku"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="33dp"
         android:layout_toEndOf="@+id/StartButton"
-        android:text="Load Previous Game"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:text="Load Previous Game" />
 
     <Button
         android:id="@+id/SignOutButton"
@@ -82,11 +63,9 @@
         android:layout_height="46dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Sign Out"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="3dp"
+        android:text="Sign Out" />
 
     <Button
         android:id="@+id/rate"
@@ -95,16 +74,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="28dp"
-        android:text="RATE US"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/StartButton"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_marginStart="149dp"
+        android:layout_marginEnd="147dp"
+        android:layout_marginBottom="45dp"
+        android:text="RATE US" />
 
     <Button
         android:id="@+id/ScoreboardButton"
@@ -113,11 +86,10 @@
         android:layout_below="@+id/bUserScoreboard"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="224dp"
-        android:layout_marginBottom="520dp"
-        android:text="Leaderboard"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginStart="223dp"
+        android:layout_marginTop="-4dp"
+        android:layout_marginEnd="1dp"
+        android:text="Leaderboard" />
 
 
     <Button
@@ -127,10 +99,8 @@
         android:layout_alignTop="@+id/tvName"
         android:layout_alignEnd="@+id/LoadPrevButton"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="8dp"
-        android:text="User Scoreboard"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ScoreboardButton" />
+        android:layout_marginStart="222dp"
+        android:layout_marginEnd="-3dp"
+        android:text="User Scoreboard" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
