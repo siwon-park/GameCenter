@@ -68,14 +68,14 @@
         android:id="@+id/sudoku4"
         android:layout_width="40dp"
         android:layout_height="50dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginBottom="110dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="114dp"
         android:text="4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sudoku5"
         app:layout_constraintStart_toEndOf="@+id/sudoku3"
         app:layout_constraintTop_toBottomOf="@+id/grid"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/sudoku5"
@@ -85,6 +85,7 @@
         android:layout_marginBottom="114dp"
         android:text="5"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sudoku6"
         app:layout_constraintStart_toEndOf="@+id/sudoku4"
         app:layout_constraintTop_toBottomOf="@+id/grid"
         app:layout_constraintVertical_bias="1.0" />
@@ -94,9 +95,11 @@
         android:layout_width="40dp"
         android:layout_height="50dp"
         android:layout_marginTop="14dp"
+        android:layout_marginEnd="3dp"
         android:layout_marginBottom="114dp"
         android:text="6"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sudoku7"
         app:layout_constraintStart_toEndOf="@+id/sudoku5"
         app:layout_constraintTop_toBottomOf="@+id/grid"
         app:layout_constraintVertical_bias="1.0" />
@@ -112,7 +115,7 @@
         app:layout_constraintEnd_toStartOf="@+id/sudoku8"
         app:layout_constraintStart_toEndOf="@+id/sudoku6"
         app:layout_constraintTop_toBottomOf="@+id/grid"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/sudoku8"
@@ -125,7 +128,7 @@
         app:layout_constraintEnd_toStartOf="@+id/sudoku9"
         app:layout_constraintStart_toEndOf="@+id/sudoku7"
         app:layout_constraintTop_toBottomOf="@+id/grid"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/sudoku9"
@@ -140,5 +143,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/sudoku8"
         app:layout_constraintTop_toBottomOf="@+id/grid"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 </android.support.constraint.ConstraintLayout>
