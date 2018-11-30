@@ -85,16 +85,6 @@ public class MatchingCardsComplexity extends ComplexityActivity {
         });
     }
 
-//    /**
-//     * Switch to the GameActivity view to play the game.
-//     */
-//    private void switchToBackgroundChange() {
-//        Intent tmp = new Intent(this, ImageActivity.class);
-//        LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
-//        saveCurrentBoardManager();
-//        startActivity(tmp);
-//    }
-
     /**
      * Save the current BoardManager.
      */

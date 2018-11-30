@@ -40,10 +40,10 @@ public class SlidingTilesBoardManager extends BoardManager implements Serializab
         createBoard();
     }
 
-    SlidingTilesBoardManager(List<Tile> tiles) {
-        createBoard();
-    }
-
+    /**
+     * Getter method for board
+     * @return the board
+     */
     public Board getBoard() {
         return board;
     }
@@ -164,6 +164,7 @@ public class SlidingTilesBoardManager extends BoardManager implements Serializab
     }
 
     /**
+     * Whether the generated board is solvable.
      * @author GeeksforGeeks https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
      * @param board
      * @return whether or not the board is solvable
@@ -182,6 +183,11 @@ public class SlidingTilesBoardManager extends BoardManager implements Serializab
         }
     }
 
+    /**
+     * Helper method for isSolvable
+     * @param board
+     * @return reverse row of the blank tile
+     */
     private int findReverseRowOfBlankTile(Board board) {
         for (int i = NUM_ROWS - 1; i >= 0; i--) {
             for (int j = NUM_ROWS - 1; j >= 0; j--) {
