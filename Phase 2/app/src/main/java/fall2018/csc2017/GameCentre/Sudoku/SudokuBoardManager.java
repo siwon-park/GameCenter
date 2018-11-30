@@ -86,18 +86,7 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
 
             }
         }
-
-//        for (int row = 0; row != 9; row++) {
-//            for (int col = 0; col != 9; col++) {
-//                    Tile temp = new Tile(col);
-//                    tiles.add(temp);
-//
-//            }
-//            Collections.shuffle(tiles);
-//            tiles.add(new Tile(cardIDs[(int) (Math.random() * 8)]));
-//        }
         while (board == null) {
-//            Collections.shuffle(tiles);
             board = new SudokuBoard(tiles);
         }
     }
@@ -150,13 +139,13 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
      */
     @Override
     public boolean isValidTap(int position) {
-        boolean valid = false;
+        boolean valid = true;
         int row = position / SudokuBoard.NUM_COLS;
         int col = position % SudokuBoard.NUM_COLS;
-        int startingId = 34;
-        int blankId = 43;
-        if(board.getTile(row,col).getId() >= startingId &&board.getTile(row,col).getId() <= blankId){
-            valid = true;
+        int startingId = 26;
+        int blankId = 34;
+        if(board.getTile(row,col).getId() >= startingId && board.getTile(row,col).getId() <= blankId){
+            valid = false;
         }
         return valid;
     }
