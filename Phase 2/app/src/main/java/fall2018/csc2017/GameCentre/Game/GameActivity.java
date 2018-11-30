@@ -75,7 +75,7 @@ abstract public class GameActivity extends AppCompatActivity implements Observer
             saveFile = new SaveFile();
             LoadAndSave.saveToFile(
                     accountManager.getCurrentAccount()
-                            .getSavedGameFileName(boardManager.getGameName()), saveFile, this);
+                            .getSavedGameFileName(), saveFile, this);
         }
 
         createTileButtons(this);
@@ -131,8 +131,8 @@ abstract public class GameActivity extends AppCompatActivity implements Observer
             @Override
             public void onClick(View v) {
                 saveBoardManager();
-                accountManager.getCurrentAccount().setSaved(true, boardManager.getGameName());
                 makeToastSavedText();
+                accountManager.getCurrentAccount().setSaved(true);
             }
         });
     }
@@ -142,8 +142,7 @@ abstract public class GameActivity extends AppCompatActivity implements Observer
      */
     private void saveBoardManager() {
         saveFile.addSave(boardManager);
-        LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(
-                boardManager.getGameName()), saveFile, this);
+        LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(), saveFile, this);
     }
 
     /**

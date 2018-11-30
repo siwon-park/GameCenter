@@ -5,18 +5,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SaveFile implements Serializable {
-    private Map<Integer, BoardManager> map;
+    private Map<String, BoardManager> map;
 
     public SaveFile() {
         map = new HashMap<>();
     }
 
     public void addSave(BoardManager boardManager) {
-        map.put(boardManager.getGameID(), boardManager);
+        map.put(boardManager.getGameName(), boardManager);
     }
 
-    public BoardManager getBM(int GameID) {
-        return map.get(GameID);
+    public BoardManager getBM(String GameName) {
+        return map.get(GameName);
     }
 
 }

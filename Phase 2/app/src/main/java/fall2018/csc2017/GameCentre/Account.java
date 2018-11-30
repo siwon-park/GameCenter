@@ -43,8 +43,7 @@ public class Account implements Serializable {
     /**
      * The boolean for whether the game has been saved.
      */
-//    private boolean saved;
-    Map<String, Boolean> saved;
+    private boolean saved;
 
     /**
      * The boolean for whether the game has ever been played.
@@ -58,28 +57,23 @@ public class Account implements Serializable {
 
     /**
      * Constructor for account.
-     * @param name
-     * @param username
-     * @param password
+     * @param name name of user
+     * @param username username of user
+     * @param password password of user
      */
     Account(String name, String username, String password){
         this.name = name;
         this.username = username;
         this.password = password;
+        this.saved = false;
         savedGameFileName = username + "_saved_game" + ".ser";
         currentGameFileName = username + "_current_game" + ".ser";
         this.scores = new ArrayList<>();
-
-        saved = new HashMap<>();
-        saved.put(BoardManager.SLIDING_TILES_GAME, false);
-        saved.put(BoardManager.MATCHING_CARDS_GAME, false);
-        saved.put(BoardManager.SUDOKU_GAME, false);
-
     }
 
     /**
      * The boolean checking if input matches password on file.
-     * @param password
+     * @param password password of user
      * @return whether the password matches what's on file
      */
     public boolean matchPassword(String password) {
@@ -88,7 +82,7 @@ public class Account implements Serializable {
 
     /**
      * Setter method for setting the score when the game is over
-     * @param score
+     * @param score score to set
      */
     public void setScore(ScoreInfo score) {
         scores.add(score);
@@ -105,10 +99,9 @@ public class Account implements Serializable {
     /**
      * Getter method
      * @return the file name of the saved game
-     * @param gameName the game name is used to differentiate the different types of games
      */
-    public String getSavedGameFileName(String gameName) {
-        return gameName + savedGameFileName;
+    public String getSavedGameFileName() {
+        return savedGameFileName;
     }
 
     /**
@@ -138,17 +131,17 @@ public class Account implements Serializable {
     /**
      * Getter method.
      * @return the value of boolean saved
-     * @param gameName
      */
-    public boolean getSaved(String gameName) {
-        return this.saved.get(gameName);
+    public boolean getSaved() {
+        return saved;
     }
 
     /**
      * Setter method for boolean saved.
+     * @param saved whether the game has been saved or not
      */
-    public void setSaved(boolean saved, String gameName) {
-        this.saved.put(gameName, saved);
+    public void setSaved(boolean saved) {
+        this.saved = saved;
     }
 
     /**
