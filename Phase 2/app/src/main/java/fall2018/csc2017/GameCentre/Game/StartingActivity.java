@@ -1,4 +1,4 @@
-package fall2018.csc2017.GameCentre.Sudoku;
+package fall2018.csc2017.GameCentre.Game;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -13,13 +13,18 @@ import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.Game.ComplexityActivity;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.LoginActivity;
+import fall2018.csc2017.GameCentre.MatchingCards.MatchingCardsComplexity;
 import fall2018.csc2017.GameCentre.PerUserScoreboardActivity;
 import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.ScoreboardActivity;
 import fall2018.csc2017.GameCentre.SaveFile;
+import fall2018.csc2017.GameCentre.SlidingTiles.GameActivity;
 
-public class SudokuStartingActivity extends AppCompatActivity {
 
+/**
+ * The initial activity for the sliding puzzle tile game.
+ */
+public class StartingActivity extends AppCompatActivity {
     /**
      * The current board manager
      */
@@ -53,7 +58,16 @@ public class SudokuStartingActivity extends AppCompatActivity {
             // Todo: log error or throw exception, or use Sliding Tile by default
         }
 
-        setContentView(R.layout.activity_starting_sudoku);
+        switch (boardManager.getGameName()) {
+            case BoardManager.SLIDING_TILES_GAME:
+                setContentView(R.layout.activity_starting_sliding);
+                break;
+            case BoardManager.MATCHING_CARDS_GAME:
+                setContentView(R.layout.activity_starting_matching);
+                break;
+            default:
+                setContentView(R.layout.activity_starting_sudoku);
+        }
         addStartButtonListener();
         addLoadButtonListener();
         addLoadPrevButtonListener();
@@ -65,6 +79,14 @@ public class SudokuStartingActivity extends AppCompatActivity {
     }
 
     /**
+     * Switch to the complexity to choose a game.
+     */
+    private void switchToComplexity() {
+        Intent tmp = new Intent(this, MatchingCardsComplexity.class);
+        startActivity(tmp);
+    }
+
+    /**
      * Activate the start button.
      */
     private void addStartButtonListener() {
@@ -73,7 +95,16 @@ public class SudokuStartingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                boardManager = new BoardManager();
-                switchToGame();
+                switch (boardManager.getGameName()) {
+                    case BoardManager.SLIDING_TILES_GAME:
+                        selectBackground();
+                        break;
+                    case BoardManager.MATCHING_CARDS_GAME:
+                        switchToComplexity();
+                        break;
+                    default:
+                        switchToGame();
+                }
             }
         });
     }
@@ -138,9 +169,9 @@ public class SudokuStartingActivity extends AppCompatActivity {
         Button scoreboardButton = findViewById(R.id.ScoreboardButton);
         scoreboardButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+           public void onClick(View v) {
                 switchToScoreboard();
-            }
+          }
         });
 
     }

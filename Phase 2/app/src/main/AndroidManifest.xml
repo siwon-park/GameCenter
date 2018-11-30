@@ -20,7 +20,7 @@
         <activity android:name=".MatchingCards.GameActivity" />
         <activity android:name=".Sudoku.GameActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".SlidingTiles.SlidingTilesStartingActivity" />
+        <activity android:name=".Game.StartingActivity" />
         <activity android:name=".Game.ComplexityActivity" />
         <activity android:name=".Game.ImageActivity" />
         <activity android:name=".ScoreboardActivity" />

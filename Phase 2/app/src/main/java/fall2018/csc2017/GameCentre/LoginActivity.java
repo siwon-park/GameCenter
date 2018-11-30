@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * Switch to the SlidingTilesStartingActivity view to play the game.
+     * Switch to the StartingActivity view to play the game.
      */
     private void switchToUserArea() {
         LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
