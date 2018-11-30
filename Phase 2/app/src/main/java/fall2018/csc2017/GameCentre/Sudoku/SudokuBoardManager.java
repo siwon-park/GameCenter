@@ -28,7 +28,7 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
             R.drawable.tile_4_user_s, R.drawable.tile_5_user_s,
             R.drawable.tile_6_user_s, R.drawable.tile_7_user_s,
             R.drawable.tile_8_user_s, R.drawable.tile_9_user_s,
-            R.drawable.blank_tile_s
+            R.drawable.blank_tile_s, R.drawable.selected_tile_s
     };
 
     /**
@@ -134,12 +134,6 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
         return valid;
     }
 
-    public void highlight(int position){
-        int row = position / SudokuBoard.NUM_COLS;
-        int col = position % SudokuBoard.NUM_COLS;
-        Tile tileToHighlight = board.getTile(row,col);
-        //tileToHighlight.setID();
-    }
 
 
     @Override
