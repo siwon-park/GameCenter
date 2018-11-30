@@ -14,12 +14,7 @@ import fall2018.csc2017.GameCentre.Tile;
  * The sliding tiles board.
  */
 public class MatchingCardsBoard extends fall2018.csc2017.GameCentre.Board implements Serializable {
-    // TODO: Change NUM_ROWS and NUM_COLS to non-static and add getter/setter methods becuz they belong to each board.
 
-//    /**
-//     * The BitMap of background image, if there is not one, remain null
-//     */
-//    public static Bitmap BACKGROUND_BMAP = null;
 
     private int pairID = 0;
 

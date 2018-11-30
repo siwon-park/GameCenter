@@ -36,9 +36,11 @@ public class StartingActivity extends AppCompatActivity {
      */
     private AccountManager accountManager;
 
+    /**
+     * The Save File
+     */
     private SaveFile saveFile;
 
-    private int gameID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +58,6 @@ public class StartingActivity extends AppCompatActivity {
         }
 
         loadCurrentBoardManager();
-        if (boardManager == null) {
-            // This should not happen
-            // Todo: log error or throw exception, or use Sliding Tile by default
-        }
 
         switch (boardManager.getGameName()) {
             case BoardManager.SLIDING_TILES_GAME:
@@ -99,7 +97,6 @@ public class StartingActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                boardManager = new BoardManager();
                 switch (boardManager.getGameName()) {
                     case BoardManager.SLIDING_TILES_GAME:
                         selectBackground();

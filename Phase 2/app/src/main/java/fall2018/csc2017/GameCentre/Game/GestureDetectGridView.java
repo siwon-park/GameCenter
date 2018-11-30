@@ -17,8 +17,10 @@ import android.widget.GridView;
 
 import fall2018.csc2017.GameCentre.AccountManager;
 import fall2018.csc2017.GameCentre.BoardManager;
-//import fall2018.csc2017.GameCentre.MatchingCards.MovementController;
 
+/**
+ * Grid View class
+ */
 public class GestureDetectGridView extends GridView {
     public static final int SWIPE_MIN_DISTANCE = 100;
     public static final int SWIPE_MAX_OFF_PATH = 100;
@@ -31,15 +33,25 @@ public class GestureDetectGridView extends GridView {
     private BoardManager boardManager;
     private AccountManager accountManager;
 
+    /**
+     * Sets the context and initializes it
+     * @param context context of GridView
+     */
     public GestureDetectGridView(Context context) {
         super(context);
         init(context);
     }
 
+    /**
+     * Initializes GridView with attributes
+     * @param context context of GridView
+     * @param attrs Attributes of GridView
+     */
     public GestureDetectGridView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
+
 
     public GestureDetectGridView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);

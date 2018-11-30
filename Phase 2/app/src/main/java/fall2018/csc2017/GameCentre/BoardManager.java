@@ -30,10 +30,6 @@ abstract public class BoardManager implements Serializable {
      * The saved number of columns
      */
     private int savedNumCols = NUM_COLS;
-    /**
-     * The id of the game that is in play
-     */
-    private int gameID;
 
     /**
      * The name of the Game
@@ -60,15 +56,11 @@ abstract public class BoardManager implements Serializable {
 
     public abstract void undoMove();
 
+
     /**
-     * getter method for the GameID
-     * @return gameID
+     * Setter method for the Game Name
+     * @param gameName The name of the game
      */
-    public int getGameID() { return gameID; }
-
-    public void setGameID(int gameID) {this.gameID = gameID;}
-
-
     public void setGameName(String gameName) {
         this.gameName = gameName;
     }
