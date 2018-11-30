@@ -73,27 +73,21 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
 
         for (int row = 0; row != 9; row++) {
             for (int col = 0; col != 9; col++) {
-                for (int j = 0; j < 9; j++) {
-                    if (rowCells[j].equals("-")) {
-                        Tile temp = new Tile(43);
-                        tiles.add(temp);
-                    } else {
-                        Tile temp = new Tile(j + 25);
-                        tiles.add(temp);
-                    }
+                int z = col + 9*row;
+                String thisCell = rowCells[z];
+                Tile temp;
+                if (thisCell.equals("-")) {
+                    temp = new Tile (24);
+                } else {
+                    int thisTileID = Integer.parseInt(thisCell) + 25;
+                    temp = new Tile(thisTileID - 1);
                 }
-            }
-        }
+                tiles.add(temp);
 
-//        for (int row = 0; row != 9; row++) {
-//            for (int col = 0; col != 9; col++) {
-//                    Tile temp = new Tile(col);
-//                    tiles.add(temp);
-//
-//            }
+            }
 //            Collections.shuffle(tiles);
 //            tiles.add(new Tile(cardIDs[(int) (Math.random() * 8)]));
-//        }
+        }
         while (board == null) {
 //            Collections.shuffle(tiles);
             board = new SudokuBoard(tiles);
