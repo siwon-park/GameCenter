@@ -6,6 +6,7 @@ import android.widget.Toast;
 import fall2018.csc2017.GameCentre.AccountManager;
 import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.ScoreInfo;
+import fall2018.csc2017.GameCentre.Sudoku.SudokuGameActivity;
 
 
 public class MovementController {
@@ -47,8 +48,10 @@ public class MovementController {
      * @param display
      */
     public void processTapMovement(Context context, int position, boolean display) {
+        SudokuGameActivity.insert = false;
         if (boardManager.isValidTap(position)) {
             boardManager.touchMove(position);
+            SudokuGameActivity.insert = true;
             if (boardManager.puzzleSolved()) {
                 int numScore = boardManager.getScore();
                 ScoreInfo score =  new ScoreInfo(numScore, accountManager.getCurrentAccount().getName(),
