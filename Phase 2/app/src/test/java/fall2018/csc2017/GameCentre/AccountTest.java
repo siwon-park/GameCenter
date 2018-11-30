@@ -4,7 +4,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static fall2018.csc2017.GameCentre.BoardManager.SLIDING_TILES_GAME;
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.*;
 
 public class AccountTest {
@@ -27,9 +29,9 @@ public class AccountTest {
 
     @Test
     public void testMatchPasswordAndGettersForSeveralMemberVariables() {
-        String savedGameFileName = username + "_saved_game" + ".ser";;
+        String savedGameFileName = SLIDING_TILES_GAME + username + "_saved_game" + ".ser";;
         String currentGameFileName = username + "_current_game" + ".ser";
-        assertEquals(savedGameFileName, account.getSavedGameFileName());
+        assertEquals(savedGameFileName, account.getSavedGameFileName(SLIDING_TILES_GAME));
         assertEquals(currentGameFileName, account.getCurrentGameFileName());
         assertEquals(name, account.getName());
         assertEquals(username, account.getUsername());
@@ -50,11 +52,11 @@ public class AccountTest {
 
     @Test
     public void testSetSavedAndGetSaved() {
-        account.setSaved(true, );
-        boolean res = account.getSaved();
+        account.setSaved(true, SLIDING_TILES_GAME);
+        boolean res = account.getSaved(SLIDING_TILES_GAME);
         assertTrue(res);
-        account.setSaved(false, );
-        res = account.getSaved();
+        account.setSaved(false, SLIDING_TILES_GAME);
+        res = account.getSaved(SLIDING_TILES_GAME);
         assertFalse(res);
     }
 

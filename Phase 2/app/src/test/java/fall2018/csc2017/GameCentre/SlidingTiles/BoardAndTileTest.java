@@ -40,7 +40,7 @@ public class BoardAndTileTest {
     private void setUpCorrect() {
         List<Tile> tiles = makeTiles();
         SlidingTilesBoard board = new SlidingTilesBoard(tiles);
-        boardManager = new BoardManager(board);
+        boardManager = new SlidingTilesBoardManager(board);
     }
 
     /**
