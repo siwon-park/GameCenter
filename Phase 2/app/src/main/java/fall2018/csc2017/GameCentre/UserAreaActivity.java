@@ -10,6 +10,7 @@ import android.widget.TextView;
 import fall2018.csc2017.GameCentre.Game.StartingActivity;
 import fall2018.csc2017.GameCentre.MatchingCards.MatchingCardsBoardManager;
 import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoardManager;
+import fall2018.csc2017.GameCentre.Sudoku.SudokuBoardManager;
 
 public class UserAreaActivity extends AppCompatActivity {
 
@@ -17,6 +18,10 @@ public class UserAreaActivity extends AppCompatActivity {
      * The account manager.
      */
     private AccountManager accountManager;
+
+    /**
+     * The board manager.
+     */
     private BoardManager boardManager;
 
     @Override
@@ -36,6 +41,9 @@ public class UserAreaActivity extends AppCompatActivity {
         textView.setText("Welcome " + accountManager.getCurrentAccount().getName() + ",");
     }
 
+    /**
+     * Activate the Sliding Tiles game button.
+     */
     private void addSlidingTilesButtonListener() {
         Button SlidingTilesButton = findViewById(R.id.SlidingTilesButton);
         SlidingTilesButton.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +56,10 @@ public class UserAreaActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Activate the Matching Cards game button.
+     */
     private void addMatchingCardsButtonListener() {
         Button MatchingCardsButton = findViewById(R.id.MatchingCardsButton);
         MatchingCardsButton.setOnClickListener(new View.OnClickListener() {
@@ -60,17 +72,26 @@ public class UserAreaActivity extends AppCompatActivity {
             }
         });
     }
-   private void addSudokuButtonListener() {
+
+    /**
+     * Activate the Sudoku game button.
+     */
+    private void addSudokuButtonListener() {
         Button SudokuButton = findViewById(R.id.SudokuButton);
         SudokuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switchToSudoku(StartingActivity.class);
                 accountManager.getCurrentAccount().setGamePlayedId(BoardManager.SUDOKU_GAME);
+                boardManager = new SudokuBoardManager();
+                switchToSudoku(StartingActivity.class);
             }
         });
     }
 
+    /**
+     * Switch to StartingActivity.
+     * @param gameStartingActivity the game starting activity.
+     */
     private void switchToGame(Class gameStartingActivity) {
         LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
         // save boardManager so that we know which game is being played
@@ -81,6 +102,10 @@ public class UserAreaActivity extends AppCompatActivity {
         startActivity(tmp);
     }
 
+    /**
+     * Switch to StartingActivity.
+     * @param gameStartingActivity the game starting activity.
+     */
     private void switchToSudoku(Class gameStartingActivity) {
         LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
         // save boardManager so that we know which game is being played

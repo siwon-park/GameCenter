@@ -65,8 +65,9 @@ public class StartingActivity extends AppCompatActivity {
             case BoardManager.MATCHING_CARDS_GAME:
                 setContentView(R.layout.activity_starting_matching);
                 break;
-            default:
+            case BoardManager.SUDOKU_GAME:
                 setContentView(R.layout.activity_starting_sudoku);
+            default: setContentView(R.layout.activity_starting_sliding);
         }
         addStartButtonListener();
         addLoadButtonListener();
@@ -101,6 +102,9 @@ public class StartingActivity extends AppCompatActivity {
                         break;
                     case BoardManager.MATCHING_CARDS_GAME:
                         switchToComplexity();
+                        break;
+                    case BoardManager.SUDOKU_GAME:
+                        switchToGame();
                         break;
                     default:
                         switchToGame();
@@ -267,8 +271,11 @@ public class StartingActivity extends AppCompatActivity {
             case BoardManager.MATCHING_CARDS_GAME:
                 tmp = new Intent(this, fall2018.csc2017.GameCentre.MatchingCards.GameActivity.class);
                 break;
-            default:
+            case BoardManager.SUDOKU_GAME:
                 tmp = new Intent(this, fall2018.csc2017.GameCentre.Sudoku.GameActivity.class);
+                break;
+
+                default: tmp = new Intent(this, GameActivity.class);
         }
         saveCurrentBoardManager();
         startActivity(tmp);
