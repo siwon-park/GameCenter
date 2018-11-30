@@ -35,9 +35,8 @@ public class SlidingTilesBoardManager extends BoardManager implements Serializab
      * Manage a new shuffled board.
      */
     public SlidingTilesBoardManager() {
-        setGameID(0);
-        setGameName(SLIDING_TILES_GAME);
 
+        setGameName(SLIDING_TILES_GAME);
         createBoard();
     }
 

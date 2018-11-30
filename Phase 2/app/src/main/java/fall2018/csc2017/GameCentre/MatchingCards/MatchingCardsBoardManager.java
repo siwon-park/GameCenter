@@ -17,15 +17,29 @@ import fall2018.csc2017.GameCentre.Tile;
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
  */
 public class MatchingCardsBoardManager extends BoardManager implements Serializable {
-
+    /**
+     * The Board for this game.
+     */
     private Board board;
 
+    /**
+     * The ID of another identical card.
+     */
     private int pairID = 0;
 
+    /**
+     * Cards that have been paired.
+     */
     private Vector<int[]> clearedCards = new Vector<>();
 
+    /**
+     * The tiles the user last clicked on.
+     */
     private Stack<int[]> lastClicks = new Stack<>();
 
+    /**
+     * The drawables to be used in this game.
+     */
     private int[] cardIDs = {
             R.drawable.tile_1, R.drawable.tile_2,
             R.drawable.tile_3, R.drawable.tile_4,
@@ -39,28 +53,19 @@ public class MatchingCardsBoardManager extends BoardManager implements Serializa
     };
 
     /**
-     * Manage a board that has been pre-populated.
-     * @param board the board
-     */
-    public MatchingCardsBoardManager(Board board) {
-        this.board = board;
-    }
-
-    /**
      * Manage a new shuffled board.
      */
     public MatchingCardsBoardManager() {
-        setGameID(1);
         setGameName(MATCHING_CARDS_GAME);
         setSavedNumCols(4);
         setSavedNumRows(4);
         createBoard();
     }
 
-    MatchingCardsBoardManager(List<Tile> tiles) {
-        createBoard();
-    }
-
+    /**
+     * Getter method for board
+     * @return Board board
+     */
     public Board getBoard() {
         return board;
     }
@@ -133,10 +138,10 @@ public class MatchingCardsBoardManager extends BoardManager implements Serializa
         return true;
     }
 
-    public int getPairID() {
-        return pairID;
-    }
-
+    /**
+     * Getter method for LastClicks()
+     * @return the two tiles the user last clicked on
+     */
     public Stack<int[]> getLastClicks() {
         return lastClicks;
     }

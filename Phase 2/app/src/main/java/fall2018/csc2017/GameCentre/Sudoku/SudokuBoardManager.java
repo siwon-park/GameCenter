@@ -48,7 +48,7 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
      * Manage a new shuffled board.
      */
     public SudokuBoardManager() {
-        setGameID(2);
+
         setGameName(SUDOKU_GAME);
         setSavedNumCols(9);
         setSavedNumRows(9);
@@ -85,9 +85,17 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
                 tiles.add(temp);
 
             }
+        }
+
+//        for (int row = 0; row != 9; row++) {
+//            for (int col = 0; col != 9; col++) {
+//                    Tile temp = new Tile(col);
+//                    tiles.add(temp);
+//
+//            }
 //            Collections.shuffle(tiles);
 //            tiles.add(new Tile(cardIDs[(int) (Math.random() * 8)]));
-        }
+//        }
         while (board == null) {
 //            Collections.shuffle(tiles);
             board = new SudokuBoard(tiles);
