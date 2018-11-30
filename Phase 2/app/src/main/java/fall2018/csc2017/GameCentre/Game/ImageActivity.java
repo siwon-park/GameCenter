@@ -43,9 +43,9 @@ public class ImageActivity extends AppCompatActivity {
      */
     private ImageView imgPicture;
 
-//    /**
-//     * The board manager.
-//     */
+    /**
+     * The board manager.
+     */
     private BoardManager boardManager;
 
 
@@ -98,9 +98,7 @@ public class ImageActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-//                SlidingTilesBoard.TILE_BACKGROUND = Integer.toString(backgroundImg[position]);
                 Board.BACKGROUND_BMAP = BitmapFactory.decodeResource(getResources(), backgroundImg[position]);
-
                 switchToGame();
             }
         });
@@ -147,10 +145,6 @@ public class ImageActivity extends AppCompatActivity {
      * Switch to the ComplexityActivity view to choose a complexity to play the game.
      */
     private void switchToGame() {
-//            if (boardManager == null) {
-//                boardManager = new SlidingTilesBoardManager();
-//            }
-//            saveCurrentBoardManager();
         Intent tmp;
         switch (boardManager.getGameName()) {
             case BoardManager.SLIDING_TILES_GAME:
@@ -164,14 +158,6 @@ public class ImageActivity extends AppCompatActivity {
         }
         startActivity(tmp);
     }
-
-//    /**
-//     * Save the current BoardManager.
-//     */
-//    private void saveCurrentBoardManager() {
-//        LoadAndSave.saveToFile(accountManager.getCurrentAccount().getCurrentGameFileName(),
-//                boardManager, this);
-//    }
 
     /**
      * Load the current BoardManager.

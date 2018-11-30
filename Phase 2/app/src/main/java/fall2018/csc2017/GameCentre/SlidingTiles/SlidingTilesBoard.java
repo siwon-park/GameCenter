@@ -40,9 +40,6 @@ public class SlidingTilesBoard extends fall2018.csc2017.GameCentre.Board impleme
      * @param tiles the tiles for the board
      */
     public SlidingTilesBoard(List<Tile> tiles) {
-//        setGameName(BoardManager.SLIDING_TILES_GAME);
-//        setGameId(0);
-
         Iterator<Tile> iter = tiles.iterator();
 
         for (int row = 0; row != SlidingTilesBoard.NUM_ROWS; row++) {

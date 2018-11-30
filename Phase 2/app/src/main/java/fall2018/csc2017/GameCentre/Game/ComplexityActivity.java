@@ -8,9 +8,9 @@ import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
 
-//import fall2018.csc2017.GameCentre.BoardManager;
-
-//import fall2018.csc2017.GameCentre.SlidingTiles.BoardManager;
+/**
+ * abstract class that controls the complexity page
+ */
 
 abstract public class ComplexityActivity extends AppCompatActivity {
 
