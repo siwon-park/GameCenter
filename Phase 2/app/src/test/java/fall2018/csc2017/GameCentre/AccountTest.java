@@ -40,14 +40,16 @@ public class AccountTest {
 
     @Test
     public void testGetAndSetScore() {
-        int[] scores = {100, 50, 250, 110, 220, 33};
-        for (int score : scores) {
-//            account.setScore(score);
+        ScoreInfo score1 = new ScoreInfo(123, "a", "SLIDING_TILES");
+        ScoreInfo score2 = new ScoreInfo(999, "a", "MATCHING_CARDS");
+        ScoreInfo[] scores = {score1, score2};
+
+        for (ScoreInfo score: scores){
+            account.setScore(score);
         }
-//TODO: Fix this after getScore is implemented
-//        for (int i = 0; i < account.getScores().size(); i++) {
-//            assertEquals(scores[i], (long) account.getScores().get(i));
-//        }
+        for (int i = 0; i < account.getScores().size(); i++) {
+            assertEquals(scores[i], account.getScores().get(i));
+        }
     }
 
     @Test
@@ -68,5 +70,15 @@ public class AccountTest {
         account.setGamePlayed(false);
         res = account.getGamePlayed();
         assertFalse(res);
+    }
+
+    @Test
+    public void testSetGamePlayedIDAndGetGamePlayedID(){
+        account.setGamePlayedId("SLIDING_TILES");
+        String res = account.getGamePlayedId();
+        assert(res.equals("SLIDING_TILES"));
+        account.setGamePlayedId("MATCHING_CARDS");
+        assert(!res.equals(account.getGamePlayedId()));
+
     }
 }
