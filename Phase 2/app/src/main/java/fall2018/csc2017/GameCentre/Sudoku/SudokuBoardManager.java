@@ -72,7 +72,6 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
     /**
      * Undo a move up to unlimited times until the board is as original.
      */
-    @Override
     public void undoMove() {
     }
 

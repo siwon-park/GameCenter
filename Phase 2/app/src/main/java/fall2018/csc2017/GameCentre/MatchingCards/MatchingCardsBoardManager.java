@@ -180,9 +180,4 @@ public class MatchingCardsBoardManager extends BoardManager implements Serializa
         }
         score--;
     }
-
-    @Override
-    public void undoMove() {
-        // Todo: implement this
-    }
 }
