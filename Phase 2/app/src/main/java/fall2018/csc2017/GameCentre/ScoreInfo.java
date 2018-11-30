@@ -9,9 +9,9 @@ import java.io.Serializable;
 public class ScoreInfo implements Serializable, Comparable<ScoreInfo> {
     private int score;
     String name;
-    private int gameID;
+    private String gameID;
 
-    public ScoreInfo(int score, String name, int gameID) {
+    public ScoreInfo(int score, String name, String gameID) {
         this.score = score;
         this.name = name;
         this.gameID = gameID;
@@ -25,7 +25,7 @@ public class ScoreInfo implements Serializable, Comparable<ScoreInfo> {
         return name;
     }
 
-    int getGameID(){return gameID;}
+    String getGameID(){return gameID;}
 
     // need sort in reverse order.
     public int compareTo(ScoreInfo compareScoreInfo) {

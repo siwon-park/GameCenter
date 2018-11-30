@@ -9,6 +9,7 @@ import java.util.Stack;
 
 import fall2018.csc2017.GameCentre.Board;
 import fall2018.csc2017.GameCentre.BoardManager;
+import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.Tile;
 
 public class SudokuBoardManager extends BoardManager implements Serializable{
@@ -16,6 +17,19 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
      * A stack that keeps track of completed moves.
      */
     private Stack<int[][]> undoTrack = new Stack<>();
+
+    private int[] cardIDs = {
+            R.drawable.tile_1_s, R.drawable.tile_2_s,
+            R.drawable.tile_3_s, R.drawable.tile_4_s,
+            R.drawable.tile_5_s, R.drawable.tile_6_s,
+            R.drawable.tile_7_s, R.drawable.tile_8_s,
+            R.drawable.tile_9_s, R.drawable.tile_1_user_s,
+            R.drawable.tile_2_user_s, R.drawable.tile_3_user_s,
+            R.drawable.tile_4_user_s, R.drawable.tile_5_user_s,
+            R.drawable.tile_6_user_s, R.drawable.tile_7_user_s,
+            R.drawable.tile_8_user_s, R.drawable.tile_9_user_s,
+            R.drawable.blank_tile_s
+    };
 
     /**
      * Manage a board that has been pre-populated.
@@ -48,7 +62,11 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
         board = null;
         List<Tile> tiles = new ArrayList<>();
         for (int n = 1; n <= 81; n++) {
-            tiles.add(new Tile(26 + (int)(Math.random() * (9))));
+            tiles.add(new Tile(cardIDs[(int) (Math.random()*8)]));
+            while (board == null) {
+                Collections.shuffle(tiles);
+                board = new SudokuBoard(tiles);
+            }
         }
     }
     /**

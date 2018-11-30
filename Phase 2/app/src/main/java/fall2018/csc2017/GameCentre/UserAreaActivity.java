@@ -42,7 +42,7 @@ public class UserAreaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO get gameID from SlidingTiles.board
-                accountManager.getCurrentAccount().setGamePlayedId(0);
+                accountManager.getCurrentAccount().setGamePlayedId(BoardManager.SLIDING_TILES_GAME);
                 boardManager = new SlidingTilesBoardManager();
                 switchToGame(StartingActivity.class);
             }
@@ -54,7 +54,7 @@ public class UserAreaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO get gameID from MatchingTiles.board
-                accountManager.getCurrentAccount().setGamePlayedId(1);
+                accountManager.getCurrentAccount().setGamePlayedId(BoardManager.MATCHING_CARDS_GAME);
                 boardManager = new MatchingCardsBoardManager();
                 switchToGame(StartingActivity.class);
             }
@@ -66,7 +66,7 @@ public class UserAreaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 switchToSudoku(StartingActivity.class);
-                accountManager.getCurrentAccount().setGamePlayedId(2);
+                accountManager.getCurrentAccount().setGamePlayedId(BoardManager.SUDOKU_GAME);
             }
         });
     }

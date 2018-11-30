@@ -54,7 +54,7 @@ public class Account implements Serializable {
     /**
      * Game ID of the current game being played
      */
-    private int gamePlayedId;
+    private String gamePlayedId;
 
     /**
      * Constructor for account.
@@ -166,7 +166,7 @@ public class Account implements Serializable {
      * sets the value of gamePlayedId
      * @param gamePlayedId Id of the game being played
      */
-    void setGamePlayedId(int gamePlayedId) {
+    void setGamePlayedId(String gamePlayedId) {
         this.gamePlayedId = gamePlayedId;
     }
 
@@ -174,7 +174,7 @@ public class Account implements Serializable {
      * returns Id of the current game being played
      * @return Id of the current game being played
      */
-    public int getGamePlayedId(){
+    public String getGamePlayedId(){
         return gamePlayedId;
     }
 }

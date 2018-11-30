@@ -67,11 +67,11 @@ public class AccountManager implements Serializable {
      * activity
      * @return top scores in string format
      */
-    String[] displayPerGame(int gameID){
+    String[] displayPerGame(String gameID){
         List<ScoreInfo> topScores = new ArrayList<>();
         for (Account account : map.values()) {
             for (ScoreInfo score: account.getScores()) {
-                if (score.getGameID() == gameID) {
+                if (score.getGameID().equals(gameID)) {
                     topScores.add(score);
                 }
             }
@@ -85,10 +85,10 @@ public class AccountManager implements Serializable {
      * activity
      * @return top scores of the user in string format
      */
-    String[] displayPerUser(String name ,int gameID){
+    String[] displayPerUser(String name ,String gameID){
         List<ScoreInfo> topScores = new ArrayList<>();
         for (ScoreInfo score : this.getAccount(name).getScores()) {
-            if (score.getGameID() == gameID) {
+            if (score.getGameID().equals(gameID)) {
                 topScores.add(score);
             }
         }
@@ -101,11 +101,11 @@ public class AccountManager implements Serializable {
      * activity
      * @return top scores of the searched user in string format
      */
-    String[] displayPerSearch(String name ,int gameID) {
+    String[] displayPerSearch(String name ,String gameID) {
         List<ScoreInfo> topScores = new ArrayList<>();
         for (Account account : map.values()) {
             for (ScoreInfo score : account.getScores()) {
-                if (score.getGameID() == gameID) {
+                if (score.getGameID().equals(gameID)) {
                     topScores.add(score);
                 }
             }
