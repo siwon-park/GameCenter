@@ -122,21 +122,11 @@ public class MatchingCardsComplexity extends AppCompatActivity {
     }
 
     /**
-     * Switch to the SudokuGameActivity view to play the game.
+     * Switch to the GameActivity view to play the game.
      */
     private void switchToGame() {
         LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
-        Intent tmp;
-        switch (boardManager.getGameName()) {
-            case BoardManager.SLIDING_TILES_GAME:
-                tmp = new Intent(this, SlidingTilesGameActivity.class);
-                break;
-            case BoardManager.MATCHING_CARDS_GAME:
-                tmp = new Intent(this, MatchingCardsGameActivity.class);
-                break;
-            default:
-                tmp = new Intent(this, SudokuGameActivity.class);
-        }
+        Intent tmp = new Intent(this, MatchingCardsGameActivity.class);
         saveCurrentBoardManager();
         startActivity(tmp);
     }
