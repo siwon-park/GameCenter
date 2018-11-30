@@ -65,7 +65,6 @@ public class SudokuGameActivity extends GameActivity implements Observer {
      */
     @Override
     protected void updateTileButtons() {
-
     }
 }
 
