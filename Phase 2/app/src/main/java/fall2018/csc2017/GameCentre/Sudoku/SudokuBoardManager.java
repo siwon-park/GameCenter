@@ -75,14 +75,39 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
     @Override
     public void undoMove() {
     }
+
     /**
-     * Return whether the tiles are in row-major order.
-     *
-     * @return whether the tiles are in row-major order
+     * Referenced from https://github.com/Knutakir/Android-Sudoku/blob/master/app/src/main/java/me/kirkhorn/knut/android_sudoku/model/Board.java
+     * @return whether the sudoku board is correct
      */
+
     @Override
     public boolean puzzleSolved() {
-        return false;
+        for (int n = 0; n <= 81; n++) {
+            ArrayList<Integer> numbers = new ArrayList<>();
+            for (int i = 0; i <= 9; i++) {
+                int num = (board.getTile(n, i)).getId() - 25;
+                if (numbers.contains(num)){
+                    return false;
+                }
+                else {
+                    numbers.add(num);
+                }
+            }
+        }
+        for (int n = 0; n <= 81; n++) {
+            ArrayList<Integer> numbers = new ArrayList<>();
+            for (int i = 0; i <= 9; i++) {
+                int num = (board.getTile(i, n)).getId() - 25;
+                if (numbers.contains(num)){
+                    return false;
+                }
+                else {
+                    numbers.add(num);
+                }
+            }
+        }
+        return true;
     }
     /**
      * Return whether any of the four surrounding tiles is the blank tile.

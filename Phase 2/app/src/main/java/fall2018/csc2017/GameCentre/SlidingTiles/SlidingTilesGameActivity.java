@@ -1,13 +1,14 @@
-package fall2018.csc2017.GameCentre.Sudoku;
+package fall2018.csc2017.GameCentre.SlidingTiles;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.Toast;
+import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,8 +25,13 @@ import fall2018.csc2017.GameCentre.Game.StartingActivity;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.SaveFile;
+import fall2018.csc2017.GameCentre.UserAreaActivity;
 
-public class GameActivity extends AppCompatActivity implements Observer {
+/**
+ * The game activity.
+ */
+public class SlidingTilesGameActivity extends AppCompatActivity implements Observer {
+
     /**
      * The board manager.
      */
@@ -49,7 +55,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * of positions, and then call the adapter to set the view.
      */
     public void display() {
-
+        updateTileButtons();
         gridView.setAdapter(new CustomAdapter(tileButtons, columnWidth, columnHeight));
 
     }
@@ -78,7 +84,9 @@ public class GameActivity extends AppCompatActivity implements Observer {
         }
 
         createTileButtons(this);
-        setContentView(R.layout.activity_sudoku);
+        setContentView(R.layout.activity_slidingtile);
+        addUndoButtonListener();
+        addSaveButtonListener();
 
         // Add View to activity
         gridView = findViewById(R.id.grid);
@@ -105,6 +113,42 @@ public class GameActivity extends AppCompatActivity implements Observer {
     }
 
 
+    /**
+     * Activate the undo button.
+     */
+    private void addUndoButtonListener() {
+        Button undoButton = findViewById(R.id.UndoButton);
+        undoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boardManager.undoMove();
+            }
+        });
+    }
+
+    /**
+     * Activate the save button.
+     */
+    private void addSaveButtonListener() {
+        Button saveButton = findViewById(R.id.SaveButton);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveBoardManager();
+                accountManager.getCurrentAccount().setSaved(true, boardManager.getGameName());
+                makeToastSavedText();
+            }
+        });
+    }
+
+    /**
+     * Save the board manager as a serializable object
+     */
+    private void saveBoardManager() {
+        saveFile.addSave(boardManager);
+        LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(
+                boardManager.getGameName()), saveFile, this);
+    }
 
     /**
      * Create the buttons for displaying the tiles.
@@ -140,6 +184,39 @@ public class GameActivity extends AppCompatActivity implements Observer {
                 }
             }
 
+        }
+    }
+
+    /**
+     * Update the backgrounds on the buttons to match the tiles.
+     */
+    private void updateTileButtons() {
+        // cast
+        SlidingTilesBoard board = (SlidingTilesBoard) boardManager.getBoard();
+        int nextPos = 0;
+
+        if (Board.BACKGROUND_BMAP != null) {
+            BackgroundManager backgrdMgr = new BackgroundManager(this);
+            HashMap backgroundIdMap = backgrdMgr.getbackgrdTileList();
+            for (Button b : tileButtons) {
+                int row = nextPos / Board.NUM_ROWS;
+                int col = nextPos % Board.NUM_COLS;
+                int tileId = board.getTile(row, col).getId();
+                if (tileId != Board.NUM_COLS * Board.NUM_ROWS) {
+                    Drawable backgrdDrawable = (Drawable) backgroundIdMap.get(tileId);
+                    b.setBackground(backgrdDrawable);
+                } else {
+                    b.setBackgroundResource(R.drawable.tile_blank);
+                }
+                nextPos++;
+            }
+        } else {
+            for (Button b : tileButtons) {
+                int row = nextPos / Board.NUM_ROWS;
+                int col = nextPos % Board.NUM_COLS;
+                b.setBackgroundResource(board.getTile(row, col).getBackground());
+                nextPos++;
+            }
         }
     }
 
@@ -208,12 +285,11 @@ public class GameActivity extends AppCompatActivity implements Observer {
     }
 
     /**
-     * Returns to main SlidingTiles screen
+     * Returns to main user area screen
      */
     private void returnToMain(){
-        Intent next = new Intent(this, StartingActivity.class);
+        Intent next = new Intent(this, UserAreaActivity.class);
         startActivity(next);
     }
+
 }
-
-
