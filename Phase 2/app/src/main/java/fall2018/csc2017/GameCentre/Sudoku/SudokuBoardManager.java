@@ -138,11 +138,10 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
 
     @Override
     public void touchMove(int position) {
-        //1D representation of a 2D Cell
-        int row = position / Board.NUM_COLS;
-        int col = position % Board.NUM_COLS;
-        int currentID = board.getTile(row, col).getId();
-        int[] clickedOn = {row, col};
+
+        SudokuBoard board1 = (SudokuBoard) this.board;
+        board1.deselect();
+        board1.select(position);
     }
 
     /**
