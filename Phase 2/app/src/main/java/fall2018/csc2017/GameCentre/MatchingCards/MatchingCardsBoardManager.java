@@ -52,7 +52,8 @@ public class MatchingCardsBoardManager extends BoardManager implements Serializa
     public MatchingCardsBoardManager() {
         setGameID(1);
         setGameName(MATCHING_CARDS_GAME);
-
+        setSavedNumCols(4);
+        setSavedNumRows(4);
         createBoard();
     }
 
