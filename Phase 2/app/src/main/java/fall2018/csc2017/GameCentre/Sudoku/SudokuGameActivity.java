@@ -63,11 +63,22 @@ public class SudokuGameActivity extends GameActivity implements Observer {
         }
     }
 
+
+
     /**
      * Create an empty function so it can build but this game doesn't need to update tile buttons.
      */
     @Override
     protected void updateTileButtons() {
+        SudokuBoard board = (SudokuBoard) boardManager.getBoard();
+        int nextPos = 0;
+
+        for (Button b : tileButtons) {
+            int row = nextPos / Board.NUM_ROWS;
+            int col = nextPos % Board.NUM_COLS;
+            b.setBackgroundResource(board.getTile(row, col).getBackground());
+            nextPos++;
+        }
     }
     protected void addSudoku1Listener() {
         Button sudoku1 = findViewById(R.id.sudoku1);
@@ -75,7 +86,7 @@ public class SudokuGameActivity extends GameActivity implements Observer {
             @Override
             public void onClick(View v) {
               SudokuBoard board = (SudokuBoard) boardManager.getBoard();
-              board.deselect(34);
+              board.deselect(1);
             }
         });
     }
@@ -86,7 +97,7 @@ public class SudokuGameActivity extends GameActivity implements Observer {
             @Override
             public void onClick(View v) {
                 SudokuBoard board = (SudokuBoard) boardManager.getBoard();
-                board.deselect(35);
+                board.deselect(2);
             }
         });
     }
@@ -97,7 +108,7 @@ public class SudokuGameActivity extends GameActivity implements Observer {
             @Override
             public void onClick(View v) {
                 SudokuBoard board = (SudokuBoard) boardManager.getBoard();
-                board.deselect(36);
+                board.deselect(3);
             }
         });
     }
@@ -108,7 +119,7 @@ public class SudokuGameActivity extends GameActivity implements Observer {
             @Override
             public void onClick(View v) {
                 SudokuBoard board = (SudokuBoard) boardManager.getBoard();
-                board.deselect(37);
+                board.deselect(4);
             }
         });
     }
@@ -120,7 +131,7 @@ public class SudokuGameActivity extends GameActivity implements Observer {
             @Override
             public void onClick(View v) {
                 SudokuBoard board = (SudokuBoard) boardManager.getBoard();
-                board.deselect(38);
+                board.deselect(5);
             }
         });
     }
@@ -132,7 +143,7 @@ public class SudokuGameActivity extends GameActivity implements Observer {
             @Override
             public void onClick(View v) {
                 SudokuBoard board = (SudokuBoard) boardManager.getBoard();
-                board.deselect(39);
+                board.deselect(6);
             }
         });
     }
@@ -144,7 +155,7 @@ public class SudokuGameActivity extends GameActivity implements Observer {
             @Override
             public void onClick(View v) {
                 SudokuBoard board = (SudokuBoard) boardManager.getBoard();
-                board.deselect(40);
+                board.deselect(7);
             }
         });
     }
@@ -155,7 +166,7 @@ public class SudokuGameActivity extends GameActivity implements Observer {
             @Override
             public void onClick(View v) {
                 SudokuBoard board = (SudokuBoard) boardManager.getBoard();
-                board.deselect(41);
+                board.deselect(8);
             }
         });
     }
@@ -165,7 +176,7 @@ public class SudokuGameActivity extends GameActivity implements Observer {
             @Override
             public void onClick(View v) {
                 SudokuBoard board = (SudokuBoard) boardManager.getBoard();
-                board.deselect(42);
+                board.deselect(9);
             }
         });
     }

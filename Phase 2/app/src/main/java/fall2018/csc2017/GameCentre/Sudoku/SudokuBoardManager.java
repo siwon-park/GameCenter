@@ -156,8 +156,9 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
     public void touchMove(int position) {
 
         SudokuBoard board1 = (SudokuBoard) this.board;
-        board1.deselect(43);
         board1.select(position);
+        board1.deselect(43);
+
     }
 
     /**

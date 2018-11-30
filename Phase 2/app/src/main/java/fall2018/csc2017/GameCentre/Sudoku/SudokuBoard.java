@@ -31,6 +31,9 @@ public class SudokuBoard extends fall2018.csc2017.GameCentre.Board implements Se
 
     private long startTime = 0;
 
+    protected int clickedROW = 0;
+    protected int clickedCOL = 0;
+
     /**
      * A stack that keeps track of completed moves.
      */
@@ -50,23 +53,27 @@ public class SudokuBoard extends fall2018.csc2017.GameCentre.Board implements Se
     public void select(int position){
         int row = position / SudokuBoard.NUM_COLS;
         int col = position % SudokuBoard.NUM_COLS;
-        int HighlightId =44;
-        tiles[row][col].setID(44);
-        tiles[row][col].setBackground(R.drawable.selected_tile_s);
-
+//        int HighlightId =44;
+//        tiles[row][col].setID(44);
+//        tiles[row][col].setBackground(R.drawable.selected_tile_s);
+        clickedROW = row;
+        clickedCOL = col;
     }
 
     public void deselect(int ID){
-        boolean selected = false;
-        for(Tile[] tile: this.tiles){
-            for (Tile tile2: tile){
-                if (tile2.getId()==44){
-                    tile2.setID(ID);
-                    tile2.setBackground(R.drawable.blank_tile_s);
-                }
-            }
-        }
-
+        int translatedTileID = ID + 33;
+//        boolean selected = false;
+//        for(Tile[] tile: this.tiles){
+//            for (Tile tile2: tile){
+//                if (tile2.getId()==44){
+//                    tile2.setID(ID);
+//                    tile2.setBackground(R.drawable.blank_tile_s);
+//                }
+//            }
+//       }
+        tiles[clickedROW][clickedCOL] = new Tile(translatedTileID);
+        setChanged();
+        notifyObservers();
     }
 
 }

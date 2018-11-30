@@ -91,6 +91,15 @@ abstract public class GameActivity extends AppCompatActivity implements Observer
         }
         addUndoButtonListener();
         addSaveButtonListener();
+        addSudoku1Listener();
+        addSudoku2Listener();
+        addSudoku3Listener();
+        addSudoku4Listener();
+        addSudoku5Listener();
+        addSudoku6Listener();
+        addSudoku7Listener();
+        addSudoku8Listener();
+        addSudoku9Listener();
 
         // Add View to activity
         gridView = findViewById(R.id.grid);
@@ -229,5 +238,15 @@ abstract public class GameActivity extends AppCompatActivity implements Observer
         Intent next = new Intent(this, UserAreaActivity.class);
         startActivity(next);
     }
+
+    protected void addSudoku1Listener() {}
+    protected void addSudoku2Listener() {}
+    protected void addSudoku3Listener() {}
+    protected void addSudoku4Listener() {}
+    protected void addSudoku5Listener() {}
+    protected void addSudoku6Listener() {}
+    protected void addSudoku7Listener() {}
+    protected void addSudoku8Listener() {}
+    protected void addSudoku9Listener() {}
 
 }
