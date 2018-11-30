@@ -47,6 +47,10 @@ public class UserSearchActivity extends AppCompatActivity {
         scores.setAdapter(adapter);
     }
 
+    /**
+     * set the user searched to given user
+     * @param user the user to be searched
+     */
     public static void setUserSearched(String user){
         UserSearchActivity.UserSearched = user;
     }
