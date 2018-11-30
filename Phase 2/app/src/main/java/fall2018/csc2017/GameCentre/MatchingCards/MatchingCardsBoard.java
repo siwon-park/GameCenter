@@ -15,21 +15,20 @@ import fall2018.csc2017.GameCentre.Tile;
  */
 public class MatchingCardsBoard extends fall2018.csc2017.GameCentre.Board implements Serializable {
 
-
-    private int pairID = 0;
-
-    private Vector<int[]> clearedCards = new Vector<>();
-
+    /**
+     * The last clicks that the user made.
+     */
     private Stack<int[]> lastClicks = new Stack<>();
 
+    /**
+     * Whether there is a flip in progress
+     */
     private boolean flipInProgress = false;
 
-    private Stack<int[]> toBeFlipped = new Stack<>();
-
-    public int getPairID() {
-        return pairID;
-    }
-
+    /**
+     * Getter method for LastClicks
+     * @return the last clicks that the user made.
+     */
     public Stack<int[]> getLastClicks() {
         return lastClicks;
     }
@@ -41,9 +40,6 @@ public class MatchingCardsBoard extends fall2018.csc2017.GameCentre.Board implem
      * @param tiles the tiles for the board
      */
     public MatchingCardsBoard(List<Tile> tiles) {
-//        setGameName(BoardManager.MATCHING_CARDS_GAME);
-//        setGameId(1);
-
         Iterator<Tile> iter = tiles.iterator();
 
         for (int row = 0; row != MatchingCardsBoard.NUM_ROWS; row++) {
@@ -53,35 +49,31 @@ public class MatchingCardsBoard extends fall2018.csc2017.GameCentre.Board implem
         }
     }
 
+    /**
+     * Clear the tiles that have been matched correctly
+     * @param row the tile row
+     * @param col the tile column
+     */
     public void clearTiles(int row, int col) {
-//        Tile temp = tiles[row1][col1];
-//        tiles[row1][col1] = tiles[row2][col2];
-//        tiles[row2][col2] = temp;
         tiles[row][col].setBackground(R.drawable.tile_blank);
         tiles[row][col].setID(MatchingCardsBoard.NUM_COLS * MatchingCardsBoard.NUM_COLS);
-
         setChanged();
         notifyObservers();
     }
 
+    /**
+     * Flips the cards that have been tapped.
+     */
     void flipCards() {
-//        long startTime = System.currentTimeMillis();
-
-//        while(System.currentTimeMillis() <= startTime + 1500) {
             flipInProgress = true;
             setChanged();
             notifyObservers();
-//        }
-//
-//        flipInProgress = false;
-//        setChanged();
-//        notifyObservers();
     }
 
-    public Stack<int[]> getToBeFlipped() {
-        return toBeFlipped;
-    }
-
+    /**
+     * Getter method for FlipInProgress
+     * @return whether there is a flip in progress
+     */
     public boolean getFlipInProgress() {
         return flipInProgress;
     }

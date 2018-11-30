@@ -13,26 +13,6 @@ import fall2018.csc2017.GameCentre.R;
 public class SlidingTilesComplexity extends ComplexityActivity {
 
     /**
-     * Activate the 2x2 button.
-     */
-    @Override
-    protected void addButton2Listener() {
-        Button startButton = findViewById(R.id.button2);
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Board.NUM_ROWS = 2;
-                Board.NUM_COLS = 2;
-                boardManager.createBoard();
-                boardManager.setSavedNumRows(2);
-                boardManager.setSavedNumCols(2);
-                switchToBackgroundChange();
-            }
-        });
-    }
-
-
-    /**
      * Activate the 3x3 button.
      */
     @Override

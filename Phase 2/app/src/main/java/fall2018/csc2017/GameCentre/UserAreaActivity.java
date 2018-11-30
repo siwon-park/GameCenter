@@ -107,7 +107,6 @@ public class UserAreaActivity extends AppCompatActivity {
         // save boardManager so that we know which game is being played
         LoadAndSave.saveToFile(
                 accountManager.getCurrentAccount().getCurrentGameFileName(), boardManager, this);
-        // Todo: replace gameStartingActivity
         Intent tmp = new Intent(this, gameStartingActivity);
         startActivity(tmp);
     }
@@ -121,7 +120,6 @@ public class UserAreaActivity extends AppCompatActivity {
         // save boardManager so that we know which game is being played
         LoadAndSave.saveToFile(
                 accountManager.getCurrentAccount().getCurrentGameFileName(), boardManager, this);
-        // Todo: replace gameStartingActivity
         Intent tmp = new Intent(this, gameStartingActivity);
         startActivity(tmp);
     }
