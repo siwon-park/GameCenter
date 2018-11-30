@@ -68,6 +68,7 @@ public class UserAreaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 switchToSudoku(SudokuStartingActivity.class);
+                accountManager.getCurrentAccount().setGamePlayedId(2);
             }
         });
     }
