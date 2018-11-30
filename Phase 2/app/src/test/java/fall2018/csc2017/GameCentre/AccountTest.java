@@ -29,9 +29,9 @@ public class AccountTest {
 
     @Test
     public void testMatchPasswordAndGettersForSeveralMemberVariables() {
-        String savedGameFileName = SLIDING_TILES_GAME + username + "_saved_game" + ".ser";;
+        String savedGameFileName = username + "_saved_game" + ".ser";;
         String currentGameFileName = username + "_current_game" + ".ser";
-        assertEquals(savedGameFileName, account.getSavedGameFileName(SLIDING_TILES_GAME));
+        assertEquals(savedGameFileName, account.getSavedGameFileName());
         assertEquals(currentGameFileName, account.getCurrentGameFileName());
         assertEquals(name, account.getName());
         assertEquals(username, account.getUsername());
@@ -54,11 +54,11 @@ public class AccountTest {
 
     @Test
     public void testSetSavedAndGetSaved() {
-        account.setSaved(true, SLIDING_TILES_GAME);
-        boolean res = account.getSaved(SLIDING_TILES_GAME);
+        account.setSaved(true);
+        boolean res = account.getSaved();
         assertTrue(res);
-        account.setSaved(false, SLIDING_TILES_GAME);
-        res = account.getSaved(SLIDING_TILES_GAME);
+        account.setSaved(false);
+        res = account.getSaved();
         assertFalse(res);
     }
 
