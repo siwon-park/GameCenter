@@ -70,17 +70,22 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
 
         String rowCells[] = sudokuBoard1.split(",");
 
-            for (int j = 0; j < 81; j++) {
-                if (rowCells[j].equals("-")) {
-                    Tile temp = new Tile(43);
-                    tiles.add(temp);
+
+        for (int row = 0; row != 9; row++) {
+            for (int col = 0; col != 9; col++) {
+                int z = col + 9*row;
+                String thisCell = rowCells[z];
+                Tile temp;
+                if (thisCell.equals("-")) {
+                    temp = new Tile (24);
                 } else {
-
-                    Tile temp = new Tile(Integer.parseInt(rowCells[j]) + 24);
-                    tiles.add(temp);
+                    int thisTileID = Integer.parseInt(thisCell) + 25;
+                    temp = new Tile(thisTileID - 1);
                 }
-            }
+                tiles.add(temp);
 
+            }
+        }
 
 //        for (int row = 0; row != 9; row++) {
 //            for (int col = 0; col != 9; col++) {
