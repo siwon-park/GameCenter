@@ -10,6 +10,7 @@ import android.widget.TextView;
 import fall2018.csc2017.GameCentre.Game.StartingActivity;
 import fall2018.csc2017.GameCentre.MatchingCards.MatchingCardsBoardManager;
 import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesBoardManager;
+import fall2018.csc2017.GameCentre.Sudoku.SudokuBoardManager;
 
 public class UserAreaActivity extends AppCompatActivity {
 
@@ -65,8 +66,9 @@ public class UserAreaActivity extends AppCompatActivity {
         SudokuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switchToSudoku(StartingActivity.class);
                 accountManager.getCurrentAccount().setGamePlayedId(BoardManager.SUDOKU_GAME);
+                boardManager = new SudokuBoardManager();
+                switchToSudoku(StartingActivity.class);
             }
         });
     }
