@@ -9,7 +9,7 @@ import fall2018.csc2017.GameCentre.BoardManager;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class BoardManagerTest {
+public class SlidingTilesBoardManagerTest {
     private BoardManager boardManager;
     @Before
     public void setUp() throws Exception {

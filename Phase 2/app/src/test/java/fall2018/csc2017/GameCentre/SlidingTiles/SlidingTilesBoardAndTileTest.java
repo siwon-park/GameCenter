@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class BoardAndTileTest {
+public class SlidingTilesBoardAndTileTest {
 
     /** The board manager for testing. */
     BoardManager boardManager;
