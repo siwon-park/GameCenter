@@ -200,10 +200,12 @@ public class StartingActivity extends AppCompatActivity {
      * Load the current BoardManager.
      */
     private void loadBoardManager() {
-        saveFile = (SaveFile) LoadAndSave.loadFromFile(
-                accountManager.getCurrentAccount()
-                        .getSavedGameFileName(), this);
-        boardManager = saveFile.getBM(boardManager.getGameName());
+        if(accountManager.getCurrentAccount().getSaved()) {
+            saveFile = (SaveFile) LoadAndSave.loadFromFile(
+                    accountManager.getCurrentAccount()
+                            .getSavedGameFileName(), this);
+            boardManager = saveFile.getBM(boardManager.getGameName());
+        }
     }
 
     /**
