@@ -65,44 +65,124 @@ public class AccountManagerTest {
         Account a1 = new Account("a1", "a1", "a1");
         Account a2 = new Account("a2", "a2", "a2");
         Account a3 = new Account("a3", "a3", "a3");
-        int[] a1Scores = {100, 102, 99, 97, 103, 104};
-        int[] a2Scores = {97, 94, 99, 102, 97, 98, 105};
-        int[] a3Scores = {101, 98, 94, 103, 104, 106};
-        addScores(a1, a1Scores);
-        addScores(a2, a2Scores);
-        addScores(a3, a3Scores);
+        ScoreInfo score1 = new ScoreInfo(100, "a1", "SLIDING_TILES" );
+        ScoreInfo score2 = new ScoreInfo(115, "a1", "SLIDING_TILES" );
+        ScoreInfo score3 = new ScoreInfo(5, "a1", "SLIDING_TILES" );
+        ScoreInfo score4 = new ScoreInfo(150, "a2", "SLIDING_TILES" );
+        ScoreInfo score5 = new ScoreInfo(149, "a2", "SLIDING_TILES" );
+        ScoreInfo score6= new ScoreInfo(90, "a2", "SLIDING_TILES" );
+        ScoreInfo score7 = new ScoreInfo(101, "a3", "SLIDING_TILES" );
+        ScoreInfo score8 = new ScoreInfo(45, "a3", "SLIDING_TILES" );
+        ScoreInfo score9 = new ScoreInfo(2, "a3", "SLIDING_TILES" );
+        ScoreInfo[] a1Scores = {score1, score2, score3};
+        ScoreInfo[] a2Scores = {score4, score5, score6};
+        ScoreInfo[] a3Scores = {score7, score8, score9};
+
         accountManager.addAccount(a1);
         accountManager.addAccount(a2);
         accountManager.addAccount(a3);
-        //TODO: Fix after scoreboard
-//        String[] scores = accountManager.displayPerGame();
-//        assertEquals(20, scores.length);
-//        assertEquals("Top Players", scores[0]);
-//        assertEquals("1.  a3 : 106", scores[1]);
-//        assertEquals("2.  a2 : 105", scores[2]);
-//        assertEquals("3.  a1 : 104", scores[3]);
-//        assertEquals("4.  a3 : 104", scores[4]);
-//        assertEquals("5.  a1 : 103", scores[5]);
+        for(ScoreInfo info :a1Scores){
+            a1.setScore(info);
+        }
+        for(ScoreInfo info :a2Scores){
+            a2.setScore(info);
+        }
+        for(ScoreInfo info :a3Scores){
+            a3.setScore(info);
+        }
+
+        String[] scores = accountManager.displayPerGame("SLIDING_TILES");
+        assertEquals(10, scores.length);
+        assertEquals("Top Players", scores[0]);
+        assertEquals("1.  a2 : 150", scores[1]);
+        assertEquals("2.  a2 : 149", scores[2]);
+        assertEquals("3.  a1 : 115", scores[3]);
+        assertEquals("4.  a3 : 101", scores[4]);
+        assertEquals("5.  a1 : 100", scores[5]);
+        assertEquals("6.  a2 : 90", scores[6]);
+        assertEquals("7.  a3 : 45", scores[7]);
+        assertEquals("8.  a1 : 5", scores[8]);
+        assertEquals("9.  a3 : 2", scores[9]);
+
     }
 
     @Test
     public void testDisplayPerUser() {
         Account a1 = new Account("a1", "a1", "a1");
-        int[] a1Scores = {100, 102, 99, 97, 103, 104};
-        addScores(a1, a1Scores);
+        ScoreInfo score1 = new ScoreInfo(100, "a1", "SLIDING_TILES" );
+        ScoreInfo score2 = new ScoreInfo(115, "a1", "SLIDING_TILES" );
+        ScoreInfo score3 = new ScoreInfo(5, "a1", "SLIDING_TILES" );
+        ScoreInfo[] a1Scores = {score1, score2, score3};
+
         accountManager.addAccount(a1);
         accountManager.setCurrentAccount(a1);
-        //TODO Fix test after scoreboard
-//        String[] scores = accountManager.displayPerUser();
-//        assertEquals(7, scores.length);
-//        assertEquals("Top Scores", scores[0]);
-//        assertEquals("1.  a1 : 104", scores[1]);
-//        assertEquals("2.  a1 : 103", scores[2]);
-//        assertEquals("3.  a1 : 102", scores[3]);
-//        assertEquals("4.  a1 : 100", scores[4]);
-//        assertEquals("5.  a1 : 99", scores[5]);
-//        assertEquals("6.  a1 : 97", scores[6]);
+        for(ScoreInfo info :a1Scores){
+            accountManager.getCurrentAccount().setScore(info);
+        }
+
+        String[] scores = accountManager.displayPerUser("a1","SLIDING_TILES");
+        List scores_user = a1.getScores();
+        assertEquals(3, scores_user.size());
+        assertEquals(4, scores.length);
+        assertEquals( "a1's Top Scores", scores[0]);
+        assertEquals("1.  a1 : 115", scores[1]);
+        assertEquals("2.  a1 : 100", scores[2]);
+        assertEquals("3.  a1 : 5", scores[3]);
     }
+    @Test
+    public void testDisplayPerSearch(){
+        Account a1 = new Account("a1", "a1", "a1");
+        Account a2 = new Account("a2", "a2", "a2");
+        Account a3 = new Account("a3", "a3", "a3");
+        ScoreInfo score1 = new ScoreInfo(100, "a1", "SLIDING_TILES" );
+        ScoreInfo score2 = new ScoreInfo(115, "a1", "SLIDING_TILES" );
+        ScoreInfo score3 = new ScoreInfo(5, "a1", "SLIDING_TILES" );
+        ScoreInfo score4 = new ScoreInfo(150, "a2", "SLIDING_TILES" );
+        ScoreInfo score5 = new ScoreInfo(149, "a2", "SLIDING_TILES" );
+        ScoreInfo score6= new ScoreInfo(90, "a2", "SLIDING_TILES" );
+        ScoreInfo score7 = new ScoreInfo(101, "a3", "SLIDING_TILES" );
+        ScoreInfo score8 = new ScoreInfo(45, "a3", "SLIDING_TILES" );
+        ScoreInfo score9 = new ScoreInfo(2, "a3", "SLIDING_TILES" );
+        ScoreInfo[] a1Scores = {score1, score2, score3};
+        ScoreInfo[] a2Scores = {score4, score5, score6};
+        ScoreInfo[] a3Scores = {score7, score8, score9};
+
+        accountManager.addAccount(a1);
+        accountManager.addAccount(a2);
+        accountManager.addAccount(a3);
+        for(ScoreInfo info :a1Scores){
+            a1.setScore(info);
+        }
+        for(ScoreInfo info :a2Scores){
+            a2.setScore(info);
+        }
+        for(ScoreInfo info :a3Scores){
+            a3.setScore(info);
+        }
+
+        String[] scores1 = accountManager.displayPerSearch("a1","SLIDING_TILES");
+        assertEquals(10, scores1.length);
+        assertEquals("a1's ranking on Leaderboards", scores1[0]);
+        assertEquals("8.  a1 : 5", scores1[3]);
+        assertEquals("3.  a1 : 115", scores1[1]);
+        assertEquals("5.  a1 : 100", scores1[2]);
+
+        String[] scores2 = accountManager.displayPerSearch("a2","SLIDING_TILES");
+        assertEquals(10, scores2.length);
+        assertEquals("a2's ranking on Leaderboards", scores2[0]);
+        assertEquals("1.  a2 : 150", scores2[1]);
+        assertEquals("2.  a2 : 149", scores2[2]);
+        assertEquals("6.  a2 : 90", scores2[3]);
+
+        String[] scores3 = accountManager.displayPerSearch("a3","SLIDING_TILES");
+        assertEquals(10, scores3.length);
+        assertEquals("a3's ranking on Leaderboards", scores3[0]);
+        assertEquals("4.  a3 : 101", scores3[1]);
+        assertEquals("7.  a3 : 45", scores3[2]);
+        assertEquals("9.  a3 : 2", scores3[3]);
+
+    }
+
 
     private void addScores(Account account, int[] scores) {
 //        for (int score : scores) {

@@ -112,10 +112,10 @@ public class AccountManager implements Serializable {
         }
 
         Collections.sort(topScores);
-        String[] display = new String[topScores.size() + 2];
+        String[] display = new String[topScores.size() + 1];
         display[0] = name+ "'s ranking on Leaderboards";
 
-        for(int i1 =1; i1<= topScores.size()+1; i1++){
+        for(int i1 =1; i1< topScores.size()+1; i1++){
             display[i1] = "";
         }
         int i2 = 1;
