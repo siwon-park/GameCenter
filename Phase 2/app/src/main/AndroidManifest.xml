@@ -30,6 +30,7 @@
         <activity android:name=".MatchingCards.MatchingCardsStartingActivity" />
         <activity android:name=".Sudoku.SudokuStartingActivity" />
         <activity android:name=".MatchingCards.MatchingCardsComplexity"></activity>
+        <activity android:name=".SlidingTiles.SlidingTilesComplexity" />
     </application>
 
 </manifest>

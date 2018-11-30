@@ -18,6 +18,7 @@ import fall2018.csc2017.GameCentre.PerUserScoreboardActivity;
 import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.ScoreboardActivity;
 import fall2018.csc2017.GameCentre.SaveFile;
+import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesComplexity;
 import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesGameActivity;
 import fall2018.csc2017.GameCentre.Sudoku.SudokuGameActivity;
 
@@ -314,7 +315,7 @@ public class StartingActivity extends AppCompatActivity {
      * Switch to the select background page
      */
     private void selectBackground() {
-        Intent tmp = new Intent(this, ComplexityActivity.class);
+        Intent tmp = new Intent(this, SlidingTilesComplexity.class);
         startActivity(tmp);
     }
 
