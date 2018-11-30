@@ -15,6 +15,7 @@ import fall2018.csc2017.GameCentre.Game.GameActivity;
 import fall2018.csc2017.GameCentre.R;
 
 public class SudokuGameActivity extends GameActivity implements Observer {
+    public static boolean insert = false;
 
     /**
      * Create an empty function so it can build but this game doesn't have undo button.
