@@ -58,11 +58,12 @@ public class MatchingCardsBoard extends fall2018.csc2017.GameCentre.Board implem
         }
     }
 
-    void clearTiles(int row, int col) {
+    public void clearTiles(int row, int col) {
 //        Tile temp = tiles[row1][col1];
 //        tiles[row1][col1] = tiles[row2][col2];
 //        tiles[row2][col2] = temp;
         tiles[row][col].setBackground(R.drawable.tile_blank);
+        tiles[row][col].setID(MatchingCardsBoard.NUM_COLS * MatchingCardsBoard.NUM_COLS);
 
         setChanged();
         notifyObservers();
