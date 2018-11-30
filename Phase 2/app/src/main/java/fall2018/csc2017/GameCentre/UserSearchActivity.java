@@ -16,6 +16,11 @@ public class UserSearchActivity extends AppCompatActivity {
      */
     private String[] topScoresToDisplay;
 
+    /**
+     * The User to be searched
+     */
+    private static String UserSearched;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +30,9 @@ public class UserSearchActivity extends AppCompatActivity {
         accountManager = (AccountManager) LoadAndSave.loadFromFile(
                 LoadAndSave.ACCOUNT_MANAGER_FILENAME, this);
 
-        //#TODO switch current account with input from user
 
         topScoresToDisplay = accountManager.displayPerUser
-                (accountManager.getCurrentAccount().getUsername(),
+                (UserSearchActivity.getUserSearched(),
                         accountManager.getCurrentAccount().getGamePlayedId());
 
 
@@ -43,5 +47,13 @@ public class UserSearchActivity extends AppCompatActivity {
 
         // Set the adapter
         scores.setAdapter(adapter);
+    }
+
+    public static void setUserSearched(String user){
+        UserSearchActivity.UserSearched = user;
+    }
+
+    public static String getUserSearched(){
+        return UserSearchActivity.UserSearched;
     }
 }

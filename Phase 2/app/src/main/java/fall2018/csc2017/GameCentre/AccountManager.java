@@ -93,7 +93,7 @@ public class AccountManager implements Serializable {
             }
         }
 
-        return getDisplay(topScores, "Personal Top Scores");
+        return getDisplay(topScores, name+ "'s Top Scores");
     }
 
     /**
