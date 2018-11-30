@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Stack;
 
 import fall2018.csc2017.GameCentre.BoardManager;
+import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.Tile;
 
 /**
@@ -44,6 +45,28 @@ public class SudokuBoard extends fall2018.csc2017.GameCentre.Board implements Se
                 this.tiles[row][col] = iter.next();
             }
         }
+    }
+
+    public void select(int position){
+        int row = position / SudokuBoard.NUM_COLS;
+        int col = position % SudokuBoard.NUM_COLS;
+        int HighlightId =44;
+        tiles[row][col].setID(44);
+        tiles[row][col].setBackground(R.drawable.selected_tile_s);
+
+    }
+
+    public void deselect(){
+        boolean selected = false;
+        for(Tile[] tile: this.tiles){
+            for (Tile tile2: tile){
+                if (tile2.getId()==44){
+                    tile2.setID(43);
+                    tile2.setBackground(R.drawable.blank_tile_s);
+                }
+            }
+        }
+
     }
 
 }

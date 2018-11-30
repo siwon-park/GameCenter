@@ -49,7 +49,7 @@ public class UserAreaActivity extends AppCompatActivity {
         SlidingTilesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO get gameID from SlidingTiles.board
+
                 accountManager.getCurrentAccount().setGamePlayedId(BoardManager.SLIDING_TILES_GAME);
                 boardManager = new SlidingTilesBoardManager();
                 switchToGame(StartingActivity.class);
@@ -65,7 +65,7 @@ public class UserAreaActivity extends AppCompatActivity {
         MatchingCardsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO get gameID from MatchingTiles.board
+
                 accountManager.getCurrentAccount().setGamePlayedId(BoardManager.MATCHING_CARDS_GAME);
                 boardManager = new MatchingCardsBoardManager();
                 switchToGame(StartingActivity.class);
