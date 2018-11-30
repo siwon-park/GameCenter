@@ -70,7 +70,7 @@ abstract public class GameActivity extends AppCompatActivity implements Observer
         Board.NUM_ROWS = boardManager.getSavedNumRows();
         boardManager.setStartingScoreAndTime();
         accountManager.getCurrentAccount().setGamePlayed(true);
-
+        saveFile = (SaveFile) LoadAndSave.loadFromFile(accountManager.getCurrentAccount().getSavedGameFileName(), this);
         if (saveFile == null) {
             saveFile = new SaveFile();
             LoadAndSave.saveToFile(
@@ -90,7 +90,7 @@ abstract public class GameActivity extends AppCompatActivity implements Observer
                 setContentView(R.layout.activity_sudoku);
         }
         addUndoButtonListener();
-       // addSaveButtonListener();
+        addSaveButtonListener();
 
         // Add View to activity
         gridView = findViewById(R.id.grid);
@@ -122,27 +122,28 @@ abstract public class GameActivity extends AppCompatActivity implements Observer
      */
     abstract protected void addUndoButtonListener();
 
-//    /**
-//     * Activate the save button.
-//     */
-//    private void addSaveButtonListener() {
-//        Button saveButton = findViewById(R.id.SaveButton);
-//        saveButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                saveBoardManager();
-//                makeToastSavedText();
-//                accountManager.getCurrentAccount().setSaved(true);
-//            }
-//        });
-//    }
+    /**
+     * Activate the save button.
+     */
+    private void addSaveButtonListener() {
+        Button saveButton = findViewById(R.id.SaveButton);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveBoardManager();
+                boardManager.setSaved(true);
+                makeToastSavedText();
+            }
+        });
+    }
 
     /**
      * Save the board manager as a serializable object
      */
     private void saveBoardManager() {
         saveFile.addSave(boardManager);
-        LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(), saveFile, this);
+        LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(
+               ), saveFile, this);
     }
 
     /**

@@ -24,6 +24,11 @@ public class UserAreaActivity extends AppCompatActivity {
      */
     private BoardManager boardManager;
 
+    /**
+     * The save file.
+     */
+    private SaveFile saveFile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +38,11 @@ public class UserAreaActivity extends AppCompatActivity {
         if (accountManager == null) {
             accountManager = new AccountManager();
             LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
+        }
+        saveFile = (SaveFile) LoadAndSave.loadFromFile(accountManager.getCurrentAccount().getSavedGameFileName(), this);
+        if (saveFile == null) {
+            saveFile = new SaveFile();
+            LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(), saveFile, this);
         }
         addSlidingTilesButtonListener();
         addMatchingCardsButtonListener();
