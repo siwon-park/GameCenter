@@ -56,12 +56,12 @@ public class SudokuBoard extends fall2018.csc2017.GameCentre.Board implements Se
 
     }
 
-    public void deselect(){
+    public void deselect(int ID){
         boolean selected = false;
         for(Tile[] tile: this.tiles){
             for (Tile tile2: tile){
                 if (tile2.getId()==44){
-                    tile2.setID(43);
+                    tile2.setID(ID);
                     tile2.setBackground(R.drawable.blank_tile_s);
                 }
             }

@@ -74,7 +74,8 @@ public class SudokuGameActivity extends GameActivity implements Observer {
         sudoku1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+              SudokuBoard board = (SudokuBoard) boardManager.getBoard();
+              board.deselect(34);
             }
         });
     }
@@ -84,6 +85,8 @@ public class SudokuGameActivity extends GameActivity implements Observer {
         sudoku2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SudokuBoard board = (SudokuBoard) boardManager.getBoard();
+                board.deselect(35);
             }
         });
     }
@@ -93,6 +96,8 @@ public class SudokuGameActivity extends GameActivity implements Observer {
         sudoku3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SudokuBoard board = (SudokuBoard) boardManager.getBoard();
+                board.deselect(36);
             }
         });
     }
@@ -102,6 +107,8 @@ public class SudokuGameActivity extends GameActivity implements Observer {
         sudoku4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SudokuBoard board = (SudokuBoard) boardManager.getBoard();
+                board.deselect(37);
             }
         });
     }
@@ -112,6 +119,8 @@ public class SudokuGameActivity extends GameActivity implements Observer {
         sudoku5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SudokuBoard board = (SudokuBoard) boardManager.getBoard();
+                board.deselect(38);
             }
         });
     }
@@ -122,6 +131,8 @@ public class SudokuGameActivity extends GameActivity implements Observer {
         sudoku6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SudokuBoard board = (SudokuBoard) boardManager.getBoard();
+                board.deselect(39);
             }
         });
     }
@@ -132,6 +143,8 @@ public class SudokuGameActivity extends GameActivity implements Observer {
         sudoku7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SudokuBoard board = (SudokuBoard) boardManager.getBoard();
+                board.deselect(40);
             }
         });
     }
@@ -141,6 +154,8 @@ public class SudokuGameActivity extends GameActivity implements Observer {
         sudoku8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SudokuBoard board = (SudokuBoard) boardManager.getBoard();
+                board.deselect(41);
             }
         });
     }
@@ -149,6 +164,8 @@ public class SudokuGameActivity extends GameActivity implements Observer {
         sudoku9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SudokuBoard board = (SudokuBoard) boardManager.getBoard();
+                board.deselect(42);
             }
         });
     }

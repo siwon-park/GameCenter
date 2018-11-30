@@ -64,8 +64,9 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
         List<Tile> tiles = new ArrayList<>();
         for (int row = 0; row != 9; row++) {
             for (int col = 0; col != 9; col++) {
-                Tile temp = new Tile(col);
-                tiles.add(temp);
+                    Tile temp = new Tile(col);
+                    tiles.add(temp);
+
             }
             Collections.shuffle(tiles);
 //            tiles.add(new Tile(cardIDs[(int) (Math.random() * 8)]));
@@ -140,7 +141,7 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
     public void touchMove(int position) {
 
         SudokuBoard board1 = (SudokuBoard) this.board;
-        board1.deselect();
+        board1.deselect(43);
         board1.select(position);
     }
 
