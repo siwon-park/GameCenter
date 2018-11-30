@@ -13,7 +13,7 @@ public class BoardManagerTest {
     private BoardManager boardManager;
     @Before
     public void setUp() throws Exception {
-        boardManager = new BoardManager(BoardManager.SLIDING_TILES_GAME);
+        boardManager = new SlidingTilesBoardManager();
     }
 
     @After

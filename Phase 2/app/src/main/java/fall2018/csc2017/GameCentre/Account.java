@@ -43,7 +43,7 @@ public class Account implements Serializable {
     /**
      * The boolean for whether the game has been saved.
      */
-//    private boolean savedaved;
+//    private boolean saved;
     Map<String, Boolean> saved;
 
     /**
