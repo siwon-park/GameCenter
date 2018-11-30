@@ -45,18 +45,11 @@ abstract public class ComplexityActivity extends AppCompatActivity {
                 // There is no complexity for Sudoku game.
         }
 
-        addButton2Listener();
         addButton3Listener();
         addButton4Listener();
         addButton5Listener();
         addButton6Listener();
     }
-
-    /**
-     * Activate the 2x2 button.
-     */
-    abstract protected void addButton2Listener();
-
 
     /**
      * Activate the 3x3 button.

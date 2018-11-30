@@ -81,6 +81,12 @@ public class MatchingCardsGameActivity extends GameActivity implements Observer 
         }
     }
 
+    /**
+     * Return whether a card needs to be flipped.
+     * @param row the tile row
+     * @param col the tile column
+     * @return
+     */
     private boolean needToFlip(int row, int col) {
         Stack<?> toBeFlipped = (Stack<?>) ((MatchingCardsBoardManager)boardManager).getLastClicks().clone();
         while (!toBeFlipped.empty()) {
