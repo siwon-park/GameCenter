@@ -3,6 +3,7 @@ package fall2018.csc2017.GameCentre.MatchingCards;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 import java.util.Vector;
@@ -92,6 +93,14 @@ public class MatchingCardsBoardManager extends BoardManager implements Serializa
     @Override
     public boolean puzzleSolved() {
         boolean solved = true;
+        Iterator<Tile> iter = board.iterator();
+        int expectedId = MatchingCardsBoard.NUM_COLS * MatchingCardsBoard.NUM_ROWS;
+        while (iter.hasNext()) {
+            if (expectedId != iter.next().getId()) {
+                solved = false;
+                break;
+            }
+        }
         if (clearedCards.size() != board.numTiles()) {
             solved = false;
         }
