@@ -82,7 +82,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
 
         // Add View to activity
         gridView = findViewById(R.id.grid);
-        gridView.setNumColumns(SudokuBoard.NUM_COLS);
+        gridView.setNumColumns(Board.NUM_COLS);
         gridView.setBoardManager(boardManager);
         gridView.setAccountManager(accountManager);
         boardManager.getBoard().addObserver(this);
@@ -96,8 +96,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
                         int displayWidth = gridView.getMeasuredWidth();
                         int displayHeight = gridView.getMeasuredHeight();
 
-                        columnWidth = displayWidth / SudokuBoard.NUM_COLS;
-                        columnHeight = displayHeight / SudokuBoard.NUM_ROWS;
+                        columnWidth = displayWidth / Board.NUM_COLS;
+                        columnHeight = displayHeight / Board.NUM_ROWS;
 
                         display();
                     }
@@ -115,14 +115,14 @@ public class GameActivity extends AppCompatActivity implements Observer {
         Board board = boardManager.getBoard();
         tileButtons = new ArrayList<>();
 
-        if (SudokuBoard.BACKGROUND_BMAP != null) {
+        if (Board.BACKGROUND_BMAP != null) {
             BackgroundManager backgrdMgr = new BackgroundManager(this);
             HashMap backgroundIdMap = backgrdMgr.getbackgrdTileList();
-            for (int row = 0; row != SudokuBoard.NUM_ROWS; row++) {
-                for (int col = 0; col != SudokuBoard.NUM_COLS; col++) {
+            for (int row = 0; row != Board.NUM_ROWS; row++) {
+                for (int col = 0; col != Board.NUM_COLS; col++) {
                     Button tmp = new Button(context);
                     int tileId = board.getTile(row, col).getId();
-                    if (tileId != SudokuBoard.NUM_COLS * SudokuBoard.NUM_ROWS) {
+                    if (tileId != Board.NUM_COLS * Board.NUM_ROWS) {
                         Drawable backgrdDrawable = (Drawable) backgroundIdMap.get(tileId);
                         tmp.setBackground(backgrdDrawable);
                     } else {
@@ -132,8 +132,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
                 }
             }
         } else {
-            for (int row = 0; row != SudokuBoard.NUM_ROWS; row++) {
-                for (int col = 0; col != SudokuBoard.NUM_COLS; col++) {
+            for (int row = 0; row != Board.NUM_ROWS; row++) {
+                for (int col = 0; col != Board.NUM_COLS; col++) {
                     Button tmp = new Button(context);
                     tmp.setBackgroundResource(board.getTile(row, col).getBackground());
                     this.tileButtons.add(tmp);

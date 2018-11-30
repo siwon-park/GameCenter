@@ -57,32 +57,25 @@ public class GameActivity extends AppCompatActivity implements Observer {
 
     }
 
-    /*TODO:     Change account manager structure
-      TODO:     Account manager needs to differentiate the save files of the 3 games
-      TODO:     SlidingTilesBoard manager classes of the 3 games are slightly different
-      TODO:     The original code can't tell which game the saved board manager is for
-      TODO:     And therefore try to cast one into another and cause error
-      TODO:     Uncomment the lines to allow save function after fixing account manager
-    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-//        accountManager = (AccountManager) LoadAndSave.loadFromFile(
-//                LoadAndSave.ACCOUNT_MANAGER_FILENAME, this);
-//        if (accountManager == null) {
-//            accountManager = new AccountManager();
-//            LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
-//        }
-//        loadCurrentBoardManager();
+        accountManager = (AccountManager) LoadAndSave.loadFromFile(
+                LoadAndSave.ACCOUNT_MANAGER_FILENAME, this);
+        if (accountManager == null) {
+            accountManager = new AccountManager();
+            LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
+        }
+        loadCurrentBoardManager();
 
 
         Board.NUM_COLS = boardManager.getSavedNumCols();
         Board.NUM_ROWS = boardManager.getSavedNumRows();
         boardManager.setStartingScoreAndTime();
 
-//        accountManager.getCurrentAccount().setGamePlayed(true);
+        accountManager.getCurrentAccount().setGamePlayed(true);
 
         createTileButtons(this);
         setContentView(R.layout.activity_matchingcards);
@@ -93,7 +86,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         gridView.setNumColumns(Board.NUM_COLS);
         gridView.setBoardManager(boardManager);
 
-//        gridView.setAccountManager(accountManager);
+        gridView.setAccountManager(accountManager);
 
         boardManager.getBoard().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
@@ -144,7 +137,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * @param context the context
      */
     private void createTileButtons(Context context) {
-//        SlidingTilesBoard board = (SlidingTilesBoard) boardManager.getBoard();
+//        Board board = boardManager.getBoard();
         tileButtons = new ArrayList<>();
 
         for (int row = 0; row != Board.NUM_ROWS; row++) {
@@ -220,12 +213,10 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * @param o
      * @param arg
      */
-    //TODO: add the autosave back
-
     @Override
     public void update(Observable o, Object arg) {
         display();
-//        autoSave();
+        autoSave();
         if(boardManager.puzzleSolved()){
             returnToMain();
         }

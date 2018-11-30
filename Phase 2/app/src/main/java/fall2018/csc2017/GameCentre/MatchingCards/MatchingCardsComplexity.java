@@ -14,7 +14,8 @@ import fall2018.csc2017.GameCentre.Game.ImageActivity;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
 import fall2018.csc2017.GameCentre.MatchingCards.MatchingCardsBoard;
-
+// We do not consolidate this with Game/ComplexityActivity because there is too much difference
+// between them.
 public class MatchingCardsComplexity extends AppCompatActivity {
 
     /**
