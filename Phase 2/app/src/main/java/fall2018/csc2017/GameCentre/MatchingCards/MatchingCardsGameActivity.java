@@ -1,133 +1,26 @@
 package fall2018.csc2017.GameCentre.MatchingCards;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Observable;
 import java.util.Observer;
 import java.util.Stack;
 
-import fall2018.csc2017.GameCentre.AccountManager;
 import fall2018.csc2017.GameCentre.Board;
-import fall2018.csc2017.GameCentre.BoardManager;
-import fall2018.csc2017.GameCentre.CustomAdapter;
-import fall2018.csc2017.GameCentre.Game.GestureDetectGridView;
-import fall2018.csc2017.GameCentre.Game.StartingActivity;
-import fall2018.csc2017.GameCentre.LoadAndSave;
+import fall2018.csc2017.GameCentre.Game.GameActivity;
 import fall2018.csc2017.GameCentre.R;
-import fall2018.csc2017.GameCentre.UserAreaActivity;
 
 /**
  * The game activity.
  */
-public class MatchingCardsGameActivity extends AppCompatActivity implements Observer {
-
+public class MatchingCardsGameActivity extends GameActivity implements Observer {
     /**
-     * The board manager.
+     * Create an empty function so it can build but this game doesn't have undo button.
      */
-    // Todo: Need remove this after we fix onCreate()
-    private BoardManager boardManager = new MatchingCardsBoardManager();
-
-    /**
-     * The buttons to display.
-     */
-    private ArrayList<Button> tileButtons;
-
-    /**
-     * Grid View and calculated column height and width based on device size
-     */
-    private GestureDetectGridView gridView;
-    private static int columnWidth, columnHeight;
-    private AccountManager accountManager;
-
-    /**
-     * Set up the background image for each button based on the master list
-     * of positions, and then call the adapter to set the view.
-     */
-    public void display() {
-        updateTileButtons();
-        gridView.setAdapter(new CustomAdapter(tileButtons, columnWidth, columnHeight));
-
-    }
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void addUndoButtonListener() {
 
-
-        accountManager = (AccountManager) LoadAndSave.loadFromFile(
-                LoadAndSave.ACCOUNT_MANAGER_FILENAME, this);
-        if (accountManager == null) {
-            accountManager = new AccountManager();
-            LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
-        }
-        loadCurrentBoardManager();
-
-
-        Board.NUM_COLS = boardManager.getSavedNumCols();
-        Board.NUM_ROWS = boardManager.getSavedNumRows();
-        boardManager.setStartingScoreAndTime();
-
-        accountManager.getCurrentAccount().setGamePlayed(true);
-
-        createTileButtons(this);
-        setContentView(R.layout.activity_matchingcards);
-        addSaveButtonListener();
-
-        // Add View to activity
-        gridView = findViewById(R.id.grid);
-        gridView.setNumColumns(Board.NUM_COLS);
-        gridView.setBoardManager(boardManager);
-        gridView.setAccountManager(accountManager);
-
-        boardManager.getBoard().addObserver(this);
-        // Observer sets up desired dimensions as well as calls our display function
-        gridView.getViewTreeObserver().addOnGlobalLayoutListener(
-                new ViewTreeObserver.OnGlobalLayoutListener() {
-                    @Override
-                    public void onGlobalLayout() {
-                        gridView.getViewTreeObserver().removeOnGlobalLayoutListener(
-                                this);
-                        int displayWidth = gridView.getMeasuredWidth();
-                        int displayHeight = gridView.getMeasuredHeight();
-
-                        columnWidth = displayWidth / Board.NUM_COLS;
-                        columnHeight = displayHeight / Board.NUM_ROWS;
-
-                        display();
-                    }
-                });
-    }
-
-    /**
-     * Activate the save button.
-     */
-    private void addSaveButtonListener() {
-        Button saveButton = findViewById(R.id.SaveButton);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveBoardManager();
-                accountManager.getCurrentAccount()
-                        .setSaved(true, boardManager.getGameName());
-                makeToastSavedText();
-            }
-        });
-    }
-
-    /**
-     * Save the board manager as a serializable object
-     */
-    private void saveBoardManager() {
-        LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(
-                boardManager.getGameName()), boardManager, this);
     }
 
     /**
@@ -135,7 +28,8 @@ public class MatchingCardsGameActivity extends AppCompatActivity implements Obse
      *
      * @param context the context
      */
-    private void createTileButtons(Context context) {
+    @Override
+    protected void createTileButtons(Context context) {
 //        Board board = boardManager.getBoard();
         tileButtons = new ArrayList<>();
 
@@ -152,7 +46,8 @@ public class MatchingCardsGameActivity extends AppCompatActivity implements Obse
     /**
      * Update the backgrounds on the buttons to match the tiles.
      */
-    private void updateTileButtons() {
+    @Override
+    protected void updateTileButtons() {
         MatchingCardsBoard board = (MatchingCardsBoard) boardManager.getBoard();
         int nextPos = 0;
 
@@ -184,78 +79,6 @@ public class MatchingCardsGameActivity extends AppCompatActivity implements Obse
                 nextPos++;
             }
         }
-    }
-
-    /**
-     * Dispatch onPause() to fragments.
-     */
-    @Override
-    protected void onPause() {
-        super.onPause();
-        boardManager.updateScore();
-        saveCurrentBoardManager();
-        LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
-    }
-
-    /**
-     * Dispatch onResume() to fragments.
-     */
-    @Override
-    protected void onResume() {
-        super.onResume();
-        boardManager.updateStartTime();
-    }
-
-    /**
-     * display updates whenever board updates
-     * @param o
-     * @param arg
-     */
-    @Override
-    public void update(Observable o, Object arg) {
-        display();
-        autoSave();
-        if(boardManager.puzzleSolved()){
-            returnToMain();
-        }
-    }
-
-    /**
-     * Save the current game
-     */
-    private void saveCurrentBoardManager() {
-        LoadAndSave.saveToFile(accountManager.getCurrentAccount().getCurrentGameFileName(),
-                boardManager, this);
-    }
-
-    /**
-     * Loads current saved game
-     */
-    private void loadCurrentBoardManager() {
-        boardManager = (MatchingCardsBoardManager) LoadAndSave.loadFromFile(
-                accountManager.getCurrentAccount().getCurrentGameFileName(), this);
-    }
-
-    /**
-     * Display that a game was saved successfully.
-     */
-    private void makeToastSavedText() {
-        Toast.makeText(this, "Game Saved", Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * Autosave that saves after every move
-     */
-    private void autoSave() {
-        saveCurrentBoardManager();
-    }
-
-    /**
-     * Returns to main SlidingTiles screen
-     */
-    private void returnToMain(){
-        Intent next = new Intent(this, StartingActivity.class);
-        startActivity(next);
     }
 
     private boolean needToFlip(int row, int col) {
