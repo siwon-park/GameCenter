@@ -69,6 +69,7 @@ public class StartingActivity extends AppCompatActivity {
                 break;
             case BoardManager.SUDOKU_GAME:
                 setContentView(R.layout.activity_starting_sudoku);
+                break;
             default: setContentView(R.layout.activity_starting_sliding);
         }
         addStartButtonListener();

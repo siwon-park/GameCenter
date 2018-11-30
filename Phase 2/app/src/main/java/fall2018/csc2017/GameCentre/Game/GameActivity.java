@@ -90,7 +90,7 @@ abstract public class GameActivity extends AppCompatActivity implements Observer
                 setContentView(R.layout.activity_sudoku);
         }
         addUndoButtonListener();
-        addSaveButtonListener();
+       // addSaveButtonListener();
 
         // Add View to activity
         gridView = findViewById(R.id.grid);
@@ -122,20 +122,20 @@ abstract public class GameActivity extends AppCompatActivity implements Observer
      */
     abstract protected void addUndoButtonListener();
 
-    /**
-     * Activate the save button.
-     */
-    private void addSaveButtonListener() {
-        Button saveButton = findViewById(R.id.SaveButton);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveBoardManager();
-                makeToastSavedText();
-                accountManager.getCurrentAccount().setSaved(true);
-            }
-        });
-    }
+//    /**
+//     * Activate the save button.
+//     */
+//    private void addSaveButtonListener() {
+//        Button saveButton = findViewById(R.id.SaveButton);
+//        saveButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                saveBoardManager();
+//                makeToastSavedText();
+//                accountManager.getCurrentAccount().setSaved(true);
+//            }
+//        });
+//    }
 
     /**
      * Save the board manager as a serializable object

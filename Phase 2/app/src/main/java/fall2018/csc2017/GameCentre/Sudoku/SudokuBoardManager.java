@@ -45,7 +45,8 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
     public SudokuBoardManager() {
         setGameID(2);
         setGameName(SUDOKU_GAME);
-
+        setSavedNumCols(9);
+        setSavedNumRows(9);
         createBoard();
     }
 
@@ -61,12 +62,17 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
     public void createBoard() {
         board = null;
         List<Tile> tiles = new ArrayList<>();
-        for (int n = 1; n <= 81; n++) {
-            tiles.add(new Tile(cardIDs[(int) (Math.random()*8)]));
-            while (board == null) {
-                Collections.shuffle(tiles);
-                board = new SudokuBoard(tiles);
+        for (int row = 0; row != 9; row++) {
+            for (int col = 0; col != 9; col++) {
+                Tile temp = new Tile(col);
+                tiles.add(temp);
             }
+            Collections.shuffle(tiles);
+//            tiles.add(new Tile(cardIDs[(int) (Math.random() * 8)]));
+        }
+        while (board == null) {
+//            Collections.shuffle(tiles);
+            board = new SudokuBoard(tiles);
         }
     }
     /**
