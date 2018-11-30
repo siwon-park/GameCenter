@@ -73,12 +73,13 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
 
         for (int row = 0; row != 9; row++) {
             for (int col = 0; col != 9; col++) {
-                for (int j = 0; j < 9; j++) {
+                for (int j = 0; j < 81; j++) {
                     if (rowCells[j].equals("-")) {
                         Tile temp = new Tile(43);
                         tiles.add(temp);
                     } else {
-                        Tile temp = new Tile(j + 25);
+
+                        Tile temp = new Tile(Integer.parseInt(rowCells[j]) + 24);
                         tiles.add(temp);
                     }
                 }
