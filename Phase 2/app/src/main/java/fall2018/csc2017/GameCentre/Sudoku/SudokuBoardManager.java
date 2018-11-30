@@ -31,6 +31,11 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
             R.drawable.blank_tile_s, R.drawable.selected_tile_s
     };
 
+    private String sudokuBoard1 = "8,7,6,9,-,-,-,-,-,-,1,-,-,-,6,-,-,-,-,4,-,3,-,5,8,-,-,4,-,-,-,-,-,2,1,-,-,9,-,5,-,-,-,-,-,-,5,-,-,4,-,3,-,6,-,2,9,-,-,-,-,-,8,-,-,4,6,9,-,1,7,3,-,-,-,-,-,1,-,-,4";
+    //private ArrayList<Object> sudokuBoard2 = {- - - - 5 - - - -9 - 6 - - - 3 - 7 - - - 4 - 9 - - - - 1 - - - - - 5 - 2 - - 6 - 7 - - 1 - 4 - - - - - 9 - - - - 7 - 1- - - 7 - 9 - - - 2 - 6 - - - - 3 - - - -};
+    //private ArrayList<Object> sudokuBoard3 = {8 - 6 - - - - - - - - - 6 - - - - - - - - 9 - 3 2 - - 9 3 - 2 - - - 1 - - - - - - - - 2 6 - - - 3 4 - 5 - - 1 - - - 8 - - - - 3 - - - - 7 - - 4 - - 4 - - - - - -};
+
+
     /**
      * Manage a board that has been pre-populated.
      * @param board the board
@@ -62,20 +67,39 @@ public class SudokuBoardManager extends BoardManager implements Serializable{
     public void createBoard() {
         board = null;
         List<Tile> tiles = new ArrayList<>();
+
+        String rowCells[] = sudokuBoard1.split(",");
+
+
         for (int row = 0; row != 9; row++) {
             for (int col = 0; col != 9; col++) {
-                    Tile temp = new Tile(col);
-                    tiles.add(temp);
-
+                for (int j = 0; j < 9; j++) {
+                    if (rowCells[j].equals("-")) {
+                        Tile temp = new Tile(43);
+                        tiles.add(temp);
+                    } else {
+                        Tile temp = new Tile(j + 25);
+                        tiles.add(temp);
+                    }
+                }
             }
-            Collections.shuffle(tiles);
-//            tiles.add(new Tile(cardIDs[(int) (Math.random() * 8)]));
         }
+
+//        for (int row = 0; row != 9; row++) {
+//            for (int col = 0; col != 9; col++) {
+//                    Tile temp = new Tile(col);
+//                    tiles.add(temp);
+//
+//            }
+//            Collections.shuffle(tiles);
+//            tiles.add(new Tile(cardIDs[(int) (Math.random() * 8)]));
+//        }
         while (board == null) {
 //            Collections.shuffle(tiles);
             board = new SudokuBoard(tiles);
         }
     }
+
     /**
      * Undo a move up to unlimited times until the board is as original.
      */
