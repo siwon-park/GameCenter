@@ -97,6 +97,42 @@ public class AccountManager implements Serializable {
     }
 
     /**
+     * returns a new string array to be displayed by listView in the corresponding scoreboard
+     * activity
+     * @return top scores of the searched user in string format
+     */
+    String[] displayPerSearch(String name ,int gameID) {
+        List<ScoreInfo> topScores = new ArrayList<>();
+        for (Account account : map.values()) {
+            for (ScoreInfo score : account.getScores()) {
+                if (score.getGameID() == gameID) {
+                    topScores.add(score);
+                }
+            }
+        }
+
+        Collections.sort(topScores);
+        String[] display = new String[topScores.size() + 2];
+        display[0] = name+ "'s ranking on Leaderboards";
+
+        for(int i1 =1; i1<= topScores.size()+1; i1++){
+            display[i1] = "";
+        }
+        int i2 = 1;
+        int j = 1;
+        for(ScoreInfo info: topScores){
+            if(info.getName().equals(name)) {
+                display[j] = i2 + ".  " + info.getName() + " : " + info.getScore();
+                j++;
+            }
+            i2++;
+        }
+        return display;
+    }
+
+
+
+    /**
      * This function returns the array of strings that include the usernames and scores for the
      * scoreboard. First sort the topScores in reverse order.
      * @param topScores
@@ -108,10 +144,13 @@ public class AccountManager implements Serializable {
         String[] display = new String[topScores.size() + 1];
         display[0] = title;
         int i = 1;
+
+
         for (ScoreInfo info : topScores) {
             display[i] = i + ".  " + info.getName() + " : " + info.getScore();
-            i++;
+                i++;
         }
+
         return display;
     }
 }

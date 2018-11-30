@@ -25,19 +25,17 @@ public class UserSearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_per_user_scoreboard);
+        setContentView(R.layout.activity_user_search);
 
         accountManager = (AccountManager) LoadAndSave.loadFromFile(
                 LoadAndSave.ACCOUNT_MANAGER_FILENAME, this);
 
-
-        topScoresToDisplay = accountManager.displayPerUser
-                (UserSearchActivity.getUserSearched(),
-                        accountManager.getCurrentAccount().getGamePlayedId());
+            topScoresToDisplay = accountManager.displayPerSearch
+                    (UserSearched, accountManager.getCurrentAccount().getGamePlayedId());
 
 
         // Listview object linked to our xml
-        ListView scores = (ListView) findViewById(R.id.user_scores);
+        ListView scores = (ListView) findViewById(R.id.user_search);
 
         // Define an adapter
 
@@ -53,7 +51,4 @@ public class UserSearchActivity extends AppCompatActivity {
         UserSearchActivity.UserSearched = user;
     }
 
-    public static String getUserSearched(){
-        return UserSearchActivity.UserSearched;
-    }
 }
