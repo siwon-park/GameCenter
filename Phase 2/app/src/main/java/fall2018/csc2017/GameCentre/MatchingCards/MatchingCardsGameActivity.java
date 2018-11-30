@@ -254,7 +254,7 @@ public class MatchingCardsGameActivity extends AppCompatActivity implements Obse
      * Returns to main SlidingTiles screen
      */
     private void returnToMain(){
-        Intent next = new Intent(this, StartingActivity.class);
+        Intent next = new Intent(this, UserAreaActivity.class);
         startActivity(next);
     }
 
