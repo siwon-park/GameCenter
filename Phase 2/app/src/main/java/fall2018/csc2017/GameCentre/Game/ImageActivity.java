@@ -24,7 +24,10 @@ import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.ImageAdapter;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
-import fall2018.csc2017.GameCentre.MatchingCards.GameActivity;
+import fall2018.csc2017.GameCentre.MatchingCards.MatchingCardsGameActivity;
+import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesGameActivity;
+import fall2018.csc2017.GameCentre.Sudoku.SudokuGameActivity;
+
 /**
  * The activity in which user is prompted to choose a background
  */
@@ -151,13 +154,13 @@ public class ImageActivity extends AppCompatActivity {
         Intent tmp;
         switch (boardManager.getGameName()) {
             case BoardManager.SLIDING_TILES_GAME:
-                tmp = new Intent(this, fall2018.csc2017.GameCentre.SlidingTiles.GameActivity.class);
+                tmp = new Intent(this, SlidingTilesGameActivity.class);
                 break;
             case BoardManager.MATCHING_CARDS_GAME:
-                tmp = new Intent(this, GameActivity.class);
+                tmp = new Intent(this, MatchingCardsGameActivity.class);
                 break;
             default:
-                tmp = new Intent(this, fall2018.csc2017.GameCentre.Sudoku.GameActivity.class);
+                tmp = new Intent(this, SudokuGameActivity.class);
         }
         startActivity(tmp);
     }

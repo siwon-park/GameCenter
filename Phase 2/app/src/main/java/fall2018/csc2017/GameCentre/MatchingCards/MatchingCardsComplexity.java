@@ -10,10 +10,11 @@ import fall2018.csc2017.GameCentre.AccountManager;
 //import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.Board;
 import fall2018.csc2017.GameCentre.BoardManager;
-import fall2018.csc2017.GameCentre.Game.ImageActivity;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
-import fall2018.csc2017.GameCentre.MatchingCards.MatchingCardsBoard;
+import fall2018.csc2017.GameCentre.SlidingTiles.SlidingTilesGameActivity;
+import fall2018.csc2017.GameCentre.Sudoku.SudokuGameActivity;
+
 // We do not consolidate this with Game/ComplexityActivity because there is too much difference
 // between them.
 public class MatchingCardsComplexity extends AppCompatActivity {
@@ -121,20 +122,20 @@ public class MatchingCardsComplexity extends AppCompatActivity {
     }
 
     /**
-     * Switch to the GameActivity view to play the game.
+     * Switch to the SudokuGameActivity view to play the game.
      */
     private void switchToGame() {
         LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
         Intent tmp;
         switch (boardManager.getGameName()) {
             case BoardManager.SLIDING_TILES_GAME:
-                tmp = new Intent(this, fall2018.csc2017.GameCentre.SlidingTiles.GameActivity.class);
+                tmp = new Intent(this, SlidingTilesGameActivity.class);
                 break;
             case BoardManager.MATCHING_CARDS_GAME:
-                tmp = new Intent(this, fall2018.csc2017.GameCentre.MatchingCards.GameActivity.class);
+                tmp = new Intent(this, MatchingCardsGameActivity.class);
                 break;
             default:
-                tmp = new Intent(this, fall2018.csc2017.GameCentre.Sudoku.GameActivity.class);
+                tmp = new Intent(this, SudokuGameActivity.class);
         }
         saveCurrentBoardManager();
         startActivity(tmp);

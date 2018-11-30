@@ -1,20 +1,21 @@
-package fall2018.csc2017.GameCentre.MatchingCards;
+package fall2018.csc2017.GameCentre.Sudoku;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Stack;
 
 import fall2018.csc2017.GameCentre.AccountManager;
+import fall2018.csc2017.GameCentre.BackgroundManager;
 import fall2018.csc2017.GameCentre.Board;
 import fall2018.csc2017.GameCentre.BoardManager;
 import fall2018.csc2017.GameCentre.CustomAdapter;
@@ -22,18 +23,13 @@ import fall2018.csc2017.GameCentre.Game.GestureDetectGridView;
 import fall2018.csc2017.GameCentre.Game.StartingActivity;
 import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
-import fall2018.csc2017.GameCentre.UserAreaActivity;
+import fall2018.csc2017.GameCentre.SaveFile;
 
-/**
- * The game activity.
- */
-public class GameActivity extends AppCompatActivity implements Observer {
-
+public class SudokuGameActivity extends AppCompatActivity implements Observer {
     /**
      * The board manager.
      */
-    // Todo: Need remove this after we fix onCreate()
-    private BoardManager boardManager = new MatchingCardsBoardManager();
+    private BoardManager boardManager;
 
     /**
      * The buttons to display.
@@ -46,13 +42,14 @@ public class GameActivity extends AppCompatActivity implements Observer {
     private GestureDetectGridView gridView;
     private static int columnWidth, columnHeight;
     private AccountManager accountManager;
+    private SaveFile saveFile;
 
     /**
      * Set up the background image for each button based on the master list
      * of positions, and then call the adapter to set the view.
      */
     public void display() {
-        updateTileButtons();
+
         gridView.setAdapter(new CustomAdapter(tileButtons, columnWidth, columnHeight));
 
     }
@@ -60,34 +57,34 @@ public class GameActivity extends AppCompatActivity implements Observer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         accountManager = (AccountManager) LoadAndSave.loadFromFile(
                 LoadAndSave.ACCOUNT_MANAGER_FILENAME, this);
         if (accountManager == null) {
             accountManager = new AccountManager();
             LoadAndSave.saveToFile(LoadAndSave.ACCOUNT_MANAGER_FILENAME, accountManager, this);
         }
+
         loadCurrentBoardManager();
-
-
         Board.NUM_COLS = boardManager.getSavedNumCols();
         Board.NUM_ROWS = boardManager.getSavedNumRows();
         boardManager.setStartingScoreAndTime();
-
         accountManager.getCurrentAccount().setGamePlayed(true);
 
+        if (saveFile == null) {
+            saveFile = new SaveFile();
+            LoadAndSave.saveToFile(
+                    accountManager.getCurrentAccount()
+                            .getSavedGameFileName(boardManager.getGameName()), saveFile, this);
+        }
+
         createTileButtons(this);
-        setContentView(R.layout.activity_matchingcards);
-        addSaveButtonListener();
+        setContentView(R.layout.activity_sudoku);
 
         // Add View to activity
         gridView = findViewById(R.id.grid);
         gridView.setNumColumns(Board.NUM_COLS);
         gridView.setBoardManager(boardManager);
-
         gridView.setAccountManager(accountManager);
-
         boardManager.getBoard().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(
@@ -107,29 +104,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
                 });
     }
 
-    /**
-     * Activate the save button.
-     */
-    private void addSaveButtonListener() {
-        Button saveButton = findViewById(R.id.SaveButton);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveBoardManager();
-                accountManager.getCurrentAccount()
-                        .setSaved(true, boardManager.getGameName());
-                makeToastSavedText();
-            }
-        });
-    }
 
-    /**
-     * Save the board manager as a serializable object
-     */
-    private void saveBoardManager() {
-        LoadAndSave.saveToFile(accountManager.getCurrentAccount().getSavedGameFileName(
-                boardManager.getGameName()), boardManager, this);
-    }
 
     /**
      * Create the buttons for displaying the tiles.
@@ -137,54 +112,34 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * @param context the context
      */
     private void createTileButtons(Context context) {
-//        Board board = boardManager.getBoard();
+        Board board = boardManager.getBoard();
         tileButtons = new ArrayList<>();
 
-        for (int row = 0; row != Board.NUM_ROWS; row++) {
-            for (int col = 0; col != Board.NUM_COLS; col++) {
-                Button tmp = new Button(context);
-                tmp.setBackgroundResource(R.drawable.meme);
-                this.tileButtons.add(tmp);
-            }
-        }
-
-//        }
-    }
-
-    /**
-     * Update the backgrounds on the buttons to match the tiles.
-     */
-    private void updateTileButtons() {
-        MatchingCardsBoard board = getBoard();
-        int nextPos = 0;
-
-        if (board.getFlipInProgress()) {
-            Stack<int[]> toBeFlipped = board.getLastClicks();
-            for (Button b : tileButtons) {
-                int row = nextPos / Board.NUM_ROWS;
-                int col = nextPos % Board.NUM_COLS;
-                if (board.getTile(row, col).getBackground() != R.drawable.tile_blank) {
-                    if (needToFlip(row, col)) {
-                        b.setBackgroundResource(board.getTile(row, col).getBackground());
-                    }else {
-                        b.setBackgroundResource(R.drawable.meme);
+        if (Board.BACKGROUND_BMAP != null) {
+            BackgroundManager backgrdMgr = new BackgroundManager(this);
+            HashMap backgroundIdMap = backgrdMgr.getbackgrdTileList();
+            for (int row = 0; row != Board.NUM_ROWS; row++) {
+                for (int col = 0; col != Board.NUM_COLS; col++) {
+                    Button tmp = new Button(context);
+                    int tileId = board.getTile(row, col).getId();
+                    if (tileId != Board.NUM_COLS * Board.NUM_ROWS) {
+                        Drawable backgrdDrawable = (Drawable) backgroundIdMap.get(tileId);
+                        tmp.setBackground(backgrdDrawable);
+                    } else {
+                        tmp.setBackgroundResource(R.drawable.tile_blank);
                     }
-                } else {
-                    b.setBackgroundResource(R.drawable.tile_blank);
+                    this.tileButtons.add(tmp);
                 }
-                nextPos++;
             }
-        }else {
-            for (Button b : tileButtons) {
-                int row = nextPos / Board.NUM_ROWS;
-                int col = nextPos % Board.NUM_COLS;
-                if (board.getTile(row, col).getBackground() != R.drawable.tile_blank) {
-                    b.setBackgroundResource(R.drawable.meme);
-                }else {
-                    b.setBackgroundResource(R.drawable.tile_blank);
+        } else {
+            for (int row = 0; row != Board.NUM_ROWS; row++) {
+                for (int col = 0; col != Board.NUM_COLS; col++) {
+                    Button tmp = new Button(context);
+                    tmp.setBackgroundResource(board.getTile(row, col).getBackground());
+                    this.tileButtons.add(tmp);
                 }
-                nextPos++;
             }
+
         }
     }
 
@@ -234,7 +189,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * Loads current saved game
      */
     private void loadCurrentBoardManager() {
-        boardManager = (MatchingCardsBoardManager) LoadAndSave.loadFromFile(
+        boardManager = (BoardManager) LoadAndSave.loadFromFile(
                 accountManager.getCurrentAccount().getCurrentGameFileName(), this);
     }
 
@@ -259,22 +214,6 @@ public class GameActivity extends AppCompatActivity implements Observer {
         Intent next = new Intent(this, StartingActivity.class);
         startActivity(next);
     }
-
-    private boolean needToFlip(int row, int col) {
-        Stack<?> toBeFlipped = (Stack<?>) ((MatchingCardsBoardManager)boardManager).getLastClicks().clone();
-        while (!toBeFlipped.empty()) {
-            int[] temp = (int[]) toBeFlipped.pop();
-            int rowOfFlip = temp[0];
-            int colOfFlip = temp[1];
-            if (row == rowOfFlip && col == colOfFlip) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private MatchingCardsBoard getBoard() {
-        return (MatchingCardsBoard) boardManager.getBoard();
-    }
-
 }
+
+

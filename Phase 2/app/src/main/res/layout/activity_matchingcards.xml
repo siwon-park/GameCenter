@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gamebackground"
-    tools:context="fall2018.csc2017.GameCentre.MatchingCards.GameActivity">
+    tools:context="fall2018.csc2017.GameCentre.MatchingCards.MatchingCardsGameActivity">
 
     <fall2018.csc2017.GameCentre.Game.GestureDetectGridView
         android:id="@+id/grid"

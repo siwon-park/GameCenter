@@ -8,7 +8,7 @@
 //import fall2018.csc2017.GameCentre.BoardManager;
 //import fall2018.csc2017.GameCentre.LoadAndSave;
 //
-//public class GameActivity {
+//public class SudokuGameActivity {
 //    /**
 //     * The board manager.
 //     */

@@ -123,7 +123,7 @@ public class ComplexityActivity extends AppCompatActivity {
     }
 
     /**
-     * Switch to the GameActivity view to play the game.
+     * Switch to the ImageActivity view to play the game.
      */
     private void switchToBackgroundChange() {
         Intent tmp = new Intent(this, ImageActivity.class);

@@ -16,9 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SlidingTiles.GameActivity" />
-        <activity android:name=".MatchingCards.GameActivity" />
-        <activity android:name=".Sudoku.GameActivity" />
+        <activity android:name=".SlidingTiles.SlidingTilesGameActivity" />
+        <activity android:name=".MatchingCards.MatchingCardsGameActivity" />
+        <activity android:name=".Sudoku.SudokuGameActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".Game.StartingActivity" />
         <activity android:name=".Game.ComplexityActivity" />
