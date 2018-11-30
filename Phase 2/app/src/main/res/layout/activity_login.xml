@@ -8,6 +8,7 @@
     tools:context="fall2018.csc2017.GameCentre.LoginActivity">
 
 
+
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="236dp"
@@ -18,6 +19,7 @@
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
+        android:drawableLeft= "@drawable/ic_action_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,15 +28,16 @@
 
     <EditText
         android:id="@+id/etPassword"
-        android:layout_width="237dp"
-        android:layout_height="46dp"
+        android:layout_width="236dp"
+        android:layout_height="55dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:drawableLeft= "@drawable/ic_action_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUsername" />
 
