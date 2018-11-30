@@ -264,7 +264,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * Returns to main SlidingTiles screen
      */
     private void returnToMain(){
-        Intent next = new Intent(this, UserAreaActivity.class);
+        Intent next = new Intent(this, MatchingCardsStartingActivity.class);
         startActivity(next);
     }
 

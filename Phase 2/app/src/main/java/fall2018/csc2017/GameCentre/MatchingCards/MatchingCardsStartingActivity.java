@@ -73,7 +73,7 @@ public class MatchingCardsStartingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                boardManager = new BoardManager();
-                switchToGame();
+                switchToComplexity();
             }
         });
     }
@@ -240,6 +240,14 @@ public class MatchingCardsStartingActivity extends AppCompatActivity {
                 tmp = new Intent(this, fall2018.csc2017.GameCentre.Sudoku.GameActivity.class);
         }
         saveCurrentBoardManager();
+        startActivity(tmp);
+    }
+
+    /**
+     * Switch to the MatchingCardsComplexity to choose a game.
+     */
+    private void switchToComplexity() {
+        Intent tmp = new Intent(this, MatchingCardsComplexity.class);
         startActivity(tmp);
     }
 
