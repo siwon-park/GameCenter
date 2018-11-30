@@ -165,7 +165,7 @@ public class SlidingTilesBoardManager extends BoardManager implements Serializab
     }
 
     /**
-     *
+     * @author GeeksforGeeks https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
      * @param board
      * @return whether or not the board is solvable
      */
