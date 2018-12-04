@@ -10,26 +10,26 @@ import fall2018.csc2017.GameCentre.LoadAndSave;
 import fall2018.csc2017.GameCentre.R;
 
 public class MatchingCardsComplexity extends ComplexityActivity {
-
-    /**
-     * Activate the 2x2 button.
-     */
-    @Override
-    protected void addButton2Listener() {
-        Button startButton = findViewById(R.id.matchingbutton2);
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Todo: remove the following extra code after fixing BoardManager()
-                Board.NUM_ROWS = 2;
-                Board.NUM_COLS = 2;
-                boardManager.createBoard();
-                boardManager.setSavedNumRows(2);
-                boardManager.setSavedNumCols(2);
-                switchToGame();
-            }
-        });
-    }
+// 2x2 is testing code, so remove it
+//    /**
+//     * Activate the 2x2 button.
+//     */
+//    //@Override
+//    protected void addButton2Listener() {
+//        Button startButton = findViewById(R.id.matchingbutton2);
+//        startButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Todo: remove the following extra code after fixing BoardManager()
+//                Board.NUM_ROWS = 2;
+//                Board.NUM_COLS = 2;
+//                boardManager.createBoard();
+//                boardManager.setSavedNumRows(2);
+//                boardManager.setSavedNumCols(2);
+//                switchToGame();
+//            }
+//        });
+//    }
 
     /**
      * An empty function for 3x3 button though it does not exist here
